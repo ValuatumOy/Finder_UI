@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raahen Terästuote Oy — Valuatum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F5F5F2;--surface:#FFFFFF;
+  --border:#E3E3DC;
+  --text-1:#141416;--text-2:#56564F;--text-3:#9A9A92;
+  --green:#1B3028;--green-mid:#2a4a3a;--green-light:#EBF0EC;
+  --red:#C0392B;
+  --r:6px;
+}
+body{font-family:'Figtree',-apple-system,sans-serif;background:var(--bg);color:var(--text-1);font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+
+/* Nav */
+.gnav{background:var(--surface);border-bottom:1px solid var(--border);height:54px;padding:0 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;}
+.logo-mark{width:28px;height:28px;background:var(--green);border-radius:5px;display:flex;align-items:center;justify-content:center;}
+.logo-mark svg{width:16px;height:16px;fill:#fff;}
+.logo-name{font-size:15px;font-weight:700;color:var(--text-1);letter-spacing:-0.01em;}
+.logo-name span{color:var(--green);}
+.gnav-links{display:flex;gap:4px;}
+.gnav-links a{text-decoration:none;color:var(--text-2);font-size:13px;font-weight:500;padding:5px 12px;border-radius:var(--r);transition:background .1s;}
+.gnav-links a:hover{background:var(--bg);}
+.gnav-search{display:flex;align-items:center;gap:8px;border:1px solid var(--border);border-radius:22px;padding:6px 14px;background:var(--bg);min-width:220px;}
+.gnav-search svg{width:14px;height:14px;stroke:var(--text-3);fill:none;flex-shrink:0;}
+.gnav-search input{border:none;background:transparent;font:inherit;font-size:13px;color:var(--text-1);outline:none;width:100%;}
+.gnav-search input::placeholder{color:var(--text-3);}
+
+/* Page wrapper */
+.page{max-width:1100px;margin:0 auto;padding:40px 40px 80px;}
+
+/* Intro banner */
+.intro-banner{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px 20px;margin-bottom:32px;font-size:13px;color:var(--text-2);line-height:1.6;}
+.intro-banner strong{color:var(--text-1);display:block;margin-bottom:4px;}
+.intro-banner a{color:var(--green);font-weight:600;text-decoration:none;}
+.intro-banner a:hover{text-decoration:underline;}
+
+/* Company header */
+.company-header{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:28px 28px 24px;margin-bottom:20px;}
+.company-title{font-family:'Instrument Serif',Georgia,serif;font-size:32px;line-height:1.15;color:var(--text-1);margin-bottom:10px;}
+.company-meta{display:flex;align-items:center;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+.ytunnus{font-size:13px;color:var(--text-2);}
+.tag{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:500;padding:3px 10px;border-radius:20px;border:1px solid var(--border);color:var(--text-2);}
+.header-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text-1);font:500 13px/1 'Figtree',sans-serif;padding:8px 16px;border-radius:var(--r);cursor:pointer;transition:border-color .1s,background .1s;}
+.btn-ghost:hover{background:var(--bg);}
+.btn-primary{background:var(--green);border:none;color:#fff;font:600 13px/1 'Figtree',sans-serif;padding:9px 18px;border-radius:var(--r);cursor:pointer;transition:opacity .1s;}
+.btn-primary:hover{opacity:.88;}
+
+/* DCF value block */
+.dcf-block{margin-top:20px;padding-top:20px;border-top:1px solid var(--border);display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.dcf-label{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);}
+.dcf-value{font-size:28px;font-weight:700;color:var(--text-1);letter-spacing:-0.02em;margin-top:2px;}
+.dcf-unit{font-size:14px;font-weight:500;color:var(--text-2);}
+
+/* Info grid */
+.info-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px 28px;margin-bottom:20px;}
+.section-title{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.info-row{display:contents;}
+.info-row .k{padding:10px 0;font-size:13.5px;color:var(--text-2);border-bottom:1px solid var(--border);}
+.info-row .v{padding:10px 0;font-size:13.5px;font-weight:600;color:var(--text-1);border-bottom:1px solid var(--border);}
+.info-row:last-child .k,.info-row:last-child .v{border-bottom:none;}
+
+/* Charts section */
+.charts-section{margin-bottom:20px;}
+.charts-section-title{font-size:15px;font-weight:700;color:var(--text-1);margin-bottom:16px;}
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px 20px 16px;}
+.chart-card-title{font-size:14px;font-weight:700;color:var(--text-1);margin-bottom:2px;}
+.chart-card-sub{font-size:12px;color:var(--text-3);margin-bottom:14px;}
+.chart-wrap{position:relative;height:200px;}
+
+/* Financial table */
+.table-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px 28px;margin-bottom:20px;}
+.ftable{width:100%;border-collapse:collapse;font-size:13px;}
+.ftable thead th{padding:6px 10px 10px;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--text-3);text-align:right;border-bottom:2px solid var(--border);}
+.ftable thead th:first-child{text-align:left;}
+.ftable tbody td{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--text-2);text-align:right;}
+.ftable tbody td:first-child{text-align:left;color:var(--text-1);}
+.ftable tbody tr:hover td{background:#fafaf8;}
+.ftable .section-row td{font-weight:700;color:var(--text-1);padding-top:16px;padding-bottom:4px;border-bottom:none;background:transparent;}
+.ftable .section-row td:first-child{font-size:13.5px;}
+.ftable .bold td{font-weight:600;color:var(--text-1);}
+.ftable .neg{color:var(--red);}
+.ftable .year-latest{font-weight:700;color:var(--text-1);}
+
+/* Luottoriski */
+.credit-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px 28px;margin-bottom:20px;}
+
+/* Peers */
+.peers-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px 28px;margin-bottom:20px;}
+.peers-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:16px;}
+.peer-item{display:flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid var(--border);border-radius:var(--r);text-decoration:none;color:var(--text-1);font-size:13px;font-weight:500;transition:border-color .1s,background .1s;}
+.peer-item:hover{background:var(--bg);border-color:var(--text-3);}
+.peer-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;}
+.see-all{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;}
+.see-all a{font-size:13px;color:var(--green);font-weight:600;text-decoration:none;}
+.see-all a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="gnav">
+  <a href="#" class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 16 16"><polygon points="8,1 15,5 15,11 8,15 1,11 1,5"/></svg>
+    </div>
+    <span class="logo-name"><span>valuatum</span> · Talousanalyysi</span>
+  </a>
+  <div class="gnav-links">
+    <a href="#">Etusivu</a>
+    <a href="#">Yritykset</a>
+    <a href="#">Toimialat</a>
+  </div>
+  <div class="gnav-search">
+    <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+    <input type="text" placeholder="Hae yritystä...">
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- Intro banner -->
+  <div class="intro-banner">
+    <strong>Hanki ammattimaiset arvonmääritys- ja luottoriskiraportit mistä tahansa maailman yrityksestä</strong>
+    Uusi tekoälyä hyödyntävä ilmainen yrityksen arvonmääritystyökalu mille tahansa maailman yritykselle. Lataa PDF-muotoinen tilinpäätös ja saat välittömästi raportin, jossa on mukautettavat ennusteet, luottopisteet, maksuhäiriötodennäköisyys ja keskeiset talousmittarit. <a href="#">Kokeile nyt ilmaiseksi →</a>
+  </div>
+
+  <!-- Company header -->
+  <div class="company-header">
+    <h1 class="company-title">Raahen Terästuote Oy</h1>
+    <div class="company-meta">
+      <span class="ytunnus">Y-tunnus: 30129534</span>
+      <span class="tag">25 · Metallituotteiden valmistus (pl. koneet ja laitteet)</span>
+    </div>
+    <div class="header-actions">
+      <button class="btn-ghost">Vie talousluvut ▼</button>
+    </div>
+    <div class="dcf-block">
+      <div>
+        <div class="dcf-label">Yrityksen arvo · DCF-arvonmääritys</div>
+        <div class="dcf-value">4 379 <span class="dcf-unit">kEUR</span></div>
+      </div>
+      <button class="btn-primary">Katso arvonmääritysanalyysi →</button>
+    </div>
+  </div>
+
+  <!-- Yritystiedot -->
+  <div class="info-section">
+    <div class="section-title">Yritystiedot</div>
+    <div class="info-grid">
+      <div class="info-row">
+        <div class="k">Virallinen nimi</div>
+        <div class="v">Raahen Terästuote Oy</div>
+      </div>
+      <div class="info-row">
+        <div class="k">Toimiala</div>
+        <div class="v">25 · Metallituotteiden valmistus (pl. koneet ja laitteet)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="charts-section">
+    <div class="charts-section-title">Taloustiedot</div>
+    <div class="charts-grid">
+
+      <div class="chart-card">
+        <div class="chart-card-title">Liikevaihto</div>
+        <div class="chart-card-sub">kEUR</div>
+        <div class="chart-wrap"><canvas id="c-rev"></canvas></div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-card-title">EBIT</div>
+        <div class="chart-card-sub">kEUR</div>
+        <div class="chart-wrap"><canvas id="c-ebit"></canvas></div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-card-title">Kannattavuus</div>
+        <div class="chart-card-sub">%</div>
+        <div class="chart-wrap"><canvas id="c-prof"></canvas></div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-card-title">Vakavaraisuus</div>
+        <div class="chart-card-sub">%</div>
+        <div class="chart-wrap"><canvas id="c-solv"></canvas></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Tunnusluvut table -->
+  <div class="table-section">
+    <div class="section-title">Tunnusluvut (kEUR)</div>
+    <table class="ftable">
+      <thead>
+        <tr>
+          <th></th>
+          <th>2020</th>
+          <th>2021</th>
+          <th>2022</th>
+          <th>2023</th>
+          <th class="year-latest">2024</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="section-row"><td colspan="6">Volyymi</td></tr>
+        <tr class="bold"><td>Liikevaihto</td><td>1 802,00</td><td>2 143,00</td><td>3 024,00</td><td>2 487,00</td><td class="year-latest">2 499,12</td></tr>
+        <tr><td>Bruttokate</td><td>1 015,00</td><td>1 045,00</td><td>1 516,00</td><td>1 284,00</td><td class="year-latest">1 337,67</td></tr>
+        <tr><td>EBIT</td><td>56,00</td><td>53,00</td><td>369,00</td><td>163,00</td><td class="year-latest">66,13</td></tr>
+        <tr><td>Nettotulos</td><td>12,00</td><td>4,00</td><td>270,00</td><td>101,00</td><td class="year-latest">19,98</td></tr>
+        <tr><td>Oma pääoma yhteensä</td><td>133,00</td><td>137,00</td><td>396,00</td><td>447,00</td><td class="year-latest">395,46</td></tr>
+        <tr><td>Taseen loppusumma (vastaavaa)</td><td>1 012,00</td><td>1 134,00</td><td>1 402,00</td><td>1 082,00</td><td class="year-latest">1 584,14</td></tr>
+        <tr><td>Nettovelka</td><td>587,00</td><td>541,00</td><td>313,00</td><td>171,00</td><td class="year-latest">702,58</td></tr>
+
+        <tr class="section-row"><td colspan="6">Kannattavuus</td></tr>
+        <tr><td>EBIT-%</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>ROA</td><td>5,5 %</td><td>4,9 %</td><td>29,2 %</td><td>13,2 %</td><td class="year-latest">5,0 %</td></tr>
+        <tr><td>ROE</td><td>9,0 %</td><td>3,0 %</td><td>101,3 %</td><td>24,0 %</td><td class="year-latest">4,7 %</td></tr>
+        <tr><td>ROI</td><td>6,2 %</td><td>6,3 %</td><td>45,0 %</td><td>19,4 %</td><td class="year-latest">6,9 %</td></tr>
+        <tr><td>Taloudellinen lisä-arvo (EVA)</td><td>44,80</td><td class="neg">−32,99</td><td>222,11</td><td>47,22</td><td class="year-latest neg">−24,08</td></tr>
+
+        <tr class="section-row"><td colspan="6">Vakavaraisuus</td></tr>
+        <tr><td>Omavaraisuusaste</td><td>32,9 %</td><td>26,1 %</td><td>36,8 %</td><td>48,6 %</td><td class="year-latest">28,1 %</td></tr>
+        <tr><td>Velkaantuneisuus</td><td>583,5 %</td><td>460,6 %</td><td>122,7 %</td><td>82,1 %</td><td class="year-latest">177,7 %</td></tr>
+        <tr><td>Suhteellinen nettovelkaantuneisuus %</td><td>38,3 %</td><td>42,5 %</td><td>27,6 %</td><td>17,7 %</td><td class="year-latest">47,6 %</td></tr>
+
+        <tr class="section-row"><td colspan="6">Maksuvalmius</td></tr>
+        <tr><td>Quick ratio</td><td>1,6</td><td>1,1</td><td>1,2</td><td>1,5</td><td class="year-latest">1,1</td></tr>
+        <tr><td>Current ratio</td><td>2,1</td><td>1,3</td><td>1,5</td><td>2,0</td><td class="year-latest">1,4</td></tr>
+        <tr><td>Rahat ja rahavarat</td><td>189,00</td><td>90,00</td><td>173,00</td><td>196,00</td><td class="year-latest"></td></tr>
+
+        <tr class="section-row"><td colspan="6">Pääoman käytön tehokkuus</td></tr>
+        <tr><td>Myyntisaamisten kiertoaika (päivää)</td><td>27,7</td><td>69,2</td><td>61,7</td><td>39,8</td><td class="year-latest">87,7</td></tr>
+        <tr><td>Nettokäyttöpääoma %</td><td>13,0 %</td><td>7,0 %</td><td>10,6 %</td><td>13,4 %</td><td class="year-latest">9,8 %</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Luottoriski -->
+  <div class="credit-section">
+    <div class="section-title">Luottoriski</div>
+    <p style="font-size:13px;color:var(--text-2);">Luottoluokitus</p>
+  </div>
+
+  <!-- Peers -->
+  <div class="peers-section">
+    <div class="section-title">Saman toimialan yritykset</div>
+    <div class="peers-list">
+      <a href="#" class="peer-item"><span class="peer-dot"></span>Metallipalvelu Turppa Oy</a>
+      <a href="#" class="peer-item"><span class="peer-dot"></span>Helsingin EAM-tekniikka Oy</a>
+      <a href="#" class="peer-item"><span class="peer-dot"></span>Tuusulan Työkalukoneistus Oy</a>
+      <a href="#" class="peer-item"><span class="peer-dot"></span>MYCRAFT OY</a>
+      <a href="#" class="peer-item"><span class="peer-dot"></span>Laserkeskus Oy</a>
+      <a href="#" class="peer-item"><span class="peer-dot"></span>Jemepro Oy</a>
+      <a href="#" class="peer-item"><span class="peer-dot"></span>Premeka Oy</a>
+      <a href="#" class="peer-item"><span class="peer-dot"></span>Oy Maprotec Ab</a>
+      <a href="#" class="peer-item"><span class="peer-dot"></span>Hionta Service Oy</a>
+      <a href="#" class="peer-item"><span class="peer-dot"></span>Steel Storm Oy</a>
+    </div>
+    <div class="see-all">
+      <a href="#">⇒ Katso kaikki toimialan 'Metallituotteiden valmistus (pl. koneet ja laitteet)' yritykset</a>
+      <a href="#">⇒ Katso kaikki toimialat</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const YEARS = ['2020','2021','2022','2023','2024'];
+const GREEN = '#1B3028';
+const GREEN2 = 'rgba(27,48,40,0.12)';
+const BLUE = '#2563EB';
+const TEAL = '#0D9488';
+
+Chart.defaults.font.family = "'Figtree', sans-serif";
+Chart.defaults.font.size = 11;
+Chart.defaults.color = '#9A9A92';
+
+function barChart(id, data, color){
+  new Chart(document.getElementById(id),{
+    type:'bar',
+    data:{labels:YEARS,datasets:[{data,backgroundColor:YEARS.map((_,i)=>i===4?GREEN:GREEN2),borderColor:YEARS.map((_,i)=>i===4?GREEN:'transparent'),borderWidth:1,borderRadius:3}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.parsed.y.toLocaleString('fi-FI')}}},scales:{x:{grid:{display:false},border:{display:false}},y:{grid:{color:'#E3E3DC'},border:{display:false},ticks:{callback:v=>v.toLocaleString('fi-FI')}}}}
+  });
+}
+
+function lineChart(id, datasets){
+  new Chart(document.getElementById(id),{
+    type:'line',
+    data:{labels:YEARS,datasets},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:12,padding:12}}},scales:{x:{grid:{display:false},border:{display:false}},y:{grid:{color:'#E3E3DC'},border:{display:false},ticks:{callback:v=>v+' %'}}}}
+  });
+}
+
+// Liikevaihto
+barChart('c-rev',[1802,2143,3024,2487,2499]);
+
+// EBIT
+barChart('c-ebit',[56,53,369,163,66]);
+
+// Kannattavuus (ROE + ROI)
+lineChart('c-prof',[
+  {label:'ROE',data:[9.0,3.0,101.3,24.0,4.7],borderColor:BLUE,backgroundColor:'transparent',pointBackgroundColor:BLUE,tension:0.3,pointRadius:4},
+  {label:'ROI',data:[6.2,6.3,45.0,19.4,6.9],borderColor:TEAL,backgroundColor:'transparent',pointBackgroundColor:TEAL,tension:0.3,pointRadius:4}
+]);
+
+// Vakavaraisuus (Omavaraisuusaste)
+lineChart('c-solv',[
+  {label:'Omavaraisuusaste',data:[32.9,26.1,36.8,48.6,28.1],borderColor:BLUE,backgroundColor:'rgba(37,99,235,0.06)',fill:true,pointBackgroundColor:BLUE,tension:0.3,pointRadius:4}
+]);
+</script>
+</body>
+</html>
