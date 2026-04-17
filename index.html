@@ -3,161 +3,281 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Raahen Terästuote Oy — Valuatum</title>
+<title>Raahen Terästuote Oy - Valuatum</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#F5F5F2;--surface:#FFFFFF;
-  --border:#E3E3DC;
-  --text-1:#141416;--text-2:#56564F;--text-3:#9A9A92;
-  --green:#1B3028;--green-mid:#2a4a3a;--green-light:#EBF0EC;
-  --red:#C0392B;
-  --r:6px;
+  --bg-main:#1B3028;
+  --bg:#1B3028;
+  --surface:#FFFFFF;
+  --surface-soft:#F1F6F2;
+  --surface-muted:#FAFAF8;
+  --border:#E3E1D8;
+  --border-strong:#D5D1C6;
+  --text-1:#171A18;
+  --text-2:#5F6660;
+  --text-3:#8E948E;
+  --green:#163B2D;
+  --green-2:#27624B;
+  --green-soft:#E8F1EA;
+  --green-softer:#F4F8F5;
+  --red:#B9443F;
+  --shadow:0 22px 60px rgba(6,18,14,.22);
+  --shadow-soft:0 12px 34px rgba(6,18,14,.16);
+  --r:8px;
 }
-body{font-family:'Figtree',-apple-system,sans-serif;background:var(--bg);color:var(--text-1);font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#1B3028;color:var(--text-1);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+button,input{font-family:inherit}
 
-/* Nav */
-.gnav{background:var(--surface);border-bottom:1px solid var(--border);height:54px;padding:0 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
-.logo{display:flex;align-items:center;gap:8px;text-decoration:none;}
-.logo-mark{width:28px;height:28px;background:var(--green);border-radius:5px;display:flex;align-items:center;justify-content:center;}
-.logo-mark svg{width:16px;height:16px;fill:#fff;}
-.logo-name{font-size:15px;font-weight:700;color:var(--text-1);letter-spacing:-0.01em;}
+.gnav{background:rgba(255,255,255,.92);border-bottom:1px solid var(--border);min-height:72px;padding:0 32px;display:grid;grid-template-columns:minmax(210px,1fr) minmax(280px,540px) minmax(210px,1fr);gap:24px;align-items:center;position:sticky;top:0;z-index:100;backdrop-filter:blur(18px);}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0;}
+.logo-mark{width:34px;height:34px;background:var(--green);border-radius:8px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(22,59,45,.18);}
+.logo-mark svg{width:17px;height:17px;fill:#fff;}
+.logo-name{font-size:14px;font-weight:800;color:var(--text-1);letter-spacing:-.02em;white-space:nowrap;}
 .logo-name span{color:var(--green);}
-.gnav-links{display:flex;gap:4px;}
-.gnav-links a{text-decoration:none;color:var(--text-2);font-size:13px;font-weight:500;padding:5px 12px;border-radius:var(--r);transition:background .1s;}
-.gnav-links a:hover{background:var(--bg);}
-.gnav-search{display:flex;align-items:center;gap:8px;border:1px solid var(--border);border-radius:22px;padding:6px 14px;background:var(--bg);min-width:220px;}
-.gnav-search svg{width:14px;height:14px;stroke:var(--text-3);fill:none;flex-shrink:0;}
-.gnav-search input{border:none;background:transparent;font:inherit;font-size:13px;color:var(--text-1);outline:none;width:100%;}
+.gnav-search{display:flex;align-items:center;gap:12px;border:1px solid var(--border-strong);border-radius:999px;padding:12px 18px;background:var(--surface);min-width:0;width:100%;box-shadow:var(--shadow-soft);}
+.gnav-search:focus-within{border-color:rgba(22,59,45,.42);box-shadow:0 0 0 4px rgba(22,59,45,.08),var(--shadow-soft);}
+.gnav-search svg{width:18px;height:18px;stroke:var(--green);fill:none;flex-shrink:0;}
+.gnav-search input{border:none;background:transparent;font-size:15px;font-weight:500;color:var(--text-1);outline:none;width:100%;}
 .gnav-search input::placeholder{color:var(--text-3);}
+.gnav-links{display:flex;justify-content:flex-end;gap:6px;}
+.gnav-links a{text-decoration:none;color:var(--text-2);font-size:14px;font-weight:600;padding:9px 13px;border-radius:6px;transition:background .15s,color .15s;}
+.gnav-links a:hover{background:var(--green-soft);color:var(--green);}
 
-/* Page wrapper */
-.page{max-width:1100px;margin:0 auto;padding:40px 40px 80px;}
+.page{max-width:1360px;margin:0 auto;padding:42px 28px 78px;}
+.intro-banner{background:linear-gradient(135deg,#FFFFFF 0%,#F3F8F4 100%);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:20px;color:var(--text-2);box-shadow:var(--shadow-soft);}
+.intro-banner strong{color:var(--text-1);display:block;font-size:15px;font-weight:750;margin-bottom:6px;letter-spacing:-.01em;}
+.intro-banner a{color:var(--green);font-weight:700;text-decoration:none;border-bottom:1px solid rgba(22,59,45,.25);}
+.intro-banner a:hover{border-bottom-color:var(--green);}
 
-/* Intro banner */
-.intro-banner{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px 20px;margin-bottom:32px;font-size:13px;color:var(--text-2);line-height:1.6;}
-.intro-banner strong{color:var(--text-1);display:block;margin-bottom:4px;}
-.intro-banner a{color:var(--green);font-weight:600;text-decoration:none;}
-.intro-banner a:hover{text-decoration:underline;}
+.company-header{background:var(--surface);border:1px solid rgba(255,255,255,.74);border-radius:10px;padding:30px;margin-bottom:20px;box-shadow:var(--shadow);}
+.company-top{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;margin-bottom:26px;}
+.company-title{font-size:42px;line-height:1.08;color:var(--text-1);font-weight:800;letter-spacing:-.045em;margin-bottom:14px;}
+.company-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.ytunnus{font-size:13px;font-weight:650;color:var(--green);background:var(--green-soft);border:1px solid rgba(22,59,45,.14);padding:6px 10px;border-radius:8px;}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:6px 12px;border-radius:8px;border:1px solid var(--border);color:var(--text-2);background:var(--surface-muted);}
+.header-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-top:3px;}
+.btn-ghost,.btn-primary,.btn-secondary{border-radius:6px;cursor:pointer;transition:background .15s,border-color .15s,transform .15s,box-shadow .15s;white-space:nowrap;}
+.btn-ghost{background:var(--surface);border:1px solid var(--border-strong);color:var(--text-1);font-size:13px;font-weight:700;padding:10px 16px;}
+.btn-ghost:hover{background:var(--green-softer);border-color:rgba(22,59,45,.3);}
+.btn-primary{background:var(--green);border:1px solid var(--green);color:#fff;font-size:14px;font-weight:750;padding:13px 18px;box-shadow:0 12px 24px rgba(22,59,45,.22);}
+.btn-primary:hover{background:var(--green-2);border-color:var(--green-2);transform:translateY(-1px);}
+.btn-secondary{background:#fff;border:1px solid rgba(22,59,45,.22);color:var(--green);font-size:14px;font-weight:750;padding:13px 18px;box-shadow:0 10px 20px rgba(22,59,45,.08);}
+.btn-secondary:hover{background:var(--green-softer);border-color:rgba(22,59,45,.34);transform:translateY(-1px);}
+.about-company{border-top:1px solid var(--border);padding-top:26px;margin-top:8px;display:grid;grid-template-columns:minmax(220px,.55fr) minmax(0,1.45fr);gap:28px;align-items:start;}
+.about-kicker{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin-bottom:8px;}
+.about-company h2{font-size:24px;line-height:1.22;font-weight:800;letter-spacing:-.025em;color:var(--text-1);}
+.about-company p{font-size:15px;color:var(--text-2);max-width:760px;}
+.metric-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px;}
+.metric-card{background:var(--green-softer);border:1px solid rgba(22,59,45,.12);border-radius:8px;padding:14px 15px;}
+.metric-label{font-size:12px;font-weight:700;color:var(--text-3);margin-bottom:5px;}
+.metric-value{font-size:18px;font-weight:800;color:var(--text-1);letter-spacing:-.025em;}
+.about-cta{display:grid;gap:10px;margin-top:22px;max-width:260px;}
+.about-cta .btn-primary,.about-cta .btn-secondary{width:100%;text-align:center;}
 
-/* Company header */
-.company-header{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:28px 28px 24px;margin-bottom:20px;}
-.company-title{font-family:'Instrument Serif',Georgia,serif;font-size:32px;line-height:1.15;color:var(--text-1);margin-bottom:10px;}
-.company-meta{display:flex;align-items:center;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
-.ytunnus{font-size:13px;color:var(--text-2);}
-.tag{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:500;padding:3px 10px;border-radius:20px;border:1px solid var(--border);color:var(--text-2);}
-.header-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
-.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text-1);font:500 13px/1 'Figtree',sans-serif;padding:8px 16px;border-radius:var(--r);cursor:pointer;transition:border-color .1s,background .1s;}
-.btn-ghost:hover{background:var(--bg);}
-.btn-primary{background:var(--green);border:none;color:#fff;font:600 13px/1 'Figtree',sans-serif;padding:9px 18px;border-radius:var(--r);cursor:pointer;transition:opacity .1s;}
-.btn-primary:hover{opacity:.88;}
+.panel{background:var(--surface);border:1px solid rgba(255,255,255,.74);border-radius:var(--r);padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow-soft);}
+.section-title{font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--green);margin-bottom:18px;}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 34px;}
+.info-row{display:grid;grid-template-columns:minmax(140px,.75fr) minmax(0,1.25fr);gap:18px;border-bottom:1px solid var(--border);padding:13px 0;}
+.info-row .k{font-size:13px;font-weight:600;color:var(--text-3);}
+.info-row .v{font-size:14px;font-weight:700;color:var(--text-1);}
 
-/* DCF value block */
-.dcf-block{margin-top:20px;padding-top:20px;border-top:1px solid var(--border);display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
-.dcf-label{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);}
-.dcf-value{font-size:28px;font-weight:700;color:var(--text-1);letter-spacing:-0.02em;margin-top:2px;}
-.dcf-unit{font-size:14px;font-weight:500;color:var(--text-2);}
-
-/* Info grid */
-.info-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px 28px;margin-bottom:20px;}
-.section-title{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;}
-.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
-.info-row{display:contents;}
-.info-row .k{padding:10px 0;font-size:13.5px;color:var(--text-2);border-bottom:1px solid var(--border);}
-.info-row .v{padding:10px 0;font-size:13.5px;font-weight:600;color:var(--text-1);border-bottom:1px solid var(--border);}
-.info-row:last-child .k,.info-row:last-child .v{border-bottom:none;}
-
-/* Charts section */
 .charts-section{margin-bottom:20px;}
-.charts-section-title{font-size:15px;font-weight:700;color:var(--text-1);margin-bottom:16px;}
-.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px 20px 16px;}
-.chart-card-title{font-size:14px;font-weight:700;color:var(--text-1);margin-bottom:2px;}
-.chart-card-sub{font-size:12px;color:var(--text-3);margin-bottom:14px;}
-.chart-wrap{position:relative;height:200px;}
+.charts-section-title{font-size:38px;font-weight:850;color:#FFFFFF;letter-spacing:-.035em;margin:8px 0 22px;}
+.charts-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;}
+.chart-card{background:var(--surface);border:1px solid rgba(255,255,255,.74);border-radius:var(--r);padding:20px 20px 18px;box-shadow:var(--shadow-soft);}
+.chart-card.top-chart{grid-column:span 2;}
+.chart-card.wide-chart{grid-column:span 3;}
+.metric-chart-card{display:flex;flex-direction:column;min-height:336px;}
+.chart-card-title{font-size:15px;font-weight:800;color:var(--text-1);letter-spacing:-.01em;margin-bottom:2px;}
+.chart-card-sub{font-size:12px;font-weight:650;color:var(--text-3);height:18px;margin-bottom:15px;}
+.chart-wrap{position:relative;height:220px;}
+.metric-chart-card .chart-wrap{height:232px;min-height:232px;}
+.chart-legend{display:flex;align-items:flex-start;justify-content:center;gap:8px 18px;flex-wrap:wrap;margin-top:14px;min-height:40px;color:#5F6660;font-size:12px;font-weight:650;line-height:1.35;}
+.chart-legend-item{display:inline-flex;align-items:center;gap:7px;}
+.chart-legend-swatch{width:10px;height:10px;border-radius:50%;display:inline-block;box-shadow:0 0 0 2px #fff;}
 
-/* Financial table */
-.table-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px 28px;margin-bottom:20px;}
-.ftable{width:100%;border-collapse:collapse;font-size:13px;}
-.ftable thead th{padding:6px 10px 10px;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--text-3);text-align:right;border-bottom:2px solid var(--border);}
+.reveal{opacity:0;transform:translateY(10px);transition:opacity .92s cubic-bezier(.22,1,.36,1),transform .92s cubic-bezier(.22,1,.36,1);transition-delay:var(--reveal-delay,0ms);will-change:opacity,transform;}
+.reveal.reveal-visible{opacity:1;transform:translateY(0);}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none;will-change:auto;}
+  .btn-ghost,.btn-primary,.gnav-links a,.peer-item{transition:none;}
+}
+
+.table-section{overflow:hidden;}
+.table-scroll{overflow-x:auto;margin:0 -8px;padding:0 8px;}
+.ftable{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;min-width:760px;}
+.ftable thead th{padding:10px 12px 13px;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--text-3);text-align:right;border-bottom:1px solid var(--border-strong);background:var(--surface);}
 .ftable thead th:first-child{text-align:left;}
-.ftable tbody td{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--text-2);text-align:right;}
-.ftable tbody td:first-child{text-align:left;color:var(--text-1);}
-.ftable tbody tr:hover td{background:#fafaf8;}
-.ftable .section-row td{font-weight:700;color:var(--text-1);padding-top:16px;padding-bottom:4px;border-bottom:none;background:transparent;}
-.ftable .section-row td:first-child{font-size:13.5px;}
-.ftable .bold td{font-weight:600;color:var(--text-1);}
-.ftable .neg{color:var(--red);}
-.ftable .year-latest{font-weight:700;color:var(--text-1);}
+.ftable tbody td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--text-2);text-align:right;transition:background .12s;}
+.ftable tbody td:first-child{text-align:left;color:var(--text-1);font-weight:550;}
+.ftable tbody tr:hover td{background:var(--green-softer);}
+.ftable .section-row td{font-weight:800;color:var(--green);padding-top:22px;padding-bottom:8px;border-bottom:1px solid var(--border);background:var(--surface);}
+.ftable .section-row td:first-child{font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+.ftable .bold td{font-weight:750;color:var(--text-1);}
+.ftable .neg{color:var(--red);font-weight:700;}
+.ftable .year-latest{font-weight:800;color:var(--text-1);}
+.ftable thead .year-latest{color:var(--green);}
 
-/* Luottoriski */
-.credit-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px 28px;margin-bottom:20px;}
-
-/* Peers */
-.peers-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px 28px;margin-bottom:20px;}
+.credit-section{padding:0;overflow:hidden;}
+.credit-head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:26px 28px 0;margin-bottom:18px;}
+.credit-title-wrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.credit-title-wrap .section-title{margin-bottom:0;}
+.new-badge{display:inline-flex;align-items:center;border:1px solid rgba(22,59,45,.16);border-radius:999px;background:var(--green-soft);color:var(--green);font-size:12px;font-weight:800;padding:4px 9px;}
+.credit-links{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.credit-links a{color:var(--text-2);font-size:13px;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(95,102,96,.25);}
+.credit-links a:hover{color:var(--green);border-bottom-color:rgba(22,59,45,.45);}
+.credit-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.34fr);gap:16px;padding:0 28px 22px;align-items:stretch;}
+.credit-preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.locked-panel{position:relative;min-height:310px;border:1px solid var(--border);border-radius:8px;background:linear-gradient(180deg,#fff 0%,var(--surface-muted) 100%);padding:22px;overflow:hidden;}
+.locked-panel::after{content:"";position:absolute;inset:auto 0 0;height:42%;background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.92));pointer-events:none;}
+.locked-panel h3{font-size:17px;font-weight:800;line-height:1.25;letter-spacing:-.02em;color:var(--text-1);margin-bottom:18px;max-width:420px;}
+.locked-copy{position:relative;z-index:2;margin-top:20px;color:var(--text-2);font-size:13px;line-height:1.55;}
+.rating-preview{position:relative;border:1px solid rgba(22,59,45,.14);border-radius:8px;background:var(--green-softer);padding:22px 18px 18px;min-height:150px;}
+.rating-scale{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;filter:blur(.6px);}
+.rating-step{height:42px;border-radius:6px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-2);font-size:12px;font-weight:800;}
+.rating-step:nth-child(4),.rating-step:nth-child(5){background:rgba(22,59,45,.1);color:var(--green);border-color:rgba(22,59,45,.18);}
+.rating-label{margin-top:15px;font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--text-3);}
+.locked-value{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(22,59,45,.2);border-radius:999px;background:rgba(255,255,255,.86);backdrop-filter:blur(10px);box-shadow:var(--shadow-soft);color:var(--green);font-size:13px;font-weight:800;padding:10px 13px;}
+.lock-icon{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.credit-metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
+.credit-metric{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--border);border-radius:8px;background:#fff;padding:10px 12px;color:var(--text-2);font-size:12px;font-weight:650;}
+.credit-metric strong{color:var(--text-1);font-size:13px;font-weight:800;}
+.blurred-token{display:inline-block;filter:blur(3px);user-select:none;}
+.payment-preview{display:grid;grid-template-columns:84px minmax(70px,.55fr) minmax(0,1.45fr);gap:16px;align-items:center;border:1px solid rgba(22,59,45,.14);border-radius:8px;background:var(--green-softer);padding:18px;min-height:168px;}
+.risk-scale{display:grid;gap:6px;}
+.risk-number{height:24px;border-radius:999px;border:1px solid var(--border);background:#fff;color:var(--text-3);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;}
+.risk-number.active{background:rgba(22,59,45,.12);border-color:rgba(22,59,45,.22);color:var(--green);}
+.payment-lock{display:flex;align-items:center;justify-content:center;width:58px;height:58px;margin:auto;border-radius:50%;background:#fff;border:1px solid rgba(22,59,45,.18);box-shadow:var(--shadow-soft);color:var(--green);}
+.payment-lock .lock-icon{width:21px;height:21px;}
+.locked-lines{display:grid;gap:12px;}
+.locked-line{display:grid;grid-template-columns:minmax(0,1fr) 72px;gap:12px;align-items:center;font-size:12px;font-weight:650;color:var(--text-2);}
+.blur-value{min-width:72px;height:18px;border-radius:999px;background:linear-gradient(90deg,rgba(22,59,45,.13),rgba(22,59,45,.05));filter:blur(3px);color:transparent;font-size:11px;font-weight:800;overflow:hidden;}
+.credit-cta{display:flex;align-items:center;justify-content:space-between;gap:20px;border-top:1px solid var(--border);background:linear-gradient(135deg,var(--green-softer),#fff);padding:20px 28px 22px;}
+.credit-cta-text{display:flex;align-items:center;gap:13px;color:var(--text-2);font-size:14px;line-height:1.5;}
+.credit-cta-text .lock-icon{color:var(--green);width:20px;height:20px;}
+.credit-cta-text strong{color:var(--text-1);font-weight:800;}
+.pricing-card{border:1px solid var(--border);border-radius:8px;background:linear-gradient(180deg,#fff 0%,var(--surface-muted) 100%);padding:22px;display:flex;flex-direction:column;min-height:100%;}
+.pricing-card h3{font-size:17px;font-weight:800;line-height:1.25;letter-spacing:-.02em;color:var(--text-1);margin-bottom:6px;}
+.pricing-intro{font-size:13px;color:var(--text-2);line-height:1.5;margin-bottom:16px;}
+.pricing-list{display:grid;gap:9px;margin-bottom:18px;}
+.pricing-option{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--border);border-radius:8px;background:#fff;padding:12px 13px;}
+.pricing-option.is-highlighted{background:var(--green-softer);border-color:rgba(22,59,45,.28);}
+.pricing-name{font-size:13px;font-weight:750;color:var(--text-1);}
+.pricing-price{font-size:13px;font-weight:850;color:var(--green);white-space:nowrap;}
+.pricing-card .btn-secondary{margin-top:auto;width:100%;text-align:center;}
 .peers-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:16px;}
-.peer-item{display:flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid var(--border);border-radius:var(--r);text-decoration:none;color:var(--text-1);font-size:13px;font-weight:500;transition:border-color .1s,background .1s;}
-.peer-item:hover{background:var(--bg);border-color:var(--text-3);}
-.peer-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;}
-.see-all{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;}
-.see-all a{font-size:13px;color:var(--green);font-weight:600;text-decoration:none;}
-.see-all a:hover{text-decoration:underline;}
+.peer-item{display:flex;align-items:center;gap:9px;padding:12px 14px;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text-1);font-size:13px;font-weight:650;background:var(--surface-muted);transition:border-color .15s,background .15s,transform .15s;}
+.peer-item:hover{background:var(--green-softer);border-color:rgba(22,59,45,.25);transform:translateY(-1px);}
+.peer-dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0;}
+.see-all{margin-top:18px;display:flex;gap:14px;flex-wrap:wrap;}
+.see-all a{font-size:13px;color:var(--green);font-weight:750;text-decoration:none;border-bottom:1px solid rgba(22,59,45,.22);}
+.see-all a:hover{border-bottom-color:var(--green);}
+
+@media (max-width:980px){
+  .gnav{grid-template-columns:1fr;gap:14px;padding:16px 22px;}
+  .gnav-links{justify-content:flex-start;flex-wrap:wrap;}
+  .page{padding:34px 20px 68px;}
+  .company-top,.about-company{display:block;}
+  .header-actions{margin-top:18px;}
+  .metric-strip{grid-template-columns:repeat(2,1fr);}
+  .charts-grid{grid-template-columns:1fr 1fr;}
+  .chart-card.top-chart,.chart-card.wide-chart{grid-column:span 1;}
+  .credit-body{grid-template-columns:1fr;}
+  .credit-preview-grid{grid-template-columns:1fr;}
+  .credit-cta{align-items:flex-start;flex-direction:column;}
+}
+@media (max-width:640px){
+  .page{padding:26px 14px 56px;}
+  .company-header,.panel{padding:20px 16px;border-radius:8px;}
+  .credit-section{padding:0;}
+  .credit-head,.credit-body,.credit-cta{padding-left:18px;padding-right:18px;}
+  .credit-head{display:block;}
+  .credit-links{margin-top:10px;}
+  .company-title{font-size:32px;}
+  .about-company h2{font-size:21px;margin-bottom:10px;}
+  .about-cta{max-width:none;}
+  .metric-strip,.info-grid,.charts-grid{grid-template-columns:1fr;}
+  .info-row{grid-template-columns:1fr;gap:3px;}
+  .chart-wrap{height:210px;}
+  .payment-preview{grid-template-columns:1fr;align-items:stretch;}
+  .risk-scale{grid-template-columns:repeat(5,1fr);}
+  .payment-lock{margin:4px 0;}
+  .credit-metrics{grid-template-columns:1fr;}
+  .credit-cta .btn-primary{width:100%;}
+  .pricing-option{align-items:flex-start;flex-direction:column;gap:4px;}
+}
 </style>
 </head>
 <body>
 
-<!-- Nav -->
-<nav class="gnav">
-  <a href="#" class="logo">
+<nav class="gnav" aria-label="Päänavigaatio">
+  <a href="#" class="logo" aria-label="Valuatum talousanalyysi">
     <div class="logo-mark">
-      <svg viewBox="0 0 16 16"><polygon points="8,1 15,5 15,11 8,15 1,11 1,5"/></svg>
+      <svg viewBox="0 0 16 16" aria-hidden="true"><polygon points="8,1 15,5 15,11 8,15 1,11 1,5"/></svg>
     </div>
     <span class="logo-name"><span>valuatum</span> · Talousanalyysi</span>
   </a>
+  <div class="gnav-search">
+    <svg viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+    <input type="text" placeholder="Hae yritystä tai Y-tunnusta" aria-label="Hae yritystä tai Y-tunnusta">
+  </div>
   <div class="gnav-links">
     <a href="#">Etusivu</a>
     <a href="#">Yritykset</a>
     <a href="#">Toimialat</a>
   </div>
-  <div class="gnav-search">
-    <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
-    <input type="text" placeholder="Hae yritystä...">
-  </div>
 </nav>
 
-<div class="page">
+<main class="page">
 
-  <!-- Intro banner -->
-  <div class="intro-banner">
+  <div class="intro-banner reveal">
     <strong>Hanki ammattimaiset arvonmääritys- ja luottoriskiraportit mistä tahansa maailman yrityksestä</strong>
-    Uusi tekoälyä hyödyntävä ilmainen yrityksen arvonmääritystyökalu mille tahansa maailman yritykselle. Lataa PDF-muotoinen tilinpäätös ja saat välittömästi raportin, jossa on mukautettavat ennusteet, luottopisteet, maksuhäiriötodennäköisyys ja keskeiset talousmittarit. <a href="#">Kokeile nyt ilmaiseksi →</a>
+    Uusi tekoälyä hyödyntävä ilmainen yrityksen arvonmääritystyökalu mille tahansa maailman yritykselle. Lataa PDF-muotoinen tilinpäätös ja saat välittömästi raportin, jossa on mukautettavat ennusteet, luottopisteet, maksuhäiriötodennäköisyys ja keskeiset talousmittarit. <a href="#">Kokeile nyt ilmaiseksi</a>
   </div>
 
-  <!-- Company header -->
-  <div class="company-header">
-    <h1 class="company-title">Raahen Terästuote Oy</h1>
-    <div class="company-meta">
-      <span class="ytunnus">Y-tunnus: 30129534</span>
-      <span class="tag">25 · Metallituotteiden valmistus (pl. koneet ja laitteet)</span>
-    </div>
-    <div class="header-actions">
-      <button class="btn-ghost">Vie talousluvut ▼</button>
-    </div>
-    <div class="dcf-block">
+  <section class="company-header reveal" aria-labelledby="company-title">
+    <div class="company-top">
       <div>
-        <div class="dcf-label">Yrityksen arvo · DCF-arvonmääritys</div>
-        <div class="dcf-value">4 379 <span class="dcf-unit">kEUR</span></div>
+        <h1 id="company-title" class="company-title">Raahen Terästuote Oy</h1>
+        <div class="company-meta">
+          <span class="ytunnus">Y-tunnus: 30129534</span>
+          <span class="tag">25 · Metallituotteiden valmistus (pl. koneet ja laitteet)</span>
+        </div>
       </div>
-      <button class="btn-primary">Katso arvonmääritysanalyysi →</button>
+      <div class="header-actions">
+        <button class="btn-ghost">Vie talousluvut</button>
+      </div>
     </div>
-  </div>
 
-  <!-- Yritystiedot -->
-  <div class="info-section">
-    <div class="section-title">Yritystiedot</div>
+    <div class="about-company">
+      <div>
+        <div class="about-kicker">Yrityskuvaus</div>
+        <h2>Tietoa yrityksestä Raahen Terästuote Oy</h2>
+        <div class="about-cta" aria-label="Yritysanalyysin toimintopainikkeet">
+          <button class="btn-primary">Katso yrityksen arvonmääritys</button>
+          <button class="btn-secondary">Katso luottoriskiraportti</button>
+        </div>
+      </div>
+      <div>
+        <p>Raahen Terästuote Oy, Y-tunnus 30129534, raportoi vuonna 2024 liikevaihdoksi 2 499 kEUR. Vuoden 2023 liikevaihtoon 2 487 kEUR verrattuna kasvu oli 0,5 %, mikä kertoo liikevaihdon pysyneen lähes edellisvuoden tasolla. Vuoden 2024 EBIT oli 66,1 kEUR ja EBIT-% 2,6 %, joten operatiivinen kannattavuus oli maltillinen. Tilikauden tulos oli 20,0 kEUR. Pääoman tuotto jäi kohtalaiselle tasolle, kun ROA oli 5,0 % ja ROE 4,7 %. Omavaraisuusaste oli 28,1 %, mikä viittaa kohtuulliseen mutta velkarahoituksesta riippuvaan rahoitusrakenteeseen. Happotesti oli 1,1, joten lyhyen aikavälin maksuvalmius oli tyydyttävällä tasolla. Luottoluokitus oli BBB ja luottopisteet 41,7, mikä viittaa seurattavaan mutta vielä hallittuun luottoriskitasoon.</p>
+        <div class="metric-strip" aria-label="Vuoden 2024 keskeiset tunnusluvut">
+          <div class="metric-card"><div class="metric-label">Liikevaihto 2024</div><div class="metric-value">2 499 kEUR</div></div>
+          <div class="metric-card"><div class="metric-label">Kasvu 2023-2024</div><div class="metric-value">0,5 %</div></div>
+          <div class="metric-card"><div class="metric-label">EBIT-%</div><div class="metric-value">2,6 %</div></div>
+          <div class="metric-card"><div class="metric-label">Happotesti</div><div class="metric-value">1,1</div></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="panel info-section reveal" aria-labelledby="info-title">
+    <div id="info-title" class="section-title">Yritystiedot</div>
     <div class="info-grid">
       <div class="info-row">
         <div class="k">Virallinen nimi</div>
@@ -168,97 +288,204 @@ body{font-family:'Figtree',-apple-system,sans-serif;background:var(--bg);color:v
         <div class="v">25 · Metallituotteiden valmistus (pl. koneet ja laitteet)</div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Charts -->
-  <div class="charts-section">
-    <div class="charts-section-title">Taloustiedot</div>
+  <section class="charts-section" aria-labelledby="charts-title">
+    <div id="charts-title" class="charts-section-title">Taloustiedot</div>
     <div class="charts-grid">
 
-      <div class="chart-card">
+      <div class="chart-card top-chart reveal" style="--reveal-delay:40ms">
         <div class="chart-card-title">Liikevaihto</div>
         <div class="chart-card-sub">kEUR</div>
         <div class="chart-wrap"><canvas id="c-rev"></canvas></div>
       </div>
 
-      <div class="chart-card">
+      <div class="chart-card top-chart reveal" style="--reveal-delay:80ms">
         <div class="chart-card-title">EBIT</div>
         <div class="chart-card-sub">kEUR</div>
         <div class="chart-wrap"><canvas id="c-ebit"></canvas></div>
       </div>
 
-      <div class="chart-card">
+      <div class="chart-card top-chart reveal" style="--reveal-delay:120ms">
+        <div class="chart-card-title">Tilikauden tulos</div>
+        <div class="chart-card-sub">kEUR</div>
+        <div class="chart-wrap"><canvas id="c-net"></canvas></div>
+      </div>
+
+      <div class="chart-card wide-chart metric-chart-card reveal" style="--reveal-delay:60ms">
         <div class="chart-card-title">Kannattavuus</div>
         <div class="chart-card-sub">%</div>
         <div class="chart-wrap"><canvas id="c-prof"></canvas></div>
+        <div class="chart-legend" aria-label="Kannattavuusgraafin selite">
+          <span class="chart-legend-item"><span class="chart-legend-swatch" style="background:#27624B"></span>ROA</span>
+          <span class="chart-legend-item"><span class="chart-legend-swatch" style="background:#B98F42"></span>ROI</span>
+          <span class="chart-legend-item"><span class="chart-legend-swatch" style="background:#163B2D"></span>ROE</span>
+        </div>
       </div>
 
-      <div class="chart-card">
+      <div class="chart-card wide-chart metric-chart-card reveal" style="--reveal-delay:100ms">
         <div class="chart-card-title">Vakavaraisuus</div>
         <div class="chart-card-sub">%</div>
         <div class="chart-wrap"><canvas id="c-solv"></canvas></div>
+        <div class="chart-legend" aria-label="Vakavaraisuusgraafin selite">
+          <span class="chart-legend-item"><span class="chart-legend-swatch" style="background:#27624B"></span>Omavaraisuusaste</span>
+          <span class="chart-legend-item"><span class="chart-legend-swatch" style="background:#B98F42"></span>Suhteellinen nettovelkaantuneisuus</span>
+          <span class="chart-legend-item"><span class="chart-legend-swatch" style="background:#9B6A52"></span>Velkaantuneisuus</span>
+        </div>
       </div>
 
     </div>
-  </div>
+  </section>
 
-  <!-- Tunnusluvut table -->
-  <div class="table-section">
-    <div class="section-title">Tunnusluvut (kEUR)</div>
-    <table class="ftable">
-      <thead>
-        <tr>
-          <th></th>
-          <th>2020</th>
-          <th>2021</th>
-          <th>2022</th>
-          <th>2023</th>
-          <th class="year-latest">2024</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="section-row"><td colspan="6">Volyymi</td></tr>
-        <tr class="bold"><td>Liikevaihto</td><td>1 802,00</td><td>2 143,00</td><td>3 024,00</td><td>2 487,00</td><td class="year-latest">2 499,12</td></tr>
-        <tr><td>Bruttokate</td><td>1 015,00</td><td>1 045,00</td><td>1 516,00</td><td>1 284,00</td><td class="year-latest">1 337,67</td></tr>
-        <tr><td>EBIT</td><td>56,00</td><td>53,00</td><td>369,00</td><td>163,00</td><td class="year-latest">66,13</td></tr>
-        <tr><td>Nettotulos</td><td>12,00</td><td>4,00</td><td>270,00</td><td>101,00</td><td class="year-latest">19,98</td></tr>
-        <tr><td>Oma pääoma yhteensä</td><td>133,00</td><td>137,00</td><td>396,00</td><td>447,00</td><td class="year-latest">395,46</td></tr>
-        <tr><td>Taseen loppusumma (vastaavaa)</td><td>1 012,00</td><td>1 134,00</td><td>1 402,00</td><td>1 082,00</td><td class="year-latest">1 584,14</td></tr>
-        <tr><td>Nettovelka</td><td>587,00</td><td>541,00</td><td>313,00</td><td>171,00</td><td class="year-latest">702,58</td></tr>
+  <section class="panel table-section reveal" aria-labelledby="table-title">
+    <div id="table-title" class="section-title">Tunnusluvut (kEUR)</div>
+    <div class="table-scroll">
+      <table class="ftable">
+        <thead>
+          <tr>
+            <th></th>
+            <th>2020</th>
+            <th>2021</th>
+            <th>2022</th>
+            <th>2023</th>
+            <th class="year-latest">2024</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="section-row"><td colspan="6">Volyymi</td></tr>
+          <tr class="bold"><td>Liikevaihto</td><td>1 802,00</td><td>2 143,00</td><td>3 024,00</td><td>2 487,00</td><td class="year-latest">2 499,00</td></tr>
+          <tr><td>Bruttokate</td><td>1 015,00</td><td>1 045,00</td><td>1 516,00</td><td>1 284,00</td><td class="year-latest">1 337,67</td></tr>
+          <tr><td>EBIT</td><td>56,00</td><td>53,00</td><td>369,00</td><td>163,00</td><td class="year-latest">66,10</td></tr>
+          <tr><td>Nettotulos</td><td>12,00</td><td>4,00</td><td>270,00</td><td>101,00</td><td class="year-latest">20,00</td></tr>
+          <tr><td>Oma pääoma yhteensä</td><td>133,00</td><td>137,00</td><td>396,00</td><td>447,00</td><td class="year-latest">395,46</td></tr>
+          <tr><td>Taseen loppusumma (vastaavaa)</td><td>1 012,00</td><td>1 134,00</td><td>1 402,00</td><td>1 082,00</td><td class="year-latest">1 584,14</td></tr>
+          <tr><td>Nettovelka</td><td>587,00</td><td>541,00</td><td>313,00</td><td>171,00</td><td class="year-latest">702,58</td></tr>
 
-        <tr class="section-row"><td colspan="6">Kannattavuus</td></tr>
-        <tr><td>EBIT-%</td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td>ROA</td><td>5,5 %</td><td>4,9 %</td><td>29,2 %</td><td>13,2 %</td><td class="year-latest">5,0 %</td></tr>
-        <tr><td>ROE</td><td>9,0 %</td><td>3,0 %</td><td>101,3 %</td><td>24,0 %</td><td class="year-latest">4,7 %</td></tr>
-        <tr><td>ROI</td><td>6,2 %</td><td>6,3 %</td><td>45,0 %</td><td>19,4 %</td><td class="year-latest">6,9 %</td></tr>
-        <tr><td>Taloudellinen lisä-arvo (EVA)</td><td>44,80</td><td class="neg">−32,99</td><td>222,11</td><td>47,22</td><td class="year-latest neg">−24,08</td></tr>
+          <tr class="section-row"><td colspan="6">Kannattavuus</td></tr>
+          <tr><td>EBIT-%</td><td>3,1 %</td><td>2,5 %</td><td>12,2 %</td><td>6,6 %</td><td class="year-latest">2,6 %</td></tr>
+          <tr><td>ROA</td><td>5,5 %</td><td>4,9 %</td><td>29,2 %</td><td>13,2 %</td><td class="year-latest">5,0 %</td></tr>
+          <tr><td>ROE</td><td>9,0 %</td><td>3,0 %</td><td>101,3 %</td><td>24,0 %</td><td class="year-latest">4,7 %</td></tr>
+          <tr><td>ROI</td><td>6,2 %</td><td>6,3 %</td><td>45,0 %</td><td>19,4 %</td><td class="year-latest">6,9 %</td></tr>
+          <tr><td>Taloudellinen lisäarvo (EVA)</td><td>44,80</td><td class="neg">−32,99</td><td>222,11</td><td>47,22</td><td class="year-latest neg">−24,08</td></tr>
 
-        <tr class="section-row"><td colspan="6">Vakavaraisuus</td></tr>
-        <tr><td>Omavaraisuusaste</td><td>32,9 %</td><td>26,1 %</td><td>36,8 %</td><td>48,6 %</td><td class="year-latest">28,1 %</td></tr>
-        <tr><td>Velkaantuneisuus</td><td>583,5 %</td><td>460,6 %</td><td>122,7 %</td><td>82,1 %</td><td class="year-latest">177,7 %</td></tr>
-        <tr><td>Suhteellinen nettovelkaantuneisuus %</td><td>38,3 %</td><td>42,5 %</td><td>27,6 %</td><td>17,7 %</td><td class="year-latest">47,6 %</td></tr>
+          <tr class="section-row"><td colspan="6">Vakavaraisuus</td></tr>
+          <tr><td>Omavaraisuusaste</td><td>32,9 %</td><td>26,1 %</td><td>36,8 %</td><td>48,6 %</td><td class="year-latest">28,1 %</td></tr>
+          <tr><td>Velkaantuneisuus</td><td>583,5 %</td><td>460,6 %</td><td>122,7 %</td><td>82,1 %</td><td class="year-latest">177,7 %</td></tr>
+          <tr><td>Suhteellinen nettovelkaantuneisuus %</td><td>38,3 %</td><td>42,5 %</td><td>27,6 %</td><td>17,7 %</td><td class="year-latest">47,6 %</td></tr>
 
-        <tr class="section-row"><td colspan="6">Maksuvalmius</td></tr>
-        <tr><td>Quick ratio</td><td>1,6</td><td>1,1</td><td>1,2</td><td>1,5</td><td class="year-latest">1,1</td></tr>
-        <tr><td>Current ratio</td><td>2,1</td><td>1,3</td><td>1,5</td><td>2,0</td><td class="year-latest">1,4</td></tr>
-        <tr><td>Rahat ja rahavarat</td><td>189,00</td><td>90,00</td><td>173,00</td><td>196,00</td><td class="year-latest"></td></tr>
+          <tr class="section-row"><td colspan="6">Maksuvalmius</td></tr>
+          <tr><td>Happotesti</td><td>1,6</td><td>1,1</td><td>1,2</td><td>1,5</td><td class="year-latest">1,1</td></tr>
+          <tr><td>Maksuvalmiuskerroin</td><td>2,1</td><td>1,3</td><td>1,5</td><td>2,0</td><td class="year-latest">1,4</td></tr>
+          <tr><td>Rahat ja rahavarat</td><td>189,00</td><td>90,00</td><td>173,00</td><td>196,00</td><td class="year-latest"></td></tr>
 
-        <tr class="section-row"><td colspan="6">Pääoman käytön tehokkuus</td></tr>
-        <tr><td>Myyntisaamisten kiertoaika (päivää)</td><td>27,7</td><td>69,2</td><td>61,7</td><td>39,8</td><td class="year-latest">87,7</td></tr>
-        <tr><td>Nettokäyttöpääoma %</td><td>13,0 %</td><td>7,0 %</td><td>10,6 %</td><td>13,4 %</td><td class="year-latest">9,8 %</td></tr>
-      </tbody>
-    </table>
-  </div>
+          <tr class="section-row"><td colspan="6">Pääoman käytön tehokkuus</td></tr>
+          <tr><td>Myyntisaamisten kiertoaika (päivää)</td><td>27,7</td><td>69,2</td><td>61,7</td><td>39,8</td><td class="year-latest">87,7</td></tr>
+          <tr><td>Nettokäyttöpääoma %</td><td>13,0 %</td><td>7,0 %</td><td>10,6 %</td><td>13,4 %</td><td class="year-latest">9,8 %</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-  <!-- Luottoriski -->
-  <div class="credit-section">
-    <div class="section-title">Luottoriski</div>
-    <p style="font-size:13px;color:var(--text-2);">Luottoluokitus</p>
-  </div>
+  <section class="panel credit-section reveal" aria-labelledby="credit-title">
+    <div class="credit-head">
+      <div class="credit-title-wrap">
+        <div id="credit-title" class="section-title">Luottoriski</div>
+        <span class="new-badge">Uutta!</span>
+      </div>
+      <div class="credit-links" aria-label="Luottoriskiosion lisälinkit">
+        <a href="#">Ilmoita virheestä</a>
+        <a href="#">Lähteet</a>
+      </div>
+    </div>
 
-  <!-- Peers -->
-  <div class="peers-section">
-    <div class="section-title">Saman toimialan yritykset</div>
+    <div class="credit-body">
+      <div class="credit-preview-grid">
+        <article class="locked-panel">
+          <h3>Pitkän aikavälin luottoluokitus</h3>
+          <div class="rating-preview">
+            <div class="rating-scale" aria-hidden="true">
+              <div class="rating-step">C</div>
+              <div class="rating-step">B</div>
+              <div class="rating-step">BB</div>
+              <div class="rating-step">BBB</div>
+              <div class="rating-step">A</div>
+              <div class="rating-step">AA</div>
+              <div class="rating-step">AAA</div>
+            </div>
+            <div class="locked-value">
+              <svg class="lock-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+              <span class="blurred-token">BBB</span>
+            </div>
+            <div class="rating-label">Luottoluokitus</div>
+          </div>
+          <div class="credit-metrics">
+            <div class="credit-metric"><span>Luottopisteet</span><strong class="blurred-token">41,7</strong></div>
+            <div class="credit-metric"><span>Konkurssiriski</span><strong class="blurred-token">0,3730 %</strong></div>
+            <div class="credit-metric"><span>Luottoraja</span><strong class="blurred-token">1,1 kEUR</strong></div>
+            <div class="credit-metric"><span>Lainan hinta</span><strong class="blurred-token">8,6 %</strong></div>
+          </div>
+          <p class="locked-copy">Arvio perustuu yrityksen tilinpäätöstietoihin, kannattavuuteen, vakavaraisuuteen ja maksuvalmiuden kehitykseen. Tarkka luokitus ja pisteiden taustatekijät avautuvat luottoriskiraportissa.</p>
+        </article>
+
+        <article class="locked-panel">
+          <h3>Lyhyen aikavälin maksukäyttäytyminen ja luottoriski</h3>
+          <div class="payment-preview">
+            <div class="risk-scale" aria-label="Riskiasteikko yhdestä viiteen">
+              <div class="risk-number">1</div>
+              <div class="risk-number">2</div>
+              <div class="risk-number active">3</div>
+              <div class="risk-number">4</div>
+              <div class="risk-number">5</div>
+            </div>
+            <div class="payment-lock">
+              <svg class="lock-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+            </div>
+            <div class="locked-lines">
+              <div class="locked-line"><span>Maksukäyttäytymisen muutos (viim. 6 kk)</span><span class="blur-value">Lukittu</span></div>
+              <div class="locked-line"><span>Perintähavainnot</span><span class="blur-value">Lukittu</span></div>
+              <div class="locked-line"><span>Lyhyen aikavälin riskisignaali</span><span class="blur-value">Lukittu</span></div>
+            </div>
+          </div>
+          <p class="locked-copy">Lyhyen aikavälin arvio hyödyntää viime kuukausien maksukäyttäytymistä ja perintätietoja. Tarkat tapahtumarivit näytetään vain raportissa, eikä esikatselu sisällä avoimiksi tai maksetuiksi merkittyjä laskumääriä.</p>
+        </article>
+      </div>
+
+      <aside class="pricing-card" aria-labelledby="pricing-title">
+        <h3 id="pricing-title">Hinnoittelu</h3>
+        <p class="pricing-intro">Valitse sinulle sopiva tapa käyttää luottoriskiraportteja.</p>
+        <div class="pricing-list">
+          <div class="pricing-option">
+            <span class="pricing-name">Yksittäinen raportti</span>
+            <span class="pricing-price">2 € / luottoriskiraportti</span>
+          </div>
+          <div class="pricing-option">
+            <span class="pricing-name">Pienpaketti</span>
+            <span class="pricing-price">10 raporttia – 10 €</span>
+          </div>
+          <div class="pricing-option is-highlighted">
+            <span class="pricing-name">Suurempi paketti</span>
+            <span class="pricing-price">50 raporttia – 30 €</span>
+          </div>
+          <div class="pricing-option">
+            <span class="pricing-name">Rajaton käyttö</span>
+            <span class="pricing-price">Rajaton käyttö – 50 €</span>
+          </div>
+        </div>
+        <button class="btn-secondary">Siirry ostamaan</button>
+      </aside>
+    </div>
+
+    <div class="credit-cta">
+      <div class="credit-cta-text">
+        <svg class="lock-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        <span><strong>Valuatum Luottoriski</strong> avaa yrityksen luottotiedot. Arvioi maksukykyä, seuraa riskitasoa ja tue päätöksentekoa luotettavalla raportilla.</span>
+      </div>
+      <button class="btn-primary">Osta luottoriskiraportti</button>
+    </div>
+  </section>
+
+  <section class="panel peers-section reveal" aria-labelledby="peers-title">
+    <div id="peers-title" class="section-title">Saman toimialan yritykset</div>
     <div class="peers-list">
       <a href="#" class="peer-item"><span class="peer-dot"></span>Metallipalvelu Turppa Oy</a>
       <a href="#" class="peer-item"><span class="peer-dot"></span>Helsingin EAM-tekniikka Oy</a>
@@ -272,55 +499,149 @@ body{font-family:'Figtree',-apple-system,sans-serif;background:var(--bg);color:v
       <a href="#" class="peer-item"><span class="peer-dot"></span>Steel Storm Oy</a>
     </div>
     <div class="see-all">
-      <a href="#">⇒ Katso kaikki toimialan 'Metallituotteiden valmistus (pl. koneet ja laitteet)' yritykset</a>
-      <a href="#">⇒ Katso kaikki toimialat</a>
+      <a href="#">Katso kaikki toimialan "Metallituotteiden valmistus (pl. koneet ja laitteet)" yritykset</a>
+      <a href="#">Katso kaikki toimialat</a>
     </div>
-  </div>
+  </section>
 
-</div>
+</main>
 
 <script>
 const YEARS = ['2020','2021','2022','2023','2024'];
-const GREEN = '#1B3028';
-const GREEN2 = 'rgba(27,48,40,0.12)';
-const BLUE = '#2563EB';
-const TEAL = '#0D9488';
+const GREEN = '#163B2D';
+const GREEN_MID = '#27624B';
+const GREEN_SOFT = 'rgba(22,59,45,0.12)';
+const GOLD = '#B98F42';
+const CLAY = '#9B6A52';
+const LINE = '#D9D6CC';
+const TEXT_MUTED = '#8E948E';
+const EBITDA = [154,134,449,237,208];
 
-Chart.defaults.font.family = "'Figtree', sans-serif";
+Chart.defaults.font.family = "'Inter', sans-serif";
 Chart.defaults.font.size = 11;
-Chart.defaults.color = '#9A9A92';
+Chart.defaults.color = TEXT_MUTED;
 
-function barChart(id, data, color){
+const revealItems = document.querySelectorAll('.reveal');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (reducedMotion || !('IntersectionObserver' in window)) {
+  revealItems.forEach(item => item.classList.add('reveal-visible'));
+} else {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('reveal-visible');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealItems.forEach(item => revealObserver.observe(item));
+}
+
+function formatFi(value){
+  return value.toLocaleString('fi-FI', { maximumFractionDigits: 2 });
+}
+
+function barChart(id, data){
   new Chart(document.getElementById(id),{
     type:'bar',
-    data:{labels:YEARS,datasets:[{data,backgroundColor:YEARS.map((_,i)=>i===4?GREEN:GREEN2),borderColor:YEARS.map((_,i)=>i===4?GREEN:'transparent'),borderWidth:1,borderRadius:3}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.parsed.y.toLocaleString('fi-FI')}}},scales:{x:{grid:{display:false},border:{display:false}},y:{grid:{color:'#E3E3DC'},border:{display:false},ticks:{callback:v=>v.toLocaleString('fi-FI')}}}}
+    data:{
+      labels:YEARS,
+      datasets:[{
+        data,
+        backgroundColor:YEARS.map((_,i)=>i===4?GREEN:GREEN_SOFT),
+        borderColor:YEARS.map((_,i)=>i===4?GREEN:'rgba(22,59,45,0.18)'),
+        borderWidth:1,
+        borderRadius:6,
+        borderSkipped:false,
+        maxBarThickness:42
+      }]
+    },
+    options:{
+      responsive:true,
+      maintainAspectRatio:false,
+      animation:{duration:650,easing:'easeOutQuart'},
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          displayColors:false,
+          backgroundColor:'#171A18',
+          titleFont:{weight:'700'},
+          bodyFont:{weight:'600'},
+          padding:12,
+          cornerRadius:8,
+          callbacks:{label:ctx=>' '+formatFi(ctx.parsed.y)+' kEUR'}
+        }
+      },
+      scales:{
+        x:{grid:{display:false},border:{display:false},ticks:{font:{weight:'650'},color:TEXT_MUTED}},
+        y:{grid:{color:LINE,drawTicks:false},border:{display:false},ticks:{padding:8,callback:v=>formatFi(v)}}
+      }
+    }
   });
+}
+
+function lineChartOptions(datasets){
+  return {
+    responsive:true,
+    maintainAspectRatio:false,
+    animation:{duration:650,easing:'easeOutQuart'},
+    interaction:{mode:'index',intersect:false},
+    layout:{padding:{top:8,right:12,bottom:0,left:4}},
+    elements:{
+      line:{borderWidth:2.5,tension:0.32},
+      point:{radius:4,hoverRadius:5,hitRadius:10,borderWidth:2}
+    },
+    plugins:{
+      legend:{display:false},
+      tooltip:{
+        displayColors:true,
+        backgroundColor:'#171A18',
+        titleFont:{weight:'700'},
+        bodyFont:{weight:'600'},
+        padding:12,
+        cornerRadius:8,
+        callbacks:{label:ctx=>' '+ctx.dataset.label+': '+formatFi(ctx.parsed.y)+' %'}
+      }
+    },
+    scales:{
+      x:{
+        offset:false,
+        grid:{display:false,offset:false},
+        border:{display:false},
+        ticks:{font:{weight:'650'},color:TEXT_MUTED,padding:8}
+      },
+      y:{
+        beginAtZero:true,
+        afterFit:scale=>{scale.width=48;},
+        grid:{color:LINE,drawTicks:false,lineWidth:1},
+        border:{display:false},
+        ticks:{padding:8,font:{size:11,weight:'500'},callback:v=>formatFi(v)+' %'}
+      }
+    }
+  };
 }
 
 function lineChart(id, datasets){
   new Chart(document.getElementById(id),{
     type:'line',
     data:{labels:YEARS,datasets},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:12,padding:12}}},scales:{x:{grid:{display:false},border:{display:false}},y:{grid:{color:'#E3E3DC'},border:{display:false},ticks:{callback:v=>v+' %'}}}}
+    options:lineChartOptions(datasets)
   });
 }
 
-// Liikevaihto
 barChart('c-rev',[1802,2143,3024,2487,2499]);
+barChart('c-net',[12.0,4.0,270.0,101.0,20.0]);
+barChart('c-ebit',[56.0,53.0,369,163,66.1]);
 
-// EBIT
-barChart('c-ebit',[56,53,369,163,66]);
-
-// Kannattavuus (ROE + ROI)
 lineChart('c-prof',[
-  {label:'ROE',data:[9.0,3.0,101.3,24.0,4.7],borderColor:BLUE,backgroundColor:'transparent',pointBackgroundColor:BLUE,tension:0.3,pointRadius:4},
-  {label:'ROI',data:[6.2,6.3,45.0,19.4,6.9],borderColor:TEAL,backgroundColor:'transparent',pointBackgroundColor:TEAL,tension:0.3,pointRadius:4}
+  {label:'ROA',data:[5.5,4.9,29.2,13.2,5.0],borderColor:GREEN_MID,backgroundColor:'transparent',pointBackgroundColor:GREEN_MID,pointBorderColor:'#fff',pointBorderWidth:2,tension:0.32,pointRadius:4,borderWidth:2.5},
+  {label:'ROI',data:[6.2,6.3,45.0,19.4,6.9],borderColor:GOLD,backgroundColor:'transparent',pointBackgroundColor:GOLD,pointBorderColor:'#fff',pointBorderWidth:2,tension:0.32,pointRadius:4,borderWidth:2.5},
+  {label:'ROE',data:[9.0,3.0,101.3,24.0,4.7],borderColor:GREEN,backgroundColor:'transparent',pointBackgroundColor:GREEN,pointBorderColor:'#fff',pointBorderWidth:2,tension:0.32,pointRadius:4,borderWidth:2.5}
 ]);
 
-// Vakavaraisuus (Omavaraisuusaste)
 lineChart('c-solv',[
-  {label:'Omavaraisuusaste',data:[32.9,26.1,36.8,48.6,28.1],borderColor:BLUE,backgroundColor:'rgba(37,99,235,0.06)',fill:true,pointBackgroundColor:BLUE,tension:0.3,pointRadius:4}
+  {label:'Omavaraisuusaste',data:[32.9,26.1,36.8,48.6,28.1],borderColor:GREEN_MID,backgroundColor:'rgba(22,59,45,0.08)',fill:true,pointBackgroundColor:GREEN_MID,pointBorderColor:'#fff',pointBorderWidth:2,tension:0.32,pointRadius:4,borderWidth:2.5},
+  {label:'Suhteellinen nettovelkaantuneisuus',data:[38.3,42.5,27.6,17.7,47.6],borderColor:GOLD,backgroundColor:'transparent',pointBackgroundColor:GOLD,pointBorderColor:'#fff',pointBorderWidth:2,tension:0.32,pointRadius:4,borderWidth:2.5},
+  {label:'Velkaantuneisuus',data:[583.5,460.6,122.7,82.1,177.7],borderColor:CLAY,backgroundColor:'transparent',pointBackgroundColor:CLAY,pointBorderColor:'#fff',pointBorderWidth:2,tension:0.32,pointRadius:4,borderWidth:2.5}
 ]);
 </script>
 </body>
