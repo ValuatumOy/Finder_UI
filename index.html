@@ -14,7 +14,7 @@
 <meta name="twitter:description" content="Taloustiedot, tunnusluvut ja luottoriskiraportti Valuatumista.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;850&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Inter:wght@400;500;600;700;800;850&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
@@ -173,19 +173,48 @@ button,input,summary{font-family:inherit}
 .flag.green{background:rgba(46,133,86,.14);color:#93D0AE;border:1px solid rgba(46,133,86,.3);}
 .flag.green::before{background:var(--flag-green);}
 
-.credit-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:22px;}
-.credit-title-group{max-width:720px;}
-.credit-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
-.credit-eyebrow::before{content:"";width:28px;height:1px;background:var(--gold);}
-.credit-title{font-weight:850;font-size:40px;line-height:1.06;letter-spacing:-.035em;color:var(--cream-text);margin-bottom:12px;}
-.credit-tagline{font-size:16px;color:rgba(250,247,239,.7);max-width:520px;line-height:1.5;}
-.credit-utility{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
-.credit-utility a{color:rgba(250,247,239,.55);font-size:12px;font-weight:600;text-decoration:none;letter-spacing:.04em;padding-bottom:2px;border-bottom:1px solid rgba(250,247,239,.2);transition:color .15s,border-color .15s;}
-.credit-utility a:hover{color:var(--cream-text);border-bottom-color:var(--gold);}
+/* -- Redesigned credit section (TOC + single preview + dual pricing) -- */
+.credit-section::after{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent 0,rgba(185,143,66,.4) 30%,rgba(185,143,66,.4) 70%,transparent 100%);}
 
-.cta-gold{background:linear-gradient(135deg,#CDA155 0%,#B98F42 45%,#8C6A32 100%);color:#201A0F;border:none;border-radius:10px;padding:16px 26px;font-size:15px;font-weight:800;letter-spacing:-.01em;cursor:pointer;box-shadow:0 16px 32px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,245,210,.4);transition:transform .15s,box-shadow .15s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;white-space:nowrap;min-width:210px;}
-.cta-gold:hover{transform:translateY(-1px);box-shadow:0 22px 40px rgba(0,0,0,.4),0 0 0 4px rgba(185,143,66,.2),inset 0 1px 0 rgba(255,245,210,.5);}
-.cta-gold small{font-size:10px;font-weight:700;opacity:.7;letter-spacing:.04em;text-transform:uppercase;}
+.credit-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:center;position:relative;z-index:2;}
+
+.credit-head .credit-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+.credit-head .credit-eyebrow::before{content:"";width:28px;height:1px;background:var(--gold);}
+.credit-title{font-family:'Fraunces',serif;font-weight:400;font-size:44px;line-height:1.03;letter-spacing:-.02em;color:var(--cream-text);margin-bottom:16px;font-variation-settings:"SOFT" 30,"opsz" 144;}
+.credit-title em{font-style:italic;color:var(--gold-soft);font-weight:400;}
+.credit-sub{font-size:15px;line-height:1.55;color:rgba(250,247,239,.7);max-width:410px;margin-bottom:36px;}
+
+.toc-heading{display:flex;align-items:baseline;padding-bottom:12px;border-bottom:1px solid rgba(250,247,239,.14);margin-bottom:4px;}
+.toc-label{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,247,239,.5);}
+.toc-list{list-style:none;margin:0;padding:0;}
+.toc-item{display:grid;grid-template-columns:32px 1fr;gap:20px;align-items:baseline;padding:18px 0;border-bottom:1px solid rgba(250,247,239,.08);}
+.toc-item:last-child{border-bottom:none;}
+.toc-num{font-family:'Fraunces',serif;font-style:italic;font-weight:400;font-size:22px;color:var(--gold);letter-spacing:-.02em;line-height:1;}
+.toc-text{font-size:16.5px;color:var(--cream-text);font-weight:500;letter-spacing:-.008em;line-height:1.3;}
+
+.credit-purchase{margin-top:36px;padding-top:26px;border-top:1px solid rgba(250,247,239,.1);}
+.price-tiers{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;}
+.price-tier{padding:16px 18px 14px;background:rgba(250,247,239,.04);border:1px solid rgba(250,247,239,.1);border-radius:10px;position:relative;transition:border-color .2s,background .2s;cursor:pointer;}
+.price-tier:hover{border-color:rgba(185,143,66,.4);background:rgba(185,143,66,.06);}
+.price-tier.active{border-color:rgba(185,143,66,.55);background:rgba(185,143,66,.1);box-shadow:inset 0 0 0 1px rgba(185,143,66,.3);}
+.price-tier-label{font-size:10.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,247,239,.55);margin-bottom:6px;}
+.price-tier.active .price-tier-label{color:var(--gold);}
+.price-tier-amount{font-family:'Fraunces',serif;font-weight:400;font-style:italic;font-size:32px;line-height:1;color:var(--cream-text);letter-spacing:-.015em;display:flex;align-items:baseline;gap:3px;}
+.price-tier-amount em{font-style:normal;font-size:20px;color:rgba(250,247,239,.6);font-weight:400;margin-left:2px;}
+.price-tier-amount .per{font-family:'Inter',sans-serif;font-style:normal;font-size:12px;font-weight:500;color:rgba(250,247,239,.5);letter-spacing:0;margin-left:6px;}
+.price-tier-note{font-size:12px;color:rgba(250,247,239,.55);font-weight:500;margin-top:4px;line-height:1.35;}
+.price-tier .tier-radio{position:absolute;top:16px;right:16px;width:14px;height:14px;border-radius:50%;border:1.5px solid rgba(250,247,239,.3);background:transparent;transition:all .2s;}
+.price-tier.active .tier-radio{border-color:var(--gold);background:var(--gold);box-shadow:inset 0 0 0 3px #0F2A20;}
+.price-tier-badge{position:absolute;top:-10px;left:14px;background:linear-gradient(135deg,#E0BB6F 0%,#B98F42 100%);color:#201A0F;font-size:9.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px 3px;border-radius:999px;box-shadow:0 6px 14px rgba(0,0,0,.32);font-family:'Inter',sans-serif;}
+
+.credit-reassure{font-size:12.5px;font-weight:500;color:rgba(250,247,239,.48);margin-top:14px;letter-spacing:.01em;text-align:center;}
+.credit-reassure .sep{margin:0 10px;color:rgba(250,247,239,.22);}
+
+.credit-preview{position:relative;background:#FAF7EF;border-radius:6px;box-shadow:0 44px 88px rgba(0,0,0,.55),0 18px 36px rgba(0,0,0,.4),0 0 0 1px rgba(0,0,0,.08);aspect-ratio:360/496;overflow:hidden;}
+.credit-preview svg{display:block;}
+.credit-preview::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.08) 0%,transparent 40%,transparent 72%,rgba(0,0,0,.05) 100%);}
+.credit-preview-stamp{position:absolute;top:50%;left:50%;z-index:4;background:transparent;color:rgba(185,68,63,.55);font-size:26px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;padding:8px 20px 6px;border:2.5px solid rgba(185,68,63,.5);border-radius:3px;transform:translate(-50%,-50%) rotate(-8deg);font-family:'Inter',sans-serif;white-space:nowrap;pointer-events:none;text-shadow:0 1px 0 rgba(255,255,255,.4);}
+.credit-preview svg{width:100%;height:100%;display:block;}
 
 /* -------- Charts section -------- */
 .charts-section{margin-bottom:20px;scroll-margin-top:148px;}
@@ -261,16 +290,6 @@ button,input,summary{font-family:inherit}
 .peer-kpis{display:flex;gap:14px;font-size:11px;color:var(--text-3);font-weight:600;font-variant-numeric:tabular-nums;}
 .peer-kpis b{color:var(--text-1);font-weight:800;margin-right:4px;}
 
-.see-all{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;}
-.see-all-tile{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:18px 20px;background:var(--surface-muted);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--text-1);transition:background .15s,border-color .15s,transform .15s;}
-.see-all-tile:hover{background:var(--green-softer);border-color:rgba(22,59,45,.28);transform:translateY(-1px);}
-.see-all-tile .see-all-text{display:flex;flex-direction:column;gap:3px;}
-.see-all-tile .see-all-title{font-size:14px;font-weight:750;color:var(--text-1);line-height:1.3;}
-.see-all-tile .see-all-sub{font-size:12px;font-weight:550;color:var(--text-3);font-variant-numeric:tabular-nums;letter-spacing:.02em;}
-.see-all-tile .see-all-arrow{width:34px;height:34px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .15s,background .15s;}
-.see-all-tile:hover .see-all-arrow{background:var(--green-2);transform:translateX(2px);}
-.see-all-tile .see-all-arrow svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;}
-
 /* -------- Feedback prompt -------- */
 .feedback-prompt{display:flex;align-items:center;justify-content:center;gap:14px;padding:20px;margin-top:18px;color:#B6C2BB;font-size:13px;font-weight:600;}
 .fb-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:var(--cream-text);width:38px;height:38px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s,border-color .15s,transform .15s;}
@@ -289,18 +308,12 @@ button,input,summary{font-family:inherit}
   .company-title{font-size:34px;}
   .metric-strip{grid-template-columns:repeat(2,1fr);}
   .credit-section{padding:28px 22px;}
-  .credit-title{font-size:38px;}
+  .credit-title{font-size:36px;}
+  .credit-grid{grid-template-columns:1fr;gap:36px;}
   .charts-grid{grid-template-columns:1fr 1fr;}
   .chart-card.top-chart,.chart-card.wide-chart{grid-column:span 1;}
-  .see-all{grid-template-columns:1fr;}
   .intro-banner{grid-template-columns:1fr;}
   .intro-cta{justify-self:start;}
-  .report-preview-stack{height:420px;}
-  .rps-page{width:260px;}
-  .rps-back-left{transform:translate(-160px,18px) rotate(-8deg);}
-  .rps-back-right{transform:translate(160px,18px) rotate(8deg);}
-  .report-preview-stack:hover .rps-back-left{transform:translate(-180px,4px) rotate(-10deg);}
-  .report-preview-stack:hover .rps-back-right{transform:translate(180px,4px) rotate(10deg);}
 }
 @media (max-width:640px){
   .page{padding:14px 14px 56px;}
@@ -314,13 +327,9 @@ button,input,summary{font-family:inherit}
   .metric-strip,.charts-grid{grid-template-columns:1fr;}
   .chart-wrap{height:210px;}
   .cta-gold-full{padding:18px 18px;font-size:15px;flex-wrap:wrap;}
-  .report-preview-stack{height:360px;}
-  .rps-page{width:200px;}
-  .rps-back-left{transform:translate(-95px,16px) rotate(-7deg);}
-  .rps-back-right{transform:translate(95px,16px) rotate(7deg);}
-  .rps-sample-stamp{font-size:9px;padding:4px 10px;top:12px;right:-6px;}
-  .bulk-caption{font-size:12px;}
-  .bulk-caption .sep{margin:0 5px;}
+  .price-tiers{grid-template-columns:1fr;}
+  .credit-preview-stamp{font-size:20px;padding:6px 14px 4px;}
+  .toc-text{font-size:15px;}
 }
 
 /* ============================================================
@@ -351,41 +360,13 @@ button,input,summary{font-family:inherit}
 .basics-map-footer a:hover{text-decoration:underline;}
 .basics-map-footer a svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;}
 
-/* -- Redesigned credit section (preview + thumbnails) -- */
-.credit-head-v2{margin-bottom:26px;}
-.credit-eyebrow-v2{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
-.credit-eyebrow-v2::before{content:"";width:28px;height:1px;background:var(--gold);}
-.credit-title-v2{font-weight:850;font-size:38px;line-height:1.06;letter-spacing:-.035em;color:var(--cream-text);margin-bottom:10px;}
-.credit-tagline-v2{font-size:15px;color:rgba(250,247,239,.72);max-width:680px;line-height:1.5;}
-
-/* Report preview: fanned stack of 3 fake report pages */
-.report-preview-stack{position:relative;height:500px;display:grid;place-items:center;margin-bottom:26px;perspective:1600px;}
-.rps-page{position:absolute;width:320px;background:#fff;border-radius:6px;box-shadow:0 32px 64px rgba(0,0,0,.5),0 12px 28px rgba(0,0,0,.32),inset 0 0 0 1px rgba(0,0,0,.05);overflow:hidden;transition:transform .55s cubic-bezier(.22,1,.36,1);transform-origin:center center;}
-.rps-page svg{display:block;width:100%;height:auto;}
-.rps-svg{display:block;width:100%;height:100%;}
-.rps-page::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.06) 0%,transparent 35%,transparent 65%,rgba(0,0,0,.08) 100%);}
-.rps-back-left{z-index:1;transform:translate(-238px,18px) rotate(-9deg);}
-.rps-back-right{z-index:1;transform:translate(238px,18px) rotate(9deg);}
-.rps-front{z-index:3;transform:translate(0,-14px);box-shadow:0 44px 88px rgba(0,0,0,.55),0 14px 32px rgba(0,0,0,.4),0 0 0 1px rgba(0,0,0,.08),0 0 110px rgba(185,143,66,.08);}
-.report-preview-stack:hover .rps-back-left{transform:translate(-262px,4px) rotate(-11deg);}
-.report-preview-stack:hover .rps-back-right{transform:translate(262px,4px) rotate(11deg);}
-.report-preview-stack:hover .rps-front{transform:translate(0,-24px) scale(1.025);}
-
-/* Lock overlay on front page — frosted glass blocking the bottom 55% */
-.rps-sample-stamp{position:absolute;top:18px;right:-10px;z-index:4;background:rgba(22,59,45,.92);color:#FAF7EF;font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;padding:5px 14px;border-radius:2px;box-shadow:0 4px 10px rgba(0,0,0,.25);transform:rotate(6deg);pointer-events:none;}
-.rps-sample-stamp::before{content:"";position:absolute;top:100%;right:0;border:5px solid transparent;border-top-color:rgba(12,32,24,.9);border-right-color:rgba(12,32,24,.9);}
-
-/* New CTA: full-width gold button with bulk caption above */
-.credit-cta-stack{display:flex;flex-direction:column;align-items:stretch;gap:10px;padding:6px 2px 2px;}
-.bulk-caption{font-size:13px;font-weight:500;color:rgba(250,247,239,.6);text-align:center;letter-spacing:.01em;}
-.bulk-caption strong{color:rgba(250,247,239,.88);font-weight:700;margin:0 2px;}
-.bulk-caption .sep{color:rgba(250,247,239,.22);margin:0 8px;}
-.cta-reassurance{font-size:12px;font-weight:500;color:rgba(250,247,239,.5);text-align:center;letter-spacing:.02em;margin-top:2px;}
-.cta-gold-full{width:100%;background:linear-gradient(135deg,#CDA155 0%,#B98F42 45%,#8C6A32 100%);color:#201A0F;border:none;border-radius:12px;padding:22px 32px;font-size:18px;font-weight:850;letter-spacing:-.01em;cursor:pointer;box-shadow:0 18px 36px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,245,210,.4);transition:transform .15s,box-shadow .15s;display:flex;align-items:center;justify-content:center;gap:14px;font-family:inherit;}
+/* -- Credit CTA button (gold, full-width) -- */
+.cta-gold-full{width:100%;background:linear-gradient(135deg,#CDA155 0%,#B98F42 45%,#8C6A32 100%);color:#201A0F;border:none;border-radius:10px;padding:20px 28px;font-size:16px;font-weight:800;letter-spacing:-.008em;cursor:pointer;box-shadow:0 18px 36px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,245,210,.4);transition:transform .15s,box-shadow .15s;display:flex;align-items:center;justify-content:center;gap:12px;font-family:inherit;}
 .cta-gold-full:hover{transform:translateY(-1px);box-shadow:0 24px 44px rgba(0,0,0,.42),0 0 0 4px rgba(185,143,66,.22),inset 0 1px 0 rgba(255,245,210,.5);}
-.cta-gold-full .cta-arrow{width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;background:rgba(32,26,15,.14);border-radius:50%;transition:transform .2s;flex-shrink:0;}
+.cta-gold-full .cta-price{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:17px;letter-spacing:-.01em;margin-left:2px;}
+.cta-gold-full .cta-arrow{width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;transition:transform .2s;flex-shrink:0;}
 .cta-gold-full:hover .cta-arrow{transform:translateX(3px);}
-.cta-gold-full .cta-arrow svg{width:13px;height:13px;stroke:#201A0F;fill:none;stroke-width:2.6;}
+.cta-gold-full .cta-arrow svg{width:100%;height:100%;stroke:#201A0F;fill:none;stroke-width:2.6;}
 
 /* -- Data freshness footer caption (moved from header tags) -- */
 .data-freshness{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text-3);font-weight:600;margin:6px 0 18px;justify-content:flex-end;}
@@ -416,58 +397,111 @@ button,input,summary{font-family:inherit}
 .industry-head p{font-size:13px;color:var(--text-3);font-weight:600;}
 .industry-head strong{color:var(--text-1);font-weight:700;}
 
-.industry-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,1fr);gap:22px;margin-bottom:26px;}
-.industry-scatter-card{background:var(--surface-muted);border:1px solid var(--border);border-radius:10px;padding:18px 20px 14px;}
-.industry-scatter-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;gap:10px;flex-wrap:wrap;}
-.industry-scatter-title{font-size:13px;font-weight:800;color:var(--text-1);letter-spacing:-.01em;}
-.industry-scatter-sub{font-size:11px;color:var(--text-3);font-weight:600;}
-.industry-scatter-legend{display:flex;gap:14px;font-size:11px;color:var(--text-2);font-weight:600;margin-bottom:6px;flex-wrap:wrap;}
-.industry-scatter-legend span{display:inline-flex;align-items:center;gap:5px;}
-.industry-scatter-legend .dot-company{width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(185,143,66,.25);}
-.industry-scatter-legend .dot-peer{width:7px;height:7px;border-radius:50%;background:rgba(22,59,45,.4);}
-.industry-scatter-legend .dot-median{width:14px;height:2px;background:var(--green);}
-.scatter-wrap{position:relative;height:320px;}
+.industry-layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(300px,1fr);gap:20px;margin-bottom:28px;}
 
-.percentile-card{background:var(--surface-muted);border:1px solid var(--border);border-radius:10px;padding:18px 20px;}
-.percentile-card h3{font-size:13px;font-weight:800;color:var(--text-1);letter-spacing:-.01em;margin-bottom:4px;}
-.percentile-card > p{font-size:11px;color:var(--text-3);font-weight:600;margin-bottom:16px;}
-.percentile-row{display:grid;grid-template-columns:1fr;gap:4px;padding:9px 0;border-top:1px solid var(--border);}
-.percentile-row:first-of-type{border-top:none;padding-top:2px;}
-.percentile-row-head{display:flex;justify-content:space-between;align-items:baseline;}
-.percentile-row-label{font-size:12px;font-weight:700;color:var(--text-1);}
-.percentile-row-rank{font-size:12px;font-weight:800;color:var(--text-1);font-variant-numeric:tabular-nums;}
-.percentile-row-rank small{font-size:10px;color:var(--text-3);font-weight:600;margin-left:3px;}
-.percentile-bar{position:relative;height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:4px;}
-.percentile-bar-fill{position:absolute;left:0;top:0;bottom:0;border-radius:3px;transition:width .4s ease;}
-.percentile-bar-fill.good{background:linear-gradient(90deg,#4A9874,#2E8556);}
-.percentile-bar-fill.mid{background:linear-gradient(90deg,#E0B849,#B98F42);}
-.percentile-bar-fill.weak{background:linear-gradient(90deg,#D16A66,#B9443F);}
-.percentile-bar-median{position:absolute;top:-2px;bottom:-2px;width:1.5px;background:var(--text-3);opacity:.5;}
+/* Scatter card */
+.scatter-card{background:var(--surface-muted);border:1px solid var(--border);border-radius:10px;padding:18px 20px 12px;position:relative;}
+.scatter-card-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:6px;}
+.scatter-card-head h3{font-size:13px;font-weight:800;color:var(--text-1);letter-spacing:-.01em;}
+.scatter-legend{display:flex;gap:12px;font-size:11px;color:var(--text-2);font-weight:600;flex-wrap:wrap;}
+.scatter-legend span{display:inline-flex;align-items:center;gap:5px;}
+.scatter-legend .dot-co{width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(185,143,66,.25);}
+.scatter-legend .dot-pe{width:7px;height:7px;border-radius:50%;background:rgba(22,59,45,.35);}
+.scatter-legend .dot-md{width:14px;border-top:1.5px dashed rgba(22,59,45,.55);height:0;}
+.scatter-wrap{position:relative;height:340px;}
+.scatter-quadrant-hint{position:absolute;right:14px;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(22,59,45,.32);pointer-events:none;z-index:2;}
+.scatter-quadrant-hint.top{top:22%;}
+.scatter-quadrant-hint.bot{bottom:22%;}
 
-/* -- Curated peer groups (replaces flat 10-card grid) -- */
-.curated-peers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
-.curated-group h4{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin-bottom:10px;}
-.curated-group h4 .tag-chip{background:var(--green-soft);color:var(--green);font-size:10px;font-weight:800;letter-spacing:.02em;padding:2px 7px;border-radius:4px;text-transform:none;}
-.curated-group h4 small{font-size:10px;font-weight:600;color:var(--text-3);text-transform:none;letter-spacing:0;margin-left:auto;}
-.curated-peer{display:flex;flex-direction:column;gap:4px;padding:13px 15px;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text-1);background:var(--surface-muted);transition:background .15s,border-color .15s,transform .15s;margin-bottom:8px;}
-.curated-peer:last-child{margin-bottom:0;}
-.curated-peer:hover{background:var(--green-softer);border-color:rgba(22,59,45,.25);transform:translateY(-1px);}
-.curated-peer-name{font-size:13px;font-weight:700;color:var(--text-1);line-height:1.25;}
-.curated-peer-kpis{display:flex;gap:12px;font-size:11px;color:var(--text-3);font-weight:600;font-variant-numeric:tabular-nums;}
-.curated-peer-kpis b{color:var(--text-1);font-weight:800;margin-right:3px;}
+/* Percentile card */
+.percentile-card{background:var(--surface-muted);border:1px solid var(--border);border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;}
+.percentile-card-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;}
+.percentile-card-head h3{font-size:13px;font-weight:800;color:var(--text-1);letter-spacing:-.01em;}
+.percentile-card-head small{font-size:11px;color:var(--text-3);font-weight:600;}
+.percentile-card-takeaway{font-size:12px;color:var(--text-2);font-weight:550;margin-bottom:14px;line-height:1.45;}
+.percentile-card-takeaway b{color:var(--text-1);font-weight:750;}
+.p-row{padding:11px 0;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto auto;gap:4px 10px;}
+.p-row:first-of-type{border-top:none;padding-top:2px;}
+.p-row-label{grid-column:1;grid-row:1;font-size:12px;font-weight:700;color:var(--text-1);align-self:center;}
+.p-row-rank{grid-column:2;grid-row:1;display:flex;align-items:baseline;gap:5px;}
+.p-row-rank-num{font-size:20px;font-weight:850;color:var(--text-1);letter-spacing:-.02em;line-height:1;}
+.p-row-rank-unit{font-size:10px;font-weight:700;color:var(--text-3);letter-spacing:.02em;text-transform:lowercase;}
+.p-row-bar{grid-column:1/3;grid-row:2;position:relative;height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:4px;}
+.p-row-bar-fill{position:absolute;left:0;top:0;bottom:0;border-radius:3px;transition:width .4s ease;}
+.p-row-bar-fill.good{background:linear-gradient(90deg,#4A9874,#2E8556);}
+.p-row-bar-fill.mid{background:linear-gradient(90deg,#E0B849,#B98F42);}
+.p-row-bar-fill.weak{background:linear-gradient(90deg,#D16A66,#B9443F);}
+.p-row-values{grid-column:1/3;grid-row:3;display:flex;justify-content:space-between;font-size:10.5px;color:var(--text-3);font-weight:600;margin-top:2px;}
+.p-row-values b{color:var(--text-2);font-weight:700;}
+
+/* Peer tabs + list */
+.peer-block{margin-top:4px;}
+.peer-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px;}
+.peer-head h3{font-size:13px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--green);}
+.peer-tabs{display:flex;flex-wrap:wrap;gap:4px;padding:4px;background:var(--surface-muted);border:1px solid var(--border);border-radius:10px;margin-bottom:6px;}
+.peer-tab{flex:1;min-width:130px;padding:8px 12px;border-radius:7px;background:transparent;border:none;cursor:pointer;text-align:center;transition:background .15s,color .15s;font-size:12.5px;font-weight:700;color:var(--text-2);letter-spacing:-.005em;font-family:inherit;}
+.peer-tab:hover{background:#F0ECE0;color:var(--text-1);}
+.peer-tab.active{background:var(--green);color:#fff;box-shadow:0 4px 12px rgba(22,59,45,.18);}
+.peer-tab-context{font-size:11px;color:var(--text-3);font-weight:600;margin:4px 2px 12px;min-height:14px;}
+.peer-tab-context b{color:var(--text-2);font-weight:700;}
+.peer-list{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--surface);}
+.peer-list-head,.peer-row{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) 28px;gap:14px;padding:10px 16px;align-items:center;}
+.peer-list-head{background:var(--surface-muted);border-bottom:1px solid var(--border);font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);}
+.peer-list-head .num{text-align:right;}
+.peer-row{border-top:1px solid var(--border);font-size:13px;text-decoration:none;color:var(--text-1);transition:background .12s;}
+.peer-row:first-of-type{border-top:none;}
+.peer-row:hover{background:var(--green-softer);}
+.peer-row.self{background:linear-gradient(90deg,rgba(185,143,66,.10),rgba(185,143,66,.03));border-left:3px solid var(--gold);padding-left:13px;}
+.peer-row.self:hover{background:linear-gradient(90deg,rgba(185,143,66,.16),rgba(185,143,66,.06));}
+.peer-name{display:flex;flex-direction:column;gap:1px;min-width:0;}
+.peer-name-main{font-size:13px;font-weight:700;color:var(--text-1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.peer-name-sub{font-size:11px;font-weight:600;color:var(--text-3);}
+.peer-row.self .peer-name-sub{color:var(--gold);font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:9.5px;}
+.peer-kpi{text-align:right;font-variant-numeric:tabular-nums;}
+.peer-kpi-val{font-size:13px;font-weight:750;color:var(--text-1);line-height:1.1;}
+.peer-kpi-delta{font-size:10.5px;font-weight:700;line-height:1.1;margin-top:2px;display:inline-flex;align-items:center;gap:2px;}
+.peer-kpi-delta.up{color:#1D6B43;}
+.peer-kpi-delta.down{color:#8E342F;}
+.peer-kpi-delta.flat{color:var(--text-3);}
+.peer-kpi-delta svg{width:9px;height:9px;stroke:currentColor;fill:none;stroke-width:2.5;}
+.peer-arrow{color:var(--text-3);display:flex;align-items:center;justify-content:center;}
+.peer-arrow svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .15s,color .15s;}
+.peer-row:hover .peer-arrow svg{transform:translateX(2px);color:var(--green);}
+.peer-row.self .peer-arrow{visibility:hidden;}
+.peer-more{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-top:1px solid var(--border);background:var(--surface-muted);font-size:12px;}
+.peer-more-left{color:var(--text-3);font-weight:600;}
+.peer-more-left b{color:var(--text-2);font-weight:750;}
+.peer-more-btn{background:none;border:none;color:var(--green);font-weight:750;font-size:12px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:4px 0;font-family:inherit;}
+.peer-more-btn:hover{color:var(--green-2);}
+.peer-more-btn svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2.5;}
+
+/* Footer CTAs */
+.ip-footer{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:22px;padding-top:20px;border-top:1px solid var(--border);flex-wrap:wrap;}
+.ip-cta-primary{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 20px;background:var(--green);color:#fff;border-radius:10px;text-decoration:none;flex:1;min-width:260px;transition:background .15s,transform .15s;box-shadow:0 6px 18px rgba(22,59,45,.18);}
+.ip-cta-primary:hover{background:var(--green-2);transform:translateY(-1px);}
+.ip-cta-primary-text{display:flex;flex-direction:column;gap:2px;}
+.ip-cta-primary-title{font-size:14px;font-weight:800;letter-spacing:-.005em;}
+.ip-cta-primary-sub{font-size:11.5px;font-weight:600;color:rgba(255,255,255,.75);letter-spacing:.01em;}
+.ip-cta-primary-arrow{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ip-cta-primary-arrow svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2.5;}
+.ip-cta-secondary{font-size:12px;font-weight:650;color:var(--text-3);text-decoration:none;display:inline-flex;align-items:center;gap:5px;padding:6px 0;}
+.ip-cta-secondary:hover{color:var(--green);}
+.ip-cta-secondary svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;}
 
 @media (max-width:980px){
   .basics-grid{grid-template-columns:1fr;}
   .industry-layout{grid-template-columns:1fr;}
-  .curated-peers{grid-template-columns:1fr;}
-  .credit-title-v2{font-size:30px;}
+  .peer-list-head{display:none;}
+  .peer-row{grid-template-columns:1fr auto;gap:6px 10px;}
+  .peer-kpi{text-align:left;}
+  .credit-title{font-size:32px;}
 }
 @media (max-width:640px){
   .basics-section,.industry-panel{padding:20px 16px;}
   .basics-details{grid-template-columns:1fr;gap:3px;}
   .basics-details dt{padding-top:10px;}
   .basics-details dt:first-child{padding-top:0;}
-  .credit-title-v2{font-size:24px;}
+  .credit-title{font-size:26px;}
 }
 </style>
 </head>
@@ -520,7 +554,7 @@ button,input,summary{font-family:inherit}
     </div>
 
     <div class="about-company">
-      <p class="about-lead">Metallituoteyritys Raahessa, valmistaa komponentteja ja koneistuspalveluita teollisuudelle. Vuoden 2024 liikevaihto 2 499 kEUR (+0,5 % vs. 2023), mutta kannattavuus heikkeni selvästi edellisvuodesta: EBIT laski 60 %, nettovelka kasvoi 310 % ja omavaraisuusaste putosi 48,6 → 28,1 %.</p>
+      <p class="about-lead">Metallituoteyritys Raahessa, joka valmistaa komponentteja ja koneistuspalveluita teollisuudelle. Vuoden 2024 liikevaihto oli 2 499 kEUR (+0,5 % vs. 2023), mutta kannattavuus heikkeni selvästi edellisvuodesta: EBIT laski 60 %, nettovelka kasvoi 310 % ja omavaraisuusaste putosi 48,6 → 28,1 %.</p>
 
       <div class="metric-strip" aria-label="Vuoden 2024 keskeiset tunnusluvut">
         <div class="metric-card">
@@ -558,7 +592,7 @@ button,input,summary{font-family:inherit}
   </nav>
 
   <section class="basics-section reveal" id="perustiedot" aria-labelledby="basics-title">
-    <h2 id="basics-title" class="sr-only">Yrityksen perustiedot</h2>
+    <h2 id="basics-title" class="section-title">Perustiedot</h2>
     <div class="basics-grid">
       <dl class="basics-details">
         <dt>Osoite</dt>
@@ -573,8 +607,6 @@ button,input,summary{font-family:inherit}
         <dd>18 (2024)</dd>
         <dt>Perustettu</dt>
         <dd>14.3.2019</dd>
-        <dt>Kotipaikka</dt>
-        <dd>Raahe</dd>
       </dl>
       <div class="basics-map-wrap">
         <div id="basics-map" role="img" aria-label="Yrityksen sijainti kartalla"></div>
@@ -590,35 +622,115 @@ button,input,summary{font-family:inherit}
 
   <section class="credit-section reveal" id="luottoriski" aria-labelledby="credit-title">
     <div class="credit-inner">
+      <div class="credit-grid">
 
-      <header class="credit-head-v2">
-        <div class="credit-eyebrow-v2">Luottoriskiraportti</div>
-        <h2 class="credit-title-v2" id="credit-title">Täysi luottoriskiraportti — 2 €</h2>
-        <p class="credit-tagline-v2">Luottoluokitus, riskipisteet ja luottoraja. Sama raportti, jota pankit ja perintätoimistot käyttävät.</p>
-      </header>
+        <div class="credit-head">
+          <div class="credit-eyebrow">Luottoriskiraportti</div>
+          <h2 class="credit-title" id="credit-title">Vältä luottotappiot<br><em>ennen kuin ne syntyvät.</em></h2>
+          <p class="credit-sub">Tarkista uuden asiakkaan luottokelpoisuus ennen ensimmäistä laskua. Luottoluokitus, tilinpäätös ja toimialavertailu yhdessä PDF:ssä. Sähköpostiisi heti maksun jälkeen.</p>
 
-      <div class="report-preview-stack" aria-label="Raportin esikatselu — esimerkkitiedoilla">
-        <div class="rps-page rps-back-left" aria-hidden="true"><div class="rps-svg" id="rps-page-cover"></div></div>
-        <div class="rps-page rps-back-right" aria-hidden="true"><div class="rps-svg" id="rps-page-scatter"></div></div>
-        <div class="rps-page rps-front" aria-hidden="true">
-          <div class="rps-svg" id="rps-page-overview"></div>
-          <div class="rps-sample-stamp" aria-hidden="true">Esimerkki</div>
+          <div class="toc-heading">
+            <span class="toc-label">Raportin sisältö</span>
+          </div>
+          <ol class="toc-list">
+            <li class="toc-item"><span class="toc-num">01</span><span class="toc-text">Luottoluokitus ja 5 vuoden historia</span></li>
+            <li class="toc-item"><span class="toc-num">02</span><span class="toc-text">Luottorajasuositus</span></li>
+            <li class="toc-item"><span class="toc-num">03</span><span class="toc-text">Tilinpäätöstiedot (5 v)</span></li>
+            <li class="toc-item"><span class="toc-num">04</span><span class="toc-text">Toimialavertailu</span></li>
+          </ol>
+
+          <div class="credit-purchase">
+            <div class="price-tiers" role="radiogroup" aria-label="Valitse hinnoittelu">
+              <div class="price-tier" role="radio" aria-checked="false" tabindex="0" data-tier="single">
+                <span class="tier-radio" aria-hidden="true"></span>
+                <div class="price-tier-label">Yksittäinen</div>
+                <div class="price-tier-amount">5<em>€</em><span class="per">/ raportti</span></div>
+                <div class="price-tier-note">Kertamaksu, ei jatkotilausta</div>
+              </div>
+              <div class="price-tier active price-tier--featured" role="radio" aria-checked="true" tabindex="0" data-tier="subscription">
+                <span class="price-tier-badge">Suosituin</span>
+                <span class="tier-radio" aria-hidden="true"></span>
+                <div class="price-tier-label">Kuukausitilaus</div>
+                <div class="price-tier-amount">50<em>€</em><span class="per">/ kk</span></div>
+                <div class="price-tier-note">Rajaton määrä raportteja</div>
+              </div>
+            </div>
+
+            <button class="cta-gold-full" type="button">
+              <span data-btn-label>Tilaa kuukausitilaus</span>
+              <span class="cta-price" data-btn-price>— 50 € / kk</span>
+              <span class="cta-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+            </button>
+
+            <p class="credit-reassure">Toimitus heti PDF:nä sähköpostiisi<span class="sep">·</span>Peruuta kuukausitilaus koska tahansa</p>
+          </div>
         </div>
-      </div>
 
-      <div class="credit-cta-stack">
-        <div class="bulk-caption">
-          Useampia? <strong>10 kpl · 10 €</strong><span class="sep">·</span><strong>50 kpl · 30 €</strong><span class="sep">·</span><strong>Rajaton · 50 €/kk</strong>
+        <!-- Esimerkki: AA-luokitus, Esimerkki Oy -->
+        <div class="credit-preview" aria-label="Raportin esikatselu — esimerkkitiedoilla">
+          <span class="credit-preview-stamp" aria-hidden="true">Esimerkki</span>
+          <svg viewBox="0 0 360 496" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <linearGradient id="cpGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#B9443F"/>
+                <stop offset=".5" stop-color="#D4A935"/>
+                <stop offset="1" stop-color="#2E8556"/>
+              </linearGradient>
+            </defs>
+            <rect x="0" y="0" width="360" height="496" fill="#FAF7EF"/>
+            <rect x="0" y="0" width="360" height="38" fill="#163B2D"/>
+            <text x="22" y="24" font-family="Inter,sans-serif" font-size="10" font-weight="800" fill="#F5EEDC" letter-spacing="1.6">LUOTTORISKIRAPORTTI</text>
+            <text x="338" y="24" text-anchor="end" font-family="Inter,sans-serif" font-size="9" font-weight="600" fill="rgba(245,238,220,.6)" letter-spacing=".5">VALUATUM</text>
+
+            <text x="22" y="66" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#8E948E" letter-spacing="1.2">ESIMERKKI OY</text>
+            <text x="22" y="96" font-family="Fraunces,serif" font-style="italic" font-weight="400" font-size="28" fill="#171A18" letter-spacing="-.6">Luottoluokitus</text>
+
+            <circle cx="80" cy="166" r="48" fill="#FAF7EF" stroke="#27624B" stroke-width="2.2"/>
+            <text x="80" y="178" text-anchor="middle" font-family="Fraunces,serif" font-style="italic" font-weight="500" font-size="36" fill="#163B2D" letter-spacing="-1.2">AA</text>
+            <text x="80" y="232" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="700" fill="#27624B" letter-spacing="1.1">ERINOMAINEN</text>
+
+            <text x="148" y="135" font-family="Inter,sans-serif" font-size="8" font-weight="700" fill="#8E948E" letter-spacing="1">LUOKITUSASTEIKKO</text>
+            <rect x="148" y="144" width="190" height="8" rx="4" fill="url(#cpGrad)"/>
+            <circle cx="306" cy="148" r="6.5" fill="#FAF7EF" stroke="#163B2D" stroke-width="2.2"/>
+            <text x="148" y="170" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" fill="#8E948E">CCC</text>
+            <text x="180" y="170" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" fill="#8E948E">B</text>
+            <text x="211" y="170" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" fill="#8E948E">BB</text>
+            <text x="243" y="170" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" fill="#8E948E">BBB</text>
+            <text x="275" y="170" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" fill="#8E948E">A</text>
+            <text x="306" y="170" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="800" fill="#163B2D">AA</text>
+            <text x="338" y="170" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" fill="#8E948E">AAA</text>
+
+            <line x1="148" y1="192" x2="338" y2="192" stroke="#E3E1D8"/>
+            <text x="148" y="210" font-family="Inter,sans-serif" font-size="7" fill="#8E948E" letter-spacing=".5">LUOTTORAJASUOSITUS</text>
+            <text x="148" y="232" font-family="Inter,sans-serif" font-size="18" font-weight="800" fill="#171A18">42 000 €</text>
+
+            <text x="22" y="276" font-family="Inter,sans-serif" font-size="9" font-weight="800" fill="#B98F42" letter-spacing="1.6">LUOKITUKSEN PERUSTELU</text>
+            <line x1="22" y1="284" x2="62" y2="284" stroke="#B98F42" stroke-width="1.4"/>
+
+            <rect x="22" y="298" width="316" height="6" fill="#E3E1D8" rx="1"/>
+            <rect x="22" y="310" width="280" height="6" fill="#E3E1D8" rx="1"/>
+            <rect x="22" y="322" width="296" height="6" fill="#E3E1D8" rx="1"/>
+            <rect x="22" y="334" width="228" height="6" fill="#E3E1D8" rx="1"/>
+
+            <text x="22" y="372" font-family="Inter,sans-serif" font-size="9" font-weight="800" fill="#163B2D" letter-spacing="1">LUOKITUKSEN KEHITYS 2020—2024</text>
+            <line x1="22" y1="460" x2="338" y2="460" stroke="#D5D1C6"/>
+            <line x1="22" y1="425" x2="338" y2="425" stroke="#E3E1D8" stroke-dasharray="2 3"/>
+            <polyline points="42,442 108,432 174,418 240,406 306,395" fill="none" stroke="#27624B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="42" cy="442" r="3" fill="#27624B"/>
+            <circle cx="108" cy="432" r="3" fill="#27624B"/>
+            <circle cx="174" cy="418" r="3" fill="#27624B"/>
+            <circle cx="240" cy="406" r="3" fill="#27624B"/>
+            <circle cx="306" cy="395" r="4" fill="#B98F42" stroke="#FAF7EF" stroke-width="1.8"/>
+            <text x="306" y="385" text-anchor="middle" font-family="Fraunces,serif" font-style="italic" font-weight="500" font-size="10" fill="#B98F42">AA</text>
+            <text x="42" y="476" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" fill="#8E948E">2020</text>
+            <text x="108" y="476" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" fill="#8E948E">2021</text>
+            <text x="174" y="476" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" fill="#8E948E">2022</text>
+            <text x="240" y="476" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" fill="#8E948E">2023</text>
+            <text x="306" y="476" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" fill="#8E948E" font-weight="700">2024</text>
+          </svg>
         </div>
-        <button class="cta-gold-full" type="button">
-          <span>Lataa luottoriskiraportti — 2 €</span>
-          <span class="cta-arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </span>
-        </button>
-        <div class="cta-reassurance">Toimitus heti · PDF sähköpostiin</div>
-      </div>
 
+      </div>
     </div>
   </section>
 
@@ -723,49 +835,79 @@ button,input,summary{font-family:inherit}
     </div>
 
     <div class="industry-layout">
-      <div class="industry-scatter-card">
-        <div class="industry-scatter-head">
-          <div>
-            <div class="industry-scatter-title">Yrityksen sijainti toimialalla</div>
-            <div class="industry-scatter-sub">Liikevaihto × kannattavuus · jokainen piste = yksi yritys</div>
+      <div class="scatter-card">
+        <div class="scatter-card-head">
+          <h3>Sijainti toimialalla</h3>
+          <div class="scatter-legend">
+            <span><span class="dot-co"></span>Raahen Terästuote</span>
+            <span><span class="dot-pe"></span>Toimialan yritys</span>
+            <span><span class="dot-md"></span>Mediaani</span>
           </div>
         </div>
-        <div class="industry-scatter-legend">
-          <span><span class="dot-company"></span>Raahen Terästuote</span>
-          <span><span class="dot-peer"></span>Muut toimialan yritykset</span>
-          <span><span class="dot-median"></span>Toimialan mediaani</span>
+        <div class="scatter-wrap">
+          <div class="scatter-quadrant-hint top">Kannattava</div>
+          <div class="scatter-quadrant-hint bot">Heikko kate</div>
+          <canvas id="c-scatter" role="img" aria-label="Hajontakuvio yrityksen sijoittumisesta toimialalla"></canvas>
         </div>
-        <div class="scatter-wrap"><canvas id="c-scatter" role="img" aria-label="Hajontakuvio yrityksen sijoittumisesta toimialalla"></canvas></div>
       </div>
 
       <div class="percentile-card">
-        <h3>Sijoitus toimialalla</h3>
-        <p>Persentiilit 287 yrityksestä · 100 = paras</p>
-        <div id="percentile-rows"></div>
+        <div class="percentile-card-head">
+          <h3>Sijoitus toimialalla</h3>
+          <small>n = 287</small>
+        </div>
+        <div class="percentile-card-takeaway">
+          <b>Raahen Terästuote</b> on kokoluokaltaan toimialan keskitasoa, mutta kannattavuus jää selvästi mediaanin alapuolelle. Omavaraisuus ja kasvuvauhti tukevat silti vakautta.
+        </div>
+        <div id="p-rows"></div>
       </div>
     </div>
 
-    <h3 style="font-size:13px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--green);margin-bottom:14px;">Vertaa yrityksiin</h3>
-    <div class="curated-peers" id="curated-peers"></div>
+    <div class="peer-block">
+      <div class="peer-head">
+        <h3>Vertaa yrityksiin</h3>
+      </div>
 
-    <div class="see-all">
-      <a href="#" class="see-all-tile">
-        <div class="see-all-text">
-          <span class="see-all-title">Kaikki toimialan yritykset</span>
-          <span class="see-all-sub">287 yritystä · Metallituotteiden valmistus (25.530)</span>
+      <div class="peer-tabs" role="tablist" id="peer-tabs">
+        <button class="peer-tab active" role="tab" data-tab="similar" title="Liikevaihto ±20 %">Samankokoiset</button>
+        <button class="peer-tab" role="tab" data-tab="top" title="Korkein EBIT-%">Huippusuorittajat</button>
+        <button class="peer-tab" role="tab" data-tab="region" title="Pohjois-Pohjanmaa">Samalla alueella</button>
+        <button class="peer-tab" role="tab" data-tab="rating" title="Luottoluokka BBB">Sama luottoluokka</button>
+      </div>
+      <div class="peer-tab-context" id="peer-tab-context"></div>
+
+      <div class="peer-list" id="peer-list">
+        <div class="peer-list-head">
+          <span>Yritys</span>
+          <span class="num">Liikevaihto</span>
+          <span class="num">EBIT-%</span>
+          <span class="num">Omavaraisuus</span>
+          <span></span>
         </div>
-        <span class="see-all-arrow" aria-hidden="true">
+        <div id="peer-rows"></div>
+        <div class="peer-more">
+          <span class="peer-more-left">Näytetään 4 / <b>9</b></span>
+          <button class="peer-more-btn" id="peer-more-btn">
+            Näytä kaikki
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="ip-footer">
+      <a href="#" class="ip-cta-primary">
+        <div class="ip-cta-primary-text">
+          <span class="ip-cta-primary-title">Kaikki 287 toimialan yritystä</span>
+          <span class="ip-cta-primary-sub">Suodata, vertaile ja lataa lista</span>
+        </div>
+        <span class="ip-cta-primary-arrow" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </span>
       </a>
-      <a href="#" class="see-all-tile">
-        <div class="see-all-text">
-          <span class="see-all-title">Selaa kaikkia toimialoja</span>
-          <span class="see-all-sub">743 toimialaa Suomessa</span>
-        </div>
-        <span class="see-all-arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </span>
+      <a href="#" class="ip-cta-secondary">
+        Selaa kaikkia 743 toimialaa
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
     </div>
   </section>
@@ -845,264 +987,6 @@ function yoyPct(curr, prev){
   if (prev === 0 || prev == null || curr == null) return null;
   return ((curr - prev) / Math.abs(prev)) * 100;
 }
-
-/* ---------- Fake report-pages preview (3 SVG pages, fanned) ---------- */
-(function buildReportPagesPreview(){
-  const cover = document.getElementById('rps-page-cover');
-  const overview = document.getElementById('rps-page-overview');
-  const scatter = document.getElementById('rps-page-scatter');
-  if (!cover || !overview || !scatter) return;
-
-  // Shared mini-header used on inner pages
-  function pageHeader(pageNum){
-    return `
-    <rect x="0" y="0" width="210" height="3" fill="#163B2D"/>
-    <text x="14" y="13" font-family="Inter,sans-serif" font-size="5" font-weight="600" fill="#888" letter-spacing=".4">LUOTTORISKIRAPORTTI · SIVU ${pageNum}/12</text>
-    <text x="14" y="22" font-family="Inter,sans-serif" font-size="7.5" font-weight="800" fill="#1a1a1a">Raahen Terästuote Oy</text>
-    <text x="14" y="29" font-family="Inter,sans-serif" font-size="5" fill="#888">3012953-4 · 17.04.2026</text>
-    <g transform="translate(190, 18)">
-      <polygon points="-7,-5 0,-9 7,-5 7,2 0,6 -7,2" fill="#163B2D"/>
-      <polygon points="-4,-3 0,-5 4,-3 4,1 0,3 -4,1" fill="#27624B" opacity=".55"/>
-    </g>`;
-  }
-
-  // ---- COVER (back-left) — denser, with highlights teaser ----
-  cover.innerHTML = `<svg viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-    <rect width="210" height="297" fill="#fff"/>
-    <rect x="0" y="0" width="210" height="3" fill="#163B2D"/>
-    <rect x="0" y="294" width="210" height="3" fill="#163B2D"/>
-
-    <!-- Brand -->
-    <g transform="translate(105, 56)">
-      <polygon points="-13,-13 0,-20 13,-13 13,2 0,9 -13,2" fill="#163B2D"/>
-      <polygon points="-7,-7 0,-11 7,-7 7,1 0,5 -7,1" fill="#27624B" opacity=".6"/>
-    </g>
-    <text x="105" y="86" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="800" fill="#163B2D" letter-spacing="-.4">valuatum</text>
-    <text x="105" y="96" text-anchor="middle" font-family="Inter,sans-serif" font-size="5.5" font-weight="700" fill="#888" letter-spacing="2.6">TALOUSANALYYSI</text>
-
-    <!-- Eyebrow + title -->
-    <text x="105" y="128" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="800" fill="#B98F42" letter-spacing="2.6">LUOTTORISKIRAPORTTI</text>
-    <line x1="83" y1="134" x2="127" y2="134" stroke="#B98F42" stroke-width=".7"/>
-    <text x="105" y="156" text-anchor="middle" font-family="Inter,sans-serif" font-size="14.5" font-weight="850" fill="#1a1a1a" letter-spacing="-.3">Raahen Terästuote Oy</text>
-    <text x="105" y="167" text-anchor="middle" font-family="Inter,sans-serif" font-size="6.5" font-weight="600" fill="#666">Y-tunnus 3012953-4 · TOL 25.530</text>
-
-    <!-- Highlights teaser box (dark green) -->
-    <g transform="translate(20, 184)">
-      <rect width="170" height="64" fill="#163B2D" rx="3"/>
-      <rect x="-1" y="-1" width="172" height="2" fill="#B98F42" rx="1"/>
-      <text x="85" y="14" text-anchor="middle" font-family="Inter,sans-serif" font-size="5.5" font-weight="800" fill="#B98F42" letter-spacing="2">YHTEENVETO 2024</text>
-
-      <g transform="translate(0, 28)">
-        <text x="28" y="0" text-anchor="middle" font-family="Inter,sans-serif" font-size="4.5" font-weight="700" fill="rgba(250,247,239,.55)" letter-spacing=".4">LUOKITUS</text>
-        <text x="28" y="14" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="850" fill="#FFC30E">BBB</text>
-        <text x="28" y="24" text-anchor="middle" font-family="Inter,sans-serif" font-size="4" fill="rgba(250,247,239,.55)">edell. BBB</text>
-
-        <line x1="56" y1="-3" x2="56" y2="26" stroke="rgba(250,247,239,.1)" stroke-width=".4"/>
-
-        <text x="85" y="0" text-anchor="middle" font-family="Inter,sans-serif" font-size="4.5" font-weight="700" fill="rgba(250,247,239,.55)" letter-spacing=".4">PISTEET</text>
-        <text x="85" y="14" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="850" fill="#FAF7EF">35<tspan font-size="6" fill="rgba(250,247,239,.55)">/100</tspan></text>
-        <text x="85" y="24" text-anchor="middle" font-family="Inter,sans-serif" font-size="4" fill="rgba(250,247,239,.55)">toimiala 50</text>
-
-        <line x1="114" y1="-3" x2="114" y2="26" stroke="rgba(250,247,239,.1)" stroke-width=".4"/>
-
-        <text x="142" y="0" text-anchor="middle" font-family="Inter,sans-serif" font-size="4.5" font-weight="700" fill="rgba(250,247,239,.55)" letter-spacing=".4">RISKI 2 V.</text>
-        <text x="142" y="14" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="850" fill="#FAF7EF">0,41<tspan font-size="6">%</tspan></text>
-        <text x="142" y="24" text-anchor="middle" font-family="Inter,sans-serif" font-size="4" fill="rgba(250,247,239,.55)">toimiala 0,94 %</text>
-      </g>
-    </g>
-
-    <!-- Date + city -->
-    <text x="105" y="262" text-anchor="middle" font-family="Inter,sans-serif" font-size="6.5" font-weight="600" fill="#888">Raahe · 17. huhtikuuta 2026</text>
-
-    <!-- Footer -->
-    <line x1="14" y1="270" x2="196" y2="270" stroke="#e5e5e5" stroke-width=".4"/>
-    <text x="14" y="280" font-family="Inter,sans-serif" font-size="5" fill="#888" letter-spacing=".5">LUOTTORISKIRAPORTTI · 16 SIVUA</text>
-    <text x="14" y="287" font-family="Inter,sans-serif" font-size="6.5" font-weight="800" fill="#1a1a1a">Raahen Terästuote Oy · 3012953-4</text>
-    <g transform="translate(180, 285)">
-      <polygon points="-7,-5 0,-9 7,-5 7,2 0,6 -7,2" fill="#163B2D"/>
-      <polygon points="-4,-3 0,-5 4,-3 4,1 0,3 -4,1" fill="#27624B" opacity=".55"/>
-    </g>
-  </svg>`;
-
-  // ---- CREDIT OVERVIEW (front hero) ----
-  // Visible above lock: header + section banner + BIG rating circle + BIG score gauge.
-  // Behind frosted lock: the rest (key facts + histogram).
-  overview.innerHTML = `<svg viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-    <rect width="210" height="297" fill="#fff"/>
-    ${pageHeader('1')}
-
-    <rect x="14" y="38" width="182" height="15" fill="#163B2D" rx="1.5"/>
-    <text x="105" y="48.5" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" font-weight="800" fill="#fff" letter-spacing=".4">Luottoyhteenveto</text>
-
-    <!-- BIG Rating circle -->
-    <g transform="translate(60, 100)">
-      <text y="-32" text-anchor="middle" font-family="Inter,sans-serif" font-size="5.5" font-weight="800" fill="#888" letter-spacing="1.4">LUOTTOLUOKITUS</text>
-      <circle r="28" fill="#FFC30E" stroke="#D9A608" stroke-width=".5"/>
-      <circle r="24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width=".5"/>
-      <text y="9" text-anchor="middle" font-family="Inter,sans-serif" font-size="20" font-weight="850" fill="#1a1a1a" letter-spacing="-1">BBB</text>
-    </g>
-
-    <!-- BIG Score gauge -->
-    <g transform="translate(150, 100)">
-      <text y="-32" text-anchor="middle" font-family="Inter,sans-serif" font-size="5.5" font-weight="800" fill="#888" letter-spacing="1.4">LUOTTOPISTEET</text>
-      <text y="-9" text-anchor="middle" font-family="Inter,sans-serif" font-size="20" font-weight="850" fill="#1a1a1a" letter-spacing="-1">35</text>
-      <text y="-1" text-anchor="middle" font-family="Inter,sans-serif" font-size="5" font-weight="700" fill="#888" letter-spacing=".5">/ 100</text>
-      <path d="M -28 11 A 28 28 0 0 1 28 11" stroke="url(#gaugeGrad)" stroke-width="7" fill="none" stroke-linecap="round"/>
-      <line x1="0" y1="11" x2="-13" y2="-12" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/>
-      <circle cx="0" cy="11" r="2.6" fill="#1a1a1a"/>
-      <text x="-28" y="20" text-anchor="middle" font-family="Inter,sans-serif" font-size="4.5" fill="#888">0</text>
-      <text x="28" y="20" text-anchor="middle" font-family="Inter,sans-serif" font-size="4.5" fill="#888">100</text>
-    </g>
-
-    <defs>
-      <linearGradient id="gaugeGrad" x1="0" x2="1">
-        <stop offset="0" stop-color="#E74C3C"/>
-        <stop offset=".4" stop-color="#F1C40F"/>
-        <stop offset="1" stop-color="#27AE60"/>
-      </linearGradient>
-    </defs>
-
-    <!-- 4-column key facts grid (will be hidden behind frosted lock) -->
-    <g transform="translate(14, 152)">
-      <rect width="182" height="40" fill="#F4F6F8" rx="2"/>
-      <line x1="45.5" y1="6" x2="45.5" y2="34" stroke="#ddd" stroke-width=".3"/>
-      <line x1="91" y1="6" x2="91" y2="34" stroke="#ddd" stroke-width=".3"/>
-      <line x1="136.5" y1="6" x2="136.5" y2="34" stroke="#ddd" stroke-width=".3"/>
-      <g font-family="Inter,sans-serif">
-        <text x="22.75" y="14" text-anchor="middle" font-size="4" font-weight="800" fill="#666" letter-spacing=".3">KONKURSSIRISKI</text>
-        <text x="22.75" y="28" text-anchor="middle" font-size="9.5" font-weight="850" fill="#1a1a1a">0,41 %</text>
-        <text x="68.25" y="14" text-anchor="middle" font-size="4" font-weight="800" fill="#666" letter-spacing=".3">LUOTTORAJA</text>
-        <text x="68.25" y="28" text-anchor="middle" font-size="9.5" font-weight="850" fill="#1a1a1a">37 kEUR</text>
-        <text x="113.75" y="14" text-anchor="middle" font-size="4" font-weight="800" fill="#666" letter-spacing=".3">EDELL. LUOK.</text>
-        <text x="113.75" y="28" text-anchor="middle" font-size="9.5" font-weight="850" fill="#1a1a1a">BBB</text>
-        <text x="159.25" y="14" text-anchor="middle" font-size="4" font-weight="800" fill="#666" letter-spacing=".3">TOIMIALA Ø</text>
-        <text x="159.25" y="28" text-anchor="middle" font-size="9.5" font-weight="850" fill="#1a1a1a">0,94 %</text>
-      </g>
-    </g>
-
-    <!-- Distribution histogram -->
-    <text x="105" y="208" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="800" fill="#333">Luottoluokitusten jakauma — toimiala</text>
-    <g transform="translate(20, 228)">
-      <rect x="0" y="44" width="22" height="2" fill="#E74C3C"/>
-      <rect x="24" y="34" width="22" height="12" fill="#E67E22"/>
-      <rect x="48" y="11" width="22" height="35" fill="#F39C12"/>
-      <rect x="72" y="0" width="22" height="46" fill="#F1C40F" stroke="#1a1a1a" stroke-width=".5"/>
-      <rect x="96" y="11" width="22" height="35" fill="#9ACD32"/>
-      <rect x="120" y="34" width="22" height="12" fill="#27AE60"/>
-      <rect x="144" y="44" width="22" height="2" fill="#1E8449"/>
-
-      <polygon points="83,-3 79,-9 87,-9" fill="#1a1a1a"/>
-      <text x="83" y="-13" text-anchor="middle" font-family="Inter,sans-serif" font-size="4" font-weight="800" fill="#1a1a1a">YRITYS</text>
-
-      <g font-family="Inter,sans-serif" font-size="5.5" fill="#666" text-anchor="middle">
-        <text x="11" y="56">C</text>
-        <text x="35" y="56">B</text>
-        <text x="59" y="56">BB</text>
-        <text x="83" y="56" font-weight="800" fill="#1a1a1a">BBB</text>
-        <text x="107" y="56">A</text>
-        <text x="131" y="56">AA</text>
-        <text x="155" y="56">AAA</text>
-      </g>
-
-      <g font-family="Inter,sans-serif" font-size="3.6" fill="#888" text-anchor="middle">
-        <text x="11" y="42">1,4%</text>
-        <text x="35" y="32">7,9%</text>
-        <text x="59" y="9">23,7%</text>
-        <text x="83" y="-2" font-weight="800" fill="#1a1a1a">34,1%</text>
-        <text x="107" y="9">23,7%</text>
-        <text x="131" y="32">7,9%</text>
-        <text x="155" y="42">1,3%</text>
-      </g>
-    </g>
-
-    <text x="14" y="290" font-family="Inter,sans-serif" font-size="4" fill="#aaa">© Valuatum 2026 — kaikki oikeudet pidätetään</text>
-  </svg>`;
-
-  // ---- SCATTER (back-right) — bigger chart, focal label ----
-  let s = 11;
-  function rnd(){ s = (s * 9301 + 49297) % 233280; return s / 233280; }
-  let dots = '';
-  for (let i = 0; i < 110; i++){
-    const x = 6 + rnd() * 158;
-    const y = 6 + rnd() * 148;
-    const score = (x / 170) + ((160 - y) / 160);
-    let color, opacity;
-    if (score > 1.45)      { color = '#1E8449'; opacity = .72; }
-    else if (score > 1.15) { color = '#27AE60'; opacity = .62; }
-    else if (score > 0.85) { color = '#F1C40F'; opacity = .55; }
-    else if (score > 0.55) { color = '#E67E22'; opacity = .58; }
-    else                   { color = '#E74C3C'; opacity = .58; }
-    const r = (0.85 + rnd() * 0.6).toFixed(2);
-    dots += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="${color}" opacity="${opacity.toFixed(2)}"/>`;
-  }
-
-  scatter.innerHTML = `<svg viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-    <rect width="210" height="297" fill="#fff"/>
-    ${pageHeader('2')}
-
-    <rect x="14" y="38" width="182" height="15" fill="#163B2D" rx="1.5"/>
-    <text x="105" y="48.5" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" font-weight="800" fill="#fff" letter-spacing=".4">Toimialavertailu</text>
-
-    <text x="105" y="68" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="800" fill="#333">Yrityksen sijainti toimialalla</text>
-    <text x="105" y="78" text-anchor="middle" font-family="Inter,sans-serif" font-size="5.5" fill="#777">287 yritystä · Metallituotteiden valmistus (25.530)</text>
-
-    <!-- BIG scatter chart -->
-    <g transform="translate(20, 88)">
-      <rect width="170" height="160" fill="#FAFAFA" stroke="#ddd" stroke-width=".3"/>
-
-      <!-- Soft region clouds -->
-      <ellipse cx="35" cy="125" rx="60" ry="50" fill="#E74C3C" opacity=".18"/>
-      <ellipse cx="65" cy="95" rx="55" ry="45" fill="#F39C12" opacity=".15"/>
-      <ellipse cx="100" cy="65" rx="55" ry="45" fill="#F1C40F" opacity=".12"/>
-      <ellipse cx="135" cy="38" rx="55" ry="45" fill="#27AE60" opacity=".18"/>
-
-      ${dots}
-
-      <!-- Median dashed lines -->
-      <line x1="85" y1="0" x2="85" y2="160" stroke="#1a1a1a" stroke-width=".3" stroke-dasharray="2,2" opacity=".35"/>
-      <line x1="0" y1="80" x2="170" y2="80" stroke="#1a1a1a" stroke-width=".3" stroke-dasharray="2,2" opacity=".35"/>
-      <text x="86" y="9" font-family="Inter,sans-serif" font-size="4" fill="#666" font-weight="700">mediaani</text>
-
-      <!-- Focal company marker + leader line + label -->
-      <g>
-        <circle cx="68" cy="72" r="5.5" fill="rgba(30,90,150,.18)"/>
-        <line x1="62" y1="72" x2="74" y2="72" stroke="#1A4A6F" stroke-width=".8"/>
-        <line x1="68" y1="66" x2="68" y2="78" stroke="#1A4A6F" stroke-width=".8"/>
-        <circle cx="68" cy="72" r="1.7" fill="#1A4A6F"/>
-        <line x1="73" y1="68" x2="106" y2="50" stroke="#1A4A6F" stroke-width=".4"/>
-        <rect x="106" y="44" width="56" height="12" fill="#1A4A6F" rx="2"/>
-        <text x="134" y="52" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" font-weight="800" fill="#fff">Yrityksesi</text>
-      </g>
-
-      <!-- Axes -->
-      <line x1="0" y1="160" x2="170" y2="160" stroke="#999" stroke-width=".4"/>
-      <line x1="0" y1="0" x2="0" y2="160" stroke="#999" stroke-width=".4"/>
-      <text x="85" y="171" text-anchor="middle" font-family="Inter,sans-serif" font-size="5.5" fill="#666">Pääoman tuotto (ROA-%)</text>
-      <text x="-80" y="-5" font-family="Inter,sans-serif" font-size="5.5" fill="#666" transform="rotate(-90)" text-anchor="middle">Omavaraisuusaste (%)</text>
-    </g>
-
-    <!-- Mini info row -->
-    <g transform="translate(14, 264)">
-      <rect width="182" height="22" fill="#F4F6F8" rx="2"/>
-      <line x1="40" y1="3" x2="40" y2="19" stroke="#ddd" stroke-width=".3"/>
-      <line x1="80" y1="3" x2="80" y2="19" stroke="#ddd" stroke-width=".3"/>
-      <line x1="115" y1="3" x2="115" y2="19" stroke="#ddd" stroke-width=".3"/>
-      <line x1="150" y1="3" x2="150" y2="19" stroke="#ddd" stroke-width=".3"/>
-      <g font-family="Inter,sans-serif">
-        <text x="20" y="9" text-anchor="middle" font-size="3.8" font-weight="800" fill="#666" letter-spacing=".3">ROA-%</text>
-        <text x="20" y="18" text-anchor="middle" font-size="7" font-weight="850" fill="#1a1a1a">5,0 %</text>
-        <text x="60" y="9" text-anchor="middle" font-size="3.8" font-weight="800" fill="#666" letter-spacing=".3">OMAVAR.</text>
-        <text x="60" y="18" text-anchor="middle" font-size="7" font-weight="850" fill="#1a1a1a">28,1 %</text>
-        <text x="97.5" y="9" text-anchor="middle" font-size="3.8" font-weight="800" fill="#666" letter-spacing=".3">LUOKITUS</text>
-        <text x="97.5" y="18" text-anchor="middle" font-size="7" font-weight="850" fill="#1a1a1a">BBB</text>
-        <text x="132.5" y="9" text-anchor="middle" font-size="3.8" font-weight="800" fill="#666" letter-spacing=".3">PISTEET</text>
-        <text x="132.5" y="18" text-anchor="middle" font-size="7" font-weight="850" fill="#1a1a1a">35</text>
-        <text x="166" y="9" text-anchor="middle" font-size="3.8" font-weight="800" fill="#666" letter-spacing=".3">LUOKKA</text>
-        <text x="166" y="18" text-anchor="middle" font-size="6" font-weight="800" fill="#1a1a1a">Bot 20-40%</text>
-      </g>
-    </g>
-  </svg>`;
-})();
 
 /* ---------- Ratio table render ---------- */
 const ROWS = [
@@ -1228,78 +1112,155 @@ function renderCell(v, isLatest, unit, decimals){
 
 /* ---------- Peers ---------- */
 const PEERS = [
-  {name: 'Metallipalvelu Turppa Oy',       rev: 1850, ebit: 4.2, region: 'Pohjois-Pohjanmaa', trend:[1500,1600,1700,1820,1850]},
-  {name: 'Helsingin EAM-tekniikka Oy',     rev: 3420, ebit: 5.1, region: 'Uusimaa',          trend:[2800,2950,3100,3280,3420]},
-  {name: 'Tuusulan Työkalukoneistus Oy',   rev: 2100, ebit: 3.8, region: 'Uusimaa',          trend:[1950,2000,2020,2080,2100]},
-  {name: 'MYCRAFT OY',                     rev: 950,  ebit: 7.1, region: 'Varsinais-Suomi',  trend:[680,760,820,880,950]},
-  {name: 'Laserkeskus Oy',                 rev: 4800, ebit: 6.4, region: 'Pirkanmaa',        trend:[3900,4100,4400,4650,4800]},
-  {name: 'Jemepro Oy',                     rev: 1650, ebit: 2.9, region: 'Pohjois-Pohjanmaa',trend:[1500,1580,1620,1640,1650]},
-  {name: 'Premeka Oy',                     rev: 2340, ebit: 5.8, region: 'Pirkanmaa',        trend:[1800,2000,2150,2250,2340]},
-  {name: 'Oy Maprotec Ab',                 rev: 1280, ebit: 4.5, region: 'Pohjanmaa',        trend:[1100,1180,1210,1240,1280]},
-  {name: 'Hionta Service Oy',              rev: 820,  ebit: 3.2, region: 'Pohjois-Pohjanmaa',trend:[700,740,770,800,820]},
-  {name: 'Steel Storm Oy',                 rev: 2960, ebit: 4.9, region: 'Pohjois-Pohjanmaa',trend:[2400,2550,2700,2850,2960]}
+  {name:'Metallipalvelu Turppa Oy',     location:'Oulu',      rev:1850, ebit:4.2, omav:41.2, region:'Pohjois-Pohjanmaa', rating:'BBB', trend:[1500,1600,1700,1820,1850]},
+  {name:'Helsingin EAM-tekniikka Oy',   location:'Vantaa',    rev:3420, ebit:5.1, omav:52.8, region:'Uusimaa',          rating:'A',   trend:[2800,2950,3100,3280,3420]},
+  {name:'Tuusulan Työkalukoneistus Oy', location:'Tuusula',   rev:2100, ebit:3.8, omav:34.4, region:'Uusimaa',          rating:'BBB', trend:[1950,2000,2020,2080,2100]},
+  {name:'MYCRAFT OY',                   location:'Turku',     rev:950,  ebit:7.1, omav:58.0, region:'Varsinais-Suomi',  rating:'A',   trend:[680,760,820,880,950]},
+  {name:'Laserkeskus Oy',               location:'Tampere',   rev:4800, ebit:6.4, omav:47.1, region:'Pirkanmaa',        rating:'A',   trend:[3900,4100,4400,4650,4800]},
+  {name:'Jemepro Oy',                   location:'Raahe',     rev:1650, ebit:2.9, omav:29.7, region:'Pohjois-Pohjanmaa', rating:'BB',  trend:[1500,1580,1620,1640,1650]},
+  {name:'Premeka Oy',                   location:'Tampere',   rev:2340, ebit:5.8, omav:44.6, region:'Pirkanmaa',        rating:'BBB', trend:[1800,2000,2150,2250,2340]},
+  {name:'Oy Maprotec Ab',               location:'Vaasa',     rev:1280, ebit:4.5, omav:36.8, region:'Pohjanmaa',        rating:'BBB', trend:[1100,1180,1210,1240,1280]},
+  {name:'Hionta Service Oy',            location:'Kempele',   rev:820,  ebit:3.2, omav:25.1, region:'Pohjois-Pohjanmaa', rating:'BB',  trend:[700,740,770,800,820]},
+  {name:'Steel Storm Oy',               location:'Oulu',      rev:2960, ebit:4.9, omav:39.2, region:'Pohjois-Pohjanmaa', rating:'BBB', trend:[2400,2550,2700,2850,2960]},
+  {name:'Rautakomponentti Oy',          location:'Jyväskylä', rev:2180, ebit:6.2, omav:41.0, region:'Keski-Suomi',      rating:'BBB', trend:[1750,1900,2020,2110,2180]},
+  {name:'Pohjanmaan Hitsaus Oy',        location:'Seinäjoki', rev:2680, ebit:8.2, omav:49.8, region:'Etelä-Pohjanmaa',  rating:'A',   trend:[2100,2300,2450,2580,2680]},
+  {name:'Ter-Metalli Oy',               location:'Raahe',     rev:2820, ebit:5.4, omav:33.2, region:'Pohjois-Pohjanmaa', rating:'BBB', trend:[2400,2540,2680,2750,2820]}
 ];
+
+/* Subject company — for peer deltas and anchor row */
+const SELF = { name: 'Raahen Terästuote Oy', location: 'Raahe', rev: 2499, ebit: 2.6, omav: 28.1, rating: 'BBB' };
 
 /* Percentile ranks (pre-computed vs 287-peer industry) */
 const PERCENTILES = [
-  { label: 'Liikevaihto',        rank: 57, tooltip: '2 499 kEUR vs. toimialan mediaani 2 100' },
-  { label: 'EBIT-%',             rank: 23, tooltip: '2,6 % vs. toimialan mediaani 5,1 %' },
-  { label: 'Omavaraisuusaste',   rank: 35, tooltip: '28,1 % vs. toimialan mediaani 38 %' },
-  { label: '3 v. liikevaihdon CAGR', rank: 52, tooltip: '+5,3 % vs. toimialan mediaani +4,7 %' }
+  { label:'Liikevaihto',            rank:57, selfTxt:'2 499 kEUR', medTxt:'2 100 kEUR' },
+  { label:'EBIT-%',                 rank:23, selfTxt:'2,6 %',      medTxt:'5,1 %' },
+  { label:'Omavaraisuusaste',       rank:35, selfTxt:'28,1 %',     medTxt:'38 %' },
+  { label:'3 v. liikevaihdon CAGR', rank:62, selfTxt:'+5,3 %',     medTxt:'+4,7 %' }
 ];
 
 (function renderPercentiles(){
-  const host = document.getElementById('percentile-rows');
+  const host = document.getElementById('p-rows');
   if (!host) return;
   host.innerHTML = PERCENTILES.map(p => {
     const cls = p.rank >= 66 ? 'good' : (p.rank >= 33 ? 'mid' : 'weak');
     return `
-      <div class="percentile-row" title="${p.tooltip}">
-        <div class="percentile-row-head">
-          <span class="percentile-row-label">${p.label}</span>
-          <span class="percentile-row-rank">${p.rank}.<small>persentiili</small></span>
+      <div class="p-row">
+        <span class="p-row-label">${p.label}</span>
+        <span class="p-row-rank">
+          <span class="p-row-rank-num">${p.rank}.</span>
+          <span class="p-row-rank-unit">persentiili</span>
+        </span>
+        <div class="p-row-bar">
+          <div class="p-row-bar-fill ${cls}" style="width:${p.rank}%"></div>
         </div>
-        <div class="percentile-bar">
-          <div class="percentile-bar-fill ${cls}" style="width:${p.rank}%"></div>
-          <div class="percentile-bar-median" style="left:50%"></div>
+        <div class="p-row-values">
+          <span>Yritys: <b>${p.selfTxt}</b></span>
+          <span>Toimialan mediaani: <b>${p.medTxt}</b></span>
         </div>
       </div>`;
   }).join('');
 })();
 
-/* Curated peer lists */
-function peerCard(p){
-  return `<a href="#" class="curated-peer">
-    <span class="curated-peer-name">${p.name}</span>
-    <span class="curated-peer-kpis">
-      <span><b>${formatFi(p.rev, 0)} kEUR</b>liikevaihto</span>
-      <span><b>${formatFi(p.ebit, 1)} %</b>EBIT-%</span>
-    </span>
+/* Peer tabs + list */
+const TAB_DEFS = {
+  similar: { context:'Liikevaihto <b>±20 %</b> Raahen Terästuotteesta',  filter: () => [...PEERS].map(p => ({...p, d: Math.abs(p.rev - SELF.rev)})).sort((a,b)=>a.d-b.d).slice(0, 9) },
+  top:     { context:'Toimialan <b>korkein EBIT-%</b>',                   filter: () => [...PEERS].sort((a,b)=>b.ebit-a.ebit).slice(0, 9) },
+  region:  { context:'Toimipaikka <b>Pohjois-Pohjanmaalla</b>',           filter: () => PEERS.filter(p => p.region === 'Pohjois-Pohjanmaa') },
+  rating:  { context:'Luottoluokka <b>BBB</b>',                           filter: () => PEERS.filter(p => p.rating === 'BBB') }
+};
+
+const DELTA_UP   = '<svg viewBox="0 0 24 24"><path d="M7 14l5-5 5 5"/></svg>';
+const DELTA_DOWN = '<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg>';
+
+function renderDelta(value, self, unit, good){
+  const diff = value - self;
+  if (Math.abs(diff) < 0.05) return `<span class="peer-kpi-delta flat">±0</span>`;
+  const isUp = diff > 0;
+  const favorable = good === 'higher' ? isUp : !isUp;
+  const cls = favorable ? 'up' : 'down';
+  const arrow = isUp ? DELTA_UP : DELTA_DOWN;
+  const sign = isUp ? '+' : '−';
+  return `<span class="peer-kpi-delta ${cls}">${arrow}${sign}${formatFi(Math.abs(diff), 1)}${unit}</span>`;
+}
+
+function peerRow(p, isSelf){
+  if (isSelf){
+    return `<div class="peer-row self">
+      <div class="peer-name">
+        <span class="peer-name-main">${p.name}</span>
+        <span class="peer-name-sub">Tämä yritys</span>
+      </div>
+      <div class="peer-kpi"><div class="peer-kpi-val">${formatFi(p.rev,0)} kEUR</div></div>
+      <div class="peer-kpi"><div class="peer-kpi-val">${formatFi(p.ebit,1)} %</div></div>
+      <div class="peer-kpi"><div class="peer-kpi-val">${formatFi(p.omav,1)} %</div></div>
+      <span class="peer-arrow"></span>
+    </div>`;
+  }
+  return `<a href="#" class="peer-row">
+    <div class="peer-name">
+      <span class="peer-name-main">${p.name}</span>
+      <span class="peer-name-sub">${p.location} · ${p.rating}</span>
+    </div>
+    <div class="peer-kpi"><div class="peer-kpi-val">${formatFi(p.rev,0)} kEUR</div></div>
+    <div class="peer-kpi">
+      <div class="peer-kpi-val">${formatFi(p.ebit,1)} %</div>
+      ${renderDelta(p.ebit, SELF.ebit, ' pp', 'higher')}
+    </div>
+    <div class="peer-kpi"><div class="peer-kpi-val">${formatFi(p.omav,1)} %</div></div>
+    <span class="peer-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
   </a>`;
 }
-(function renderCuratedPeers(){
-  const host = document.getElementById('curated-peers');
-  if (!host) return;
-  const targetRev = 2499;
-  const similar = [...PEERS]
-    .map(p => ({...p, d: Math.abs(p.rev - targetRev)}))
-    .sort((a,b) => a.d - b.d)
-    .slice(0, 3);
-  const top = [...PEERS].sort((a,b) => b.ebit - a.ebit).slice(0, 3);
-  const regional = PEERS.filter(p => p.region === 'Pohjois-Pohjanmaa').slice(0, 3);
-  host.innerHTML = `
-    <div class="curated-group">
-      <h4><span class="tag-chip">Samankokoiset</span><small>±20 % liikevaihto</small></h4>
-      ${similar.map(peerCard).join('')}
-    </div>
-    <div class="curated-group">
-      <h4><span class="tag-chip">Huippusuorittajat</span><small>korkein EBIT-%</small></h4>
-      ${top.map(peerCard).join('')}
-    </div>
-    <div class="curated-group">
-      <h4><span class="tag-chip">Saman alueen toimijat</span><small>Pohjois-Pohjanmaa</small></h4>
-      ${regional.map(peerCard).join('')}
-    </div>`;
+
+let currentPeerTab = 'similar';
+let peerExpanded = false;
+
+function renderPeers(){
+  const def = TAB_DEFS[currentPeerTab];
+  const list = def.filter();
+  const initialN = 4;
+  const rows = [];
+  if (currentPeerTab === 'similar'){
+    const merged = [...list, {...SELF, _self:true}].sort((a,b) => b.rev - a.rev);
+    const trimmed = peerExpanded ? merged : merged.slice(0, initialN + 1);
+    if (!peerExpanded && !trimmed.some(r => r._self)){
+      trimmed.pop();
+      trimmed.push({...SELF, _self:true});
+      trimmed.sort((a,b) => b.rev - a.rev);
+    }
+    trimmed.forEach(p => rows.push(peerRow(p, !!p._self)));
+  } else {
+    const show = peerExpanded ? list : list.slice(0, initialN);
+    show.forEach(p => rows.push(peerRow(p, false)));
+  }
+  const peerRowsEl = document.getElementById('peer-rows');
+  if (!peerRowsEl) return;
+  peerRowsEl.innerHTML = rows.join('');
+  document.getElementById('peer-tab-context').innerHTML = def.context;
+  document.getElementById('peer-more-btn').innerHTML = peerExpanded
+    ? `Näytä vähemmän <svg viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>`
+    : `Näytä kaikki <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>`;
+  document.querySelector('.peer-more-left').innerHTML =
+    peerExpanded ? `Näytetään <b>${list.length} / ${list.length}</b>` : `Näytetään <b>${Math.min(initialN, list.length)} / ${list.length}</b>`;
+}
+
+(function initPeerTabs(){
+  const tabs = document.querySelectorAll('#peer-tabs .peer-tab');
+  if (!tabs.length) return;
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      currentPeerTab = btn.dataset.tab;
+      peerExpanded = false;
+      renderPeers();
+    });
+  });
+  const moreBtn = document.getElementById('peer-more-btn');
+  if (moreBtn) moreBtn.addEventListener('click', () => {
+    peerExpanded = !peerExpanded;
+    renderPeers();
+  });
+  renderPeers();
 })();
 
 /* ---------- Leaflet map ---------- */
@@ -1307,7 +1268,7 @@ function initMap(){
   const host = document.getElementById('basics-map');
   if (!host || typeof L === 'undefined') return;
   const coords = [64.6854, 24.4814]; // Raahe (invented address Tehdaskatu 12)
-  const map = L.map(host, { scrollWheelZoom: false, attributionControl: true }).setView(coords, 14);
+  const map = L.map(host, { scrollWheelZoom: false, attributionControl: true }).setView(coords, 13);
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     maxZoom: 20,
     subdomains: 'abcd',
@@ -1327,26 +1288,23 @@ if (typeof L !== 'undefined') initMap();
 else window.addEventListener('load', initMap);
 
 /* ---------- Sticky section-nav active highlighting ---------- */
-(function sectionNavObserver(){
-  const navLinks = document.querySelectorAll('.section-nav a');
-  const map = new Map();
-  navLinks.forEach(a => {
-    const id = a.getAttribute('href').slice(1);
-    const el = document.getElementById(id);
-    if (el) map.set(el, a);
-  });
-  if (!('IntersectionObserver' in window) || map.size === 0) return;
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      const link = map.get(e.target);
-      if (!link) return;
-      if (e.isIntersecting) {
-        navLinks.forEach(n => n.classList.remove('active'));
-        link.classList.add('active');
-      }
-    });
-  }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
-  map.forEach((_, el) => obs.observe(el));
+(function sectionNavHighlight(){
+  const navLinks = Array.from(document.querySelectorAll('.section-nav a'));
+  const entries = navLinks
+    .map(a => ({ link: a, el: document.getElementById(a.getAttribute('href').slice(1)) }))
+    .filter(p => p.el);
+  if (entries.length === 0) return;
+  const NAV_OFFSET = 160;
+  function update(){
+    let current = entries[0].link;
+    for (const { link, el } of entries) {
+      if (el.getBoundingClientRect().top - NAV_OFFSET <= 0) current = link;
+    }
+    navLinks.forEach(n => n.classList.toggle('active', n === current));
+  }
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
 })();
 
 /* ---------- Feedback prompt ---------- */
@@ -1572,15 +1530,6 @@ function initIndustryScatter(){
   const peers = generatePeerCloud();
   const company = { x: 2499, y: 2.6, name: 'Raahen Terästuote Oy' };
 
-  // Pick the 4 closest peers (by normalized distance) to label inline as small text near their dots.
-  const refX = Math.log(company.x), refY = company.y;
-  const closest = peers
-    .filter(p => p.name)
-    .map(p => ({ ...p, d: Math.hypot((Math.log(p.x) - refX) * 1.2, (p.y - refY) * 0.18) }))
-    .sort((a, b) => a.d - b.d)
-    .slice(0, 4);
-  const labelSet = new Set(closest.map(p => p.name));
-
   new Chart(canvas, {
     type: 'scatter',
     data: {
@@ -1653,14 +1602,22 @@ function initIndustryScatter(){
       }
     },
     plugins: [{
-      id: 'medianLines',
+      id: 'medianCrosshair',
       afterDraw(chart){
         const { ctx, chartArea, scales } = chart;
         if (!chartArea) return;
         const xMed = scales.x.getPixelForValue(2100);
         const yMed = scales.y.getPixelForValue(5.1);
+
         ctx.save();
-        ctx.strokeStyle = 'rgba(22,59,45,0.45)';
+        // Subtle quadrant tint: favorable (above EBIT median) slightly green, below slightly red
+        ctx.fillStyle = 'rgba(46,133,86,0.035)';
+        ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, yMed - chartArea.top);
+        ctx.fillStyle = 'rgba(185,68,63,0.03)';
+        ctx.fillRect(chartArea.left, yMed, chartArea.right - chartArea.left, chartArea.bottom - yMed);
+
+        // Dashed crosshair
+        ctx.strokeStyle = 'rgba(22,59,45,0.5)';
         ctx.setLineDash([4, 4]);
         ctx.lineWidth = 1;
         ctx.beginPath();
@@ -1668,50 +1625,54 @@ function initIndustryScatter(){
         ctx.moveTo(chartArea.left, yMed); ctx.lineTo(chartArea.right, yMed);
         ctx.stroke();
         ctx.setLineDash([]);
-        ctx.fillStyle = 'rgba(22,59,45,0.55)';
-        ctx.font = '600 10px Inter, sans-serif';
-        ctx.fillText('Mediaani', xMed + 5, chartArea.top + 12);
         ctx.restore();
       }
     }, {
-      id: 'nearestLabels',
+      id: 'focalLabel',
       afterDatasetsDraw(chart){
-        const { ctx, chartArea, scales } = chart;
-        if (!chartArea) return;
-        ctx.save();
-        ctx.font = '700 10px Inter, sans-serif';
-        ctx.textBaseline = 'middle';
-
-        // Focal company label (gold pill)
+        const { ctx, scales } = chart;
         const cx = scales.x.getPixelForValue(company.x);
         const cy = scales.y.getPixelForValue(company.y);
-        const cText = company.name;
-        const cW = ctx.measureText(cText).width + 12;
-        ctx.fillStyle = 'rgba(185,143,66,0.95)';
-        ctx.beginPath();
-        if (ctx.roundRect) ctx.roundRect(cx + 12, cy - 9, cW, 18, 9);
-        else ctx.rect(cx + 12, cy - 9, cW, 18);
-        ctx.fill();
+        ctx.save();
+        ctx.font = '700 10.5px Inter, sans-serif';
+        ctx.textBaseline = 'middle';
+        const cText = 'Raahen Terästuote';
+        const cW = ctx.measureText(cText).width + 14;
+        ctx.fillStyle = 'rgba(185,143,66,0.96)';
+        if (ctx.roundRect){
+          ctx.beginPath(); ctx.roundRect(cx + 14, cy - 10, cW, 20, 10); ctx.fill();
+        } else {
+          ctx.fillRect(cx + 14, cy - 10, cW, 20);
+        }
         ctx.fillStyle = '#201A0F';
-        ctx.fillText(cText, cx + 18, cy + 1);
-
-        // Nearest 4 peers — small text labels with leader
-        ctx.font = '600 10px Inter, sans-serif';
-        ctx.fillStyle = 'rgba(23,26,24,0.78)';
-        peers.forEach(p => {
-          if (!labelSet.has(p.name)) return;
-          const px = scales.x.getPixelForValue(p.x);
-          const py = scales.y.getPixelForValue(p.y);
-          if (px < chartArea.left || px > chartArea.right) return;
-          const text = p.name.length > 22 ? p.name.slice(0, 20) + '…' : p.name;
-          ctx.fillText(text, px + 7, py - 1);
-        });
-
+        ctx.fillText(cText, cx + 21, cy + 1);
         ctx.restore();
       }
     }]
   });
 }
+
+/* ---------- Credit price-tier selection ---------- */
+(function(){
+  var tiers = document.querySelectorAll('.price-tier');
+  var btnPrice = document.querySelector('[data-btn-price]');
+  var btnLabel = document.querySelector('[data-btn-label]');
+  var labels = { single: 'Lataa luottoriskiraportti', subscription: 'Tilaa kuukausitilaus' };
+  var prices = { single: '— 5 €', subscription: '— 50 € / kk' };
+  tiers.forEach(function(t){
+    function select(){
+      tiers.forEach(function(o){o.classList.remove('active');o.setAttribute('aria-checked','false');});
+      t.classList.add('active');
+      t.setAttribute('aria-checked','true');
+      if(btnLabel) btnLabel.textContent = labels[t.dataset.tier] || '';
+      if(btnPrice) btnPrice.textContent = prices[t.dataset.tier] || '';
+    }
+    t.addEventListener('click', select);
+    t.addEventListener('keydown', function(e){
+      if(e.key===' '||e.key==='Enter'){e.preventDefault();select();}
+    });
+  });
+})();
 </script>
 </body>
 </html>
