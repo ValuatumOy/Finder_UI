@@ -187,6 +187,119 @@ button,input,summary{font-family:inherit}
 .mini-card-value{font-size:20px;font-weight:850;color:var(--green);line-height:1.1;font-variant-numeric:tabular-nums;}
 .mini-card-note{font-size:12px;font-weight:650;color:var(--text-2);margin-top:5px;line-height:1.35;}
 
+/* -------- FAQ & Luottoriski info pages -------- */
+.info-page{min-height:calc(100vh - 72px);padding:54px 0 72px;}
+.info-inner{width:min(100%,1280px);margin:0 auto;display:grid;gap:22px;}
+.info-hero{background:linear-gradient(180deg,#FFFFFF 0%,#FAF7EF 100%);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow-soft);padding:34px 38px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr);gap:30px;align-items:center;}
+.info-kicker{display:inline-flex;align-items:center;font-size:10px;font-weight:850;letter-spacing:.12em;text-transform:uppercase;color:var(--green);background:var(--green-soft);border:1px solid rgba(22,59,45,.16);padding:4px 9px;border-radius:999px;margin-bottom:14px;}
+.info-title{font-size:44px;line-height:1.04;color:var(--green);font-weight:850;letter-spacing:0;margin-bottom:14px;}
+.info-lead{font-size:15.5px;line-height:1.65;color:var(--text-2);font-weight:550;max-width:740px;}
+.info-hero-card{border:1px solid rgba(22,59,45,.12);background:var(--green-softer);border-radius:8px;padding:18px;display:grid;gap:12px;}
+.info-hero-stat{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:baseline;border-bottom:1px solid rgba(22,59,45,.12);padding-bottom:12px;}
+.info-hero-stat:last-child{border-bottom:0;padding-bottom:0;}
+.info-hero-stat span{font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--text-3);}
+.info-hero-stat strong{font-size:24px;line-height:1;font-weight:850;color:var(--green);font-variant-numeric:tabular-nums;white-space:nowrap;}
+.info-report-snapshot{background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 12px 26px rgba(6,18,14,.08);padding:18px;display:grid;gap:16px;}
+.info-report-head{display:flex;justify-content:space-between;align-items:center;gap:16px;border-bottom:1px solid var(--border);padding-bottom:12px;}
+.info-report-company{font-size:16px;font-weight:850;color:var(--text-1);line-height:1.2;}
+.info-report-badge{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;background:var(--green-soft);color:var(--green);font-size:13px;font-weight:900;padding:5px 14px;line-height:1;}
+.info-report-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.info-report-metric{background:#F4F6F5;border-radius:10px;padding:12px;}
+.info-report-metric span{display:block;font-size:11px;font-weight:800;color:var(--text-3);margin-bottom:6px;}
+.info-report-metric strong{display:block;font-size:24px;line-height:1;font-weight:900;color:var(--text-1);}
+.info-report-metric strong.good{color:var(--green-2);}
+.info-report-metric small{font-size:13px;color:var(--text-2);font-weight:750;}
+.info-report-body{display:grid;grid-template-columns:1fr 1.08fr;gap:18px;align-items:center;}
+.mini-gauge{width:100%;height:auto;display:block;}
+.info-ratio-list{display:grid;gap:9px;}
+.info-ratio-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:baseline;font-size:13px;font-weight:750;color:var(--text-2);border-bottom:1px solid var(--border);padding-bottom:8px;}
+.info-ratio-row:last-child{border-bottom:0;padding-bottom:0;}
+.info-ratio-value{font-weight:850;color:var(--text-1);font-variant-numeric:tabular-nums;white-space:nowrap;}
+.info-section{background:var(--surface);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow-soft);padding:30px 34px;}
+.info-section.dark{background:linear-gradient(180deg,#163B2D 0%,#0F2A20 100%);border-color:rgba(250,247,239,.12);color:var(--cream-text);position:relative;overflow:hidden;}
+.info-section.dark::after{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(185,143,66,.45),transparent);}
+.info-section.dark .info-section-title,.info-section.dark .info-question-title,.info-section.dark .info-feature-title{color:var(--cream-text);}
+.info-section.dark .info-section-copy,.info-section.dark .info-question-copy,.info-section.dark .info-feature-copy{color:rgba(250,247,239,.72);}
+.info-section-title{font-size:28px;line-height:1.16;font-weight:850;color:var(--text-1);letter-spacing:0;margin-bottom:12px;}
+.info-section-copy{font-size:14.5px;line-height:1.65;color:var(--text-2);font-weight:550;max-width:900px;}
+.faq-list{display:grid;gap:18px;margin-top:22px;}
+.faq-accordion-section{display:grid;gap:12px;margin-top:22px;}
+.faq-accordion-group{display:grid;gap:10px;}
+.faq-item{border:1px solid var(--border);border-radius:8px;background:var(--surface-muted);overflow:hidden;}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 20px;font-size:17px;line-height:1.3;font-weight:850;color:var(--green);}
+.faq-item summary::-webkit-details-marker{display:none;}
+.faq-item summary::after{content:"+";width:24px;height:24px;border-radius:999px;background:var(--green-soft);color:var(--green);display:inline-flex;align-items:center;justify-content:center;font-size:18px;font-weight:850;flex-shrink:0;}
+.faq-item[open] summary{background:#FFFCF6;border-bottom:1px solid var(--border);}
+.faq-item[open] summary::after{content:"-";}
+.faq-answer{padding:18px 20px 20px;font-size:14.5px;line-height:1.65;color:var(--text-2);font-weight:550;}
+.faq-answer p+p{margin-top:12px;}
+.faq-answer ul{display:grid;gap:7px;margin:12px 0 0 18px;}
+.faq-answer li{padding-left:4px;}
+.faq-image{display:block;width:100%;height:auto;border:1px solid var(--border);border-radius:8px;background:#fff;margin:16px 0 10px;}
+.faq-image-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px;}
+.faq-image-grid.stacked{grid-template-columns:1fr;}
+.faq-image-grid.stacked .faq-image{margin-top:8px;}
+.faq-figure{margin:0;}
+.faq-figure figcaption{font-size:12px;font-weight:750;color:var(--text-2);margin-top:8px;}
+.faq-figure figcaption a{color:var(--green);text-decoration:underline;text-underline-offset:3px;}
+.info-question{border:1px solid var(--border);background:var(--surface-muted);border-radius:8px;padding:22px;display:grid;gap:16px;}
+.info-question-title{font-size:21px;line-height:1.25;font-weight:850;color:var(--green);letter-spacing:0;}
+.info-question-copy{font-size:14.5px;line-height:1.65;color:var(--text-2);font-weight:550;}
+.info-question-copy p+p{margin-top:12px;}
+.info-list{display:grid;gap:7px;margin:12px 0 0 18px;color:var(--text-2);font-weight:600;}
+.info-list li{padding-left:4px;}
+.info-note{font-size:12.5px;color:var(--text-3);font-weight:650;margin-top:8px;}
+.chart-panel{border:1px solid var(--border);background:#fff;border-radius:8px;padding:18px;margin-top:16px;overflow:hidden;}
+.chart-title-row{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin-bottom:12px;}
+.chart-title{font-size:15px;font-weight:850;color:var(--text-1);}
+.chart-source{font-size:11.5px;font-weight:700;color:var(--text-3);}
+.scatter-chart{width:100%;height:auto;display:block;min-height:260px;}
+.rating-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px;}
+.rating-chart{border:1px solid var(--border);background:#fff;border-radius:8px;padding:16px;min-height:300px;display:flex;flex-direction:column;}
+.bar-chart{display:flex;align-items:end;gap:10px;height:190px;border-bottom:1px solid var(--border-strong);padding:18px 4px 0;margin-top:auto;}
+.bar-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:end;gap:6px;height:100%;min-width:0;}
+.bar-value{font-size:11px;font-weight:800;color:var(--text-1);white-space:nowrap;}
+.bar-fill{width:100%;max-width:44px;border-radius:4px 4px 0 0;background:var(--green);min-height:8px;}
+.bar-fill.red{background:#ff1744;}
+.bar-fill.blush{background:#ff9f99;}
+.bar-fill.gold{background:#ffd33f;}
+.bar-fill.yellow{background:#fff477;}
+.bar-fill.mint{background:#bfe8ca;}
+.bar-fill.green{background:#8fcf99;}
+.bar-fill.teal{background:#04505f;}
+.bar-label{font-size:11px;font-weight:700;color:var(--text-2);white-space:nowrap;}
+.stacked-chart{display:grid;gap:7px;margin-top:auto;}
+.stack-row{display:grid;grid-template-columns:54px minmax(0,1fr);gap:9px;align-items:center;font-size:11px;font-weight:750;color:var(--text-2);}
+.stack-bar{height:16px;border-radius:4px;overflow:hidden;display:flex;background:var(--surface-soft);}
+.stack-seg{height:100%;}
+.report-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px;}
+.report-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px;display:flex;flex-direction:column;gap:14px;text-decoration:none;color:inherit;transition:transform .15s,border-color .15s,background .15s;min-height:100%;}
+.report-card:hover{transform:translateY(-2px);border-color:rgba(22,59,45,.28);background:var(--green-softer);}
+.report-preview{height:220px;background:#fff;border:1px solid var(--border);border-radius:6px;padding:12px;box-shadow:0 12px 22px rgba(6,18,14,.08);display:grid;overflow:hidden;}
+.report-gauge-art{display:grid;grid-template-columns:1.04fr .96fr;gap:8px;align-items:center;min-height:0;}
+.report-gauge-wrap{display:grid;gap:3px;justify-items:center;align-self:center;transform:translateY(14px);}
+.report-score-label{font-size:10px;font-weight:850;color:var(--text-1);line-height:1;}
+.report-score-num{font-size:17px;font-weight:900;color:var(--text-1);line-height:1;}
+.report-gauge{width:100%;max-width:130px;height:auto;display:block;}
+.report-legend{border:1px solid var(--border-strong);background:#fff;padding:5px 6px;display:grid;gap:2px;align-self:center;}
+.report-legend-row{display:grid;grid-template-columns:9px 24px minmax(0,1fr);gap:4px;align-items:center;font-size:7px;font-weight:700;color:#222;line-height:1.05;white-space:nowrap;}
+.report-legend-color{width:9px;height:9px;border:1px solid rgba(0,0,0,.08);}
+.report-legend-color.aaa{background:#2DA12D;}
+.report-legend-color.aa{background:#92DF8A;}
+.report-legend-color.a{background:#CFF2CA;}
+.report-legend-color.bbb{background:#F8FF5A;}
+.report-legend-color.bb{background:#F2D529;}
+.report-legend-color.b{background:#F4A1A1;}
+.report-legend-color.c{background:#D21842;}
+.report-title{font-size:16px;font-weight:850;color:var(--text-1);line-height:1.25;}
+.report-copy{font-size:13px;color:var(--text-2);font-weight:600;line-height:1.45;}
+.report-link{margin-top:auto;display:inline-flex;color:var(--green);font-size:13px;font-weight:850;text-decoration:underline;text-underline-offset:3px;}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px;}
+.info-feature{border:1px solid rgba(250,247,239,.12);background:rgba(250,247,239,.05);border-radius:8px;padding:20px;}
+.info-feature-num{font-family:'Fraunces',serif;font-size:30px;line-height:1;color:var(--gold);font-style:italic;margin-bottom:14px;}
+.info-feature-title{font-size:18px;font-weight:850;line-height:1.2;margin-bottom:10px;}
+.info-feature-copy{font-size:14px;line-height:1.58;font-weight:550;}
+
 /* -------- Toimialat -------- */
 .industries-page{min-height:calc(100vh - 72px);padding:54px 0 72px;}
 .industries-inner{width:min(100%,1280px);margin:0 auto;}
@@ -630,6 +743,9 @@ button,input,summary{font-family:inherit}
   .home-title{font-size:44px;}
   .home-highlight-grid,.home-action-grid,.mini-card-grid{grid-template-columns:1fr 1fr;}
   .home-split-grid,.company-insight-grid{grid-template-columns:1fr;}
+  .info-hero{grid-template-columns:1fr;padding:28px 24px;}
+  .info-report-body{grid-template-columns:1fr;}
+  .rating-grid,.report-grid,.feature-grid{grid-template-columns:1fr;}
   .companies-grid{grid-template-columns:1fr;gap:18px;}
   .companies-card{min-height:auto;}
   .industries-header{display:block;}
@@ -656,6 +772,19 @@ button,input,summary{font-family:inherit}
   .home-section-head,.discovery-panel-head{display:block;}
   .home-section-copy,.discovery-panel-copy{margin-top:6px;}
   .home-highlight-grid,.home-action-grid,.mini-card-grid{grid-template-columns:1fr;}
+  .info-page{padding:24px 0 48px;}
+  .info-hero,.info-section{padding:22px 16px;border-radius:6px;}
+  .info-title{font-size:34px;}
+  .info-section-title{font-size:24px;}
+  .info-question{padding:18px 14px;}
+  .info-question-title{font-size:19px;}
+  .chart-title-row{display:block;}
+  .bar-chart{gap:5px;}
+  .bar-value,.bar-label{font-size:9.5px;}
+  .info-report-metrics{grid-template-columns:1fr;}
+  .info-ratio-row{grid-template-columns:minmax(0,1fr) auto;gap:12px;}
+  .faq-image-grid{grid-template-columns:1fr;}
+  .report-preview{height:210px;}
   .compact-list li{grid-template-columns:1fr;gap:2px;}
   .compact-value{text-align:left;}
   .companies-page{padding:24px 0 48px;}
@@ -705,6 +834,8 @@ button,input,summary{font-family:inherit}
   </div>
   <div class="gnav-links">
     <a href="#etusivu" data-route-link="etusivu">Etusivu</a>
+    <a href="#faq" data-route-link="faq">FAQ</a>
+    <a href="#luottoriski-info" data-route-link="luottoriski-info">Luottoriski</a>
     <a href="#yritykset" data-route-link="yritykset">Yritykset</a>
     <a href="#toimialat" data-route-link="toimialat">Toimialat</a>
   </div>
@@ -832,6 +963,284 @@ button,input,summary{font-family:inherit}
         </a>
       </div>
     </section>
+  </section>
+
+  <section class="info-page reveal" data-route-page="faq" aria-labelledby="faq-title">
+    <div class="info-inner">
+      <section class="info-hero" style="grid-template-columns:1fr;">
+        <div>
+          <span class="info-kicker">Usein kysyttyä</span>
+          <h1 class="info-title" id="faq-title">FAQ</h1>
+          <p class="info-lead" style="max-width:none;">Luottoluokitus herättää usein kysymyksiä etenkin silloin, kun yrityksen oma kokemus liiketoiminnan tilanteesta ei tunnu vastaavan annettua riskiluokkaa. Valuatumin luottoluokitus perustuu tilastolliseen analyysiin, jossa huomioidaan yrityksen tunnusluvut, tase, maksuvalmius, toimialan riskitaso ja muut riskinkantokykyyn vaikuttavat tekijät. Tälle sivulle kokosimme yleisimmät kysymykset ja vastaukset siitä, miten luottoluokitus muodostuu ja miksi se voi joskus yllättää.</p>
+        </div>
+      </section>
+
+      <section class="info-section" aria-labelledby="faq-common-title">
+        <h2 class="info-section-title" id="faq-common-title">Yleisimmät kysymykset</h2>
+        <div class="faq-accordion-section" data-faq-group="common">
+          <details class="faq-item" open>
+            <summary>Miten voin itse arvioida, millaiseen luottoluokitukseen yritykseni yleensä sijoittuu?</summary>
+            <div class="faq-answer">
+              <p>Alla oleva kuva havainnollistaa, miten suomalaiset yritykset sijoittuvat Valuatumin luokitusmallissa keskeisten tunnuslukujen perusteella. Kuvassa jokainen piste vastaa yhtä yritystä:</p>
+              <ul>
+                <li>Vaakasuunnassa on kannattavuus (kokonaispääoman tuotto)</li>
+                <li>Pystysuunnassa vakavaraisuus (omavaraisuusaste)</li>
+              </ul>
+              <p>Oikeassa yläkulmassa ovat tyypillisesti kannattavat ja vakavaraiset yritykset, kun taas vasemmassa alakulmassa ovat heikomman kannattavuuden ja vakavaraisuuden yritykset. Pisteen väri kuvaa yrityksen luottoluokkaa: vihreät yritykset ovat matalamman riskin ja punaiset korkeamman riskin yrityksiä.</p>
+              <img class="faq-image" src="https://www.valuatum.com/wp-content/uploads/sites/10/2026/04/bankruptcy_risk_visualization.png" alt="Valuatumin luottoluokitusmallin hajontakuva kannattavuuden ja vakavaraisuuden perusteella">
+              <p>Taustalla olevat värialueet kuvaavat sitä, mikä luokitus kyseisillä tunnusluvuilla on tyypillisin.</p>
+              <p>Jos yrityksen tilanne on muuten tavanomainen (ei poikkeuksellisia riskitekijöitä), kuva antaa hyvän suuntaa-antavan käsityksen siitä, millaiseen luokitukseen yritys yleensä sijoittuu. Mikäli esimerkkiyrityksen luvut ovat muutoin neutraalit, vaaditaan A-alkuiseen luokitukseen (parhaan 20% joukossa suomalaisyrityksistä) 75-100% omavaraisuusaste sekä positiivinen oman pääoman tuottoprosentti.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Miksi Valuatumin luottoluokitus (AAA-C) voi olla matalampi kuin esimerkiksi Asiakastiedon luokitus?</summary>
+            <div class="faq-answer">
+              <p>Valuatumin ja muiden toimijoiden luottoluokituksia ei voi verrata suoraan toisiinsa. Sama yritys voi saada eri palveluista erilaiset luottoluokitukset, vaikka yrityksen riskistä ei olisi tehty olennaisesti erillaista arviota.</p>
+              <p>Tämä johtuu siitä, että eri toimijat jakavat luokituksensa eri tavalla. Valuatumin mallissa vain noin kolmannes (33 %) yrityksistä sijoittuu A-luokkiin (AAA-A), mikä on lähempänä kansainvälisten luottoluokituslaitosten, kuten Standard &amp; Poor’sin käyttämää jakaumaa. Esimerkiksi Suomen Asiakastiedolla A-luokkiin (AAA-A) sijoittuu noin 90 % kaikista yrityksistä.</p>
+              <p>Ero ei siis aina johdu siitä, että yrityksen riski nähtäisiin eri tavalla, vaan siitä, miten luottoluokitukset on jaettu kaikkien yritysten kesken. Tämän vuoksi Valuatumin luottoluokitus voi näyttää matalammalta, vaikka yrityksen suhteellinen riskitaso olisi käytännössä sama kuin muilla palveluntarjoajilla.</p>
+              <p>Valuatumin mallissa luokitukset on kalibroitu siten, että vain noin kolmannes yrityksistä sijoittuu A-luokkiin (ks. jakauma alla).Tämä on samansuuntainen kuin kansainvälisten luottoluokittajien, kuten Standard &amp; Poor’s, käyttämät jakaumat. Sen sijaan esimerkiksi Suomen Asiakastieto luokittelee noin 90 % suomalaisista yrityksistä A-luokkiin.</p>
+              <p>Käytännössä tämä tarkoittaa, että sama yritys voi saada eri palveluissa erilaisen luokituksen. Valuatumin luokitus voi näyttää matalammalta, vaikka yrityksen suhteellinen riskitaso olisi sama.</p>
+              <p>Ero ei siis välttämättä johdu erilaisesta arviosta yrityksen riskistä, vaan siitä, miten luokitukset on jaettu yritysjoukkoon.</p>
+              <div class="faq-image-grid stacked">
+                <figure class="faq-figure"><figcaption>Valuatumin luottoluokitusjakauma</figcaption><img class="faq-image" src="https://www.valuatum.com/wp-content/uploads/sites/10/2026/04/credit_rating_distribution_4_fi.png" alt="Valuatumin luottoluokitusjakauma"><figcaption>Lähde: Valuatum</figcaption></figure>
+                <figure class="faq-figure"><figcaption>S&amp;P luottoluokitusjakauma</figcaption><img class="faq-image" src="https://i.insider.com/55a509deecad047f6ece0993?format=jpeg&amp;width=1200" alt="S&amp;P luottoluokitusjakauma"><figcaption>Lähde: <a href="https://www.businessinsider.com/sp-global-sovereign-ratings-distribution-2015-7" target="_blank" rel="noopener">Business Insider</a></figcaption></figure>
+                <figure class="faq-figure"><figcaption>Asiakastiedon luottoluokitusjakauma</figcaption><img class="faq-image" src="https://www.epressi.com/media/userfiles/123829/1597146731/asiakastieto-media-luokitukset-graafi.jpg" alt="Asiakastiedon luottoluokitusjakauma"><figcaption>Lähde: <a href="https://www.kauppalehti.fi/lehdistotiedotteet/a/b0ed352f-41fb-3033-a3e2-73428ae41ff6" target="_blank" rel="noopener">Kauppalehti</a></figcaption></figure>
+              </div>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Miksi Valuatumin riskiarvio voi poiketa toisen toimijan arviosta?</summary>
+            <div class="faq-answer">
+              <p>Eri mallit voivat arvioida saman yrityksen riskin eri tavalla. Valuatumin luottoluokitus perustuu XGBoost-koneoppimismalliin, kun taas perinteiset mallit perustuvat usein logistiseen regressioon tai muutamaan keskeiseen tunnuslukuun. Näiden mallien ero ei ole vain tekninen, vaan se vaikuttaa suoraan siihen, mitä riskitekijöitä malli tunnistaa ja miten paljon niitä painotetaan.</p>
+              <p>Logistisessa regressiossa malli käyttää samoja kertoimia kaikille yrityksille, eikä muuttujien paino vaihtele yrityskohtaisesti samalla tavalla kuin XGBoost-mallissa. XGBoost-malli pystyy huomioimaan yrityskohtaisia tilanteita joustavammin: sama tunnusluku ei vaikuta kaikkiin yrityksiin samalla tavalla, vaan merkitys voi riippua muista yrityksen ominaisuuksista.</p>
+              <p>Lisäksi XGBoost-malli pystyy hyödyntämään laajempaa muuttujajoukkoa ja tunnistamaan monimutkaisempia riippuvuuksia kuin perinteinen regressiomalli.</p>
+              <p>Tämän vuoksi Valuatumin malli voi tunnistaa riskin korkeaksi tilanteessa, jossa yksinkertaisempi malli ei näe samaa varoitussignaalia. Esimerkiksi poikkeuksellisen suuret saamiset, heikko kassapuskuri tai muut taseen piilevät riskit voivat nostaa Valuatumin mallissa riskitasoa, vaikka perinteinen malli pitäisi yritystä vielä melko turvallisena. Tällöin kyse ei ole vain eri kirjainluokituksesta, vaan aidosti erilaisesta riskiarviosta.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="info-section" aria-labelledby="faq-formation-title">
+        <h2 class="info-section-title" id="faq-formation-title">Miten luottoluokitus muodostuu</h2>
+        <div class="faq-accordion-section" data-faq-group="formation">
+          <details class="faq-item" open>
+            <summary>Miten Valuatumin luottoluokitus lasketaan?</summary>
+            <div class="faq-answer"><p>Valuatumin luottoluokitus perustuu tilastolliseen riskimalliin, joka hyödyntää laajasti suomalaisten yritysten historiallisia tilinpäätös-, maksuhäiriö- ja konkurssitietoja. Malli arvioi, millaisella todennäköisyydellä tietyn profiilin yrityksille syntyy maksuhäiriöitä tai konkurssiriskiä.</p><p>Luokitus ei perustu yksittäiseen tunnuslukuun, vaan kokonaisuuteen. Malli huomioi erityisesti vakavaraisuuden, kannattavuuden, maksuvalmiuden, taseen rakenteen, toimialan riskitason sekä eräitä muita yrityksen riskinkantokykyä kuvaavia tekijöitä.</p></div>
+          </details>
+          <details class="faq-item"><summary>Mitkä tekijät vaikuttavat luottoluokitukseen eniten?</summary><div class="faq-answer"><p>Tyypillisesti tärkeimpiä tekijöitä ovat:</p><ul><li>Vakavaraisuus, erityisesti omavaraisuusaste</li><li>Kannattavuus, kuten pääoman tuotto</li><li>Maksuvalmius, esimerkiksi kassan koko suhteessa liiketoiminnan volyymiin ja lyhytaikaisiin velkoihin</li><li>Taseen rakenne, kuten varojen jakautuminen kassaan, saamisiin ja muihin eriin</li><li>Toimialariski, eli kuinka paljon kyseisen toimialan yrityksiä menee keskimäärin nurin</li></ul><p>Käytännössä hyvä luokitus edellyttää yleensä sitä, että yrityksellä on sekä terve kannattavuus että riittävä puskurikyky suhteessa liiketoiminnan riskeihin.</p></div></details>
+          <details class="faq-item"><summary>Onko toimialariski tärkeämpi kuin yrityskohtaiset tekijät?</summary><div class="faq-answer"><p>Ei yksinään. Yrityskohtaiset tekijät ovat edelleen erittäin tärkeitä ja ratkaisevat paljon. Toimialariski kuitenkin vaikuttaa siihen, kuinka korkea rima hyvälle luokitukselle on.</p><p>Toisin sanoen: samalla kannattavuudella ja vakavaraisuudella matalariskisellä toimialalla toimiva yritys voi saada paremman luokituksen kuin korkeariskisellä toimialalla toimiva yritys. Silti jokaisella toimialalla on sekä vahvasti että heikosti luokiteltuja yrityksiä.</p></div></details>
+          <details class="faq-item"><summary>Miten luottoluokitusta kannattaa tulkita käytännössä?</summary><div class="faq-answer"><p>Luottoluokitus kannattaa nähdä tiivistettynä riskisignaalina, ei lopullisena tuomiona yrityksen laadusta. Se kertoo, miten yritys sijoittuu tilastollisesti suhteessa muihin yrityksiin ja millainen riskitaso sen tunnuslukuihin, taseeseen ja toimialaan liittyy.</p><p>Parhaimmillaan luottoluokitus auttaa yritysjohtoa ymmärtämään:</p><ul><li>mitkä tekijät vahvistavat yrityksen asemaa</li><li>mitkä tekijät rajoittavat rahoitettavuutta</li><li>mitä kehittämällä yrityksen riskiprofiilia voi parantaa</li></ul></div></details>
+          <details class="faq-item"><summary>Miten kassa ja maksuvalmius vaikuttavat luottoluokitukseen?</summary><div class="faq-answer"><p>Kassa ja maksuvalmius vaikuttavat siihen, kuinka hyvin yritys kestää arjen häiriöitä, viiveitä ja yllätyksiä. Jos liiketoiminnan volyymi on suuri mutta kassapuskurit pienet, yrityksen kyky selvitä tilapäisistä ongelmista voi olla heikompi.</p><p>Mallissa katsotaan muun muassa kassaa suhteessa liikevaihtoon, kuluihin, lyhytaikaisiin velkoihin ja taseen muihin eriin. Vahva maksuvalmius tukee luokitusta, koska se parantaa yrityksen häiriönsietokykyä.</p></div></details>
+        </div>
+      </section>
+
+      <section class="info-section" aria-labelledby="faq-weak-title">
+        <h2 class="info-section-title" id="faq-weak-title">Miksi luokitus voi olla heikko</h2>
+        <div class="faq-accordion-section" data-faq-group="weak">
+          <details class="faq-item" open><summary>Miksi yritykseni luottoluokitus voi olla heikko, vaikka liiketoiminta on kannattavaa?</summary><div class="faq-answer"><p>Kannattavuus on tärkeä tekijä, mutta se ei yksin ratkaise luottoluokitusta. Yrityksellä voi olla hyvä tulos, mutta silti luokitus voi jäädä vaatimattomaksi esimerkiksi silloin, jos:</p><ul><li>oma pääoma on pieni suhteessa liiketoiminnan volyymiin</li><li>kassapuskurit ovat ohuet</li><li>toimiala on keskimääräistä riskisempi</li><li>tase ei anna riittävää suojaa mahdollisten häiriöiden varalle</li></ul><p>Luottoluokitus mittaa ennen kaikkea riskinkantokykyä. Hyväkin liiketoiminta voi olla rahoittajan näkökulmasta haavoittuva, jos yhden huonon vuoden tai yksittäisen projektin epäonnistumisen vaikutus olisi suuri.</p></div></details>
+          <details class="faq-item"><summary>Miksi korkea omavaraisuusaste ei aina riitä hyvään luokitukseen?</summary><div class="faq-answer"><p>Omavaraisuusaste kertoo suhteellisesta vakavaraisuudesta, mutta ei yksin kerro, kuinka suuri yrityksen todellinen puskurikyky euroissa on.</p><p>Yrityksellä voi olla korkea omavaraisuusaste, mutta jos tase on pieni ja liiketoiminnan volyymi suuri, omistajien riskinkantokyky voi silti olla rajoitettu. Rahoittajan näkökulmasta ratkaisevaa on usein myös se, kuinka paljon omaa pääomaa ja muita turvaavia varoja yrityksellä on absoluuttisesti.</p></div></details>
+          <details class="faq-item"><summary>Voiko korkea toimialariski heikentää muuten hyvän yrityksen luokitusta?</summary><div class="faq-answer"><p>Kyllä voi. Toimialariski on olennainen osa luottoriskin arviointia, koska eri toimialoilla konkurssien ja maksuhäiriöiden määrä vaihtelee selvästi.</p><p>Jos toimiala on keskimääräistä riskisempi, yritykseltä vaaditaan yleensä vahvemmat tunnusluvut päästäkseen samaan luottoluokkaan kuin matalariskisemmällä toimialalla toimiva yritys. Tämä ei tarkoita, että toimiala yksin määrää luokituksen, mutta se nostaa rimaa.</p></div></details>
+          <details class="faq-item"><summary>Tarkoittaako heikko luokitus, että yritykseni on huonossa kunnossa?</summary><div class="faq-answer"><p>Ei välttämättä. Heikko tai keskitasoa matalampi luokitus ei automaattisesti tarkoita, että yrityksen liiketoiminta olisi huonoa tai että yritys olisi välittömässä vaarassa.</p><p>Se tarkoittaa yleensä, että tilastollisesti katsottuna yrityksen riskitaso on korkeampi kuin paremmin luokitelluilla yrityksillä. Syynä voi olla esimerkiksi riskinen toimiala, pieni absoluuttinen oma pääoma, rajallinen kassapuskuri tai taseen koko suhteessa liiketoiminnan volyymiin.</p></div></details>
+        </div>
+      </section>
+
+      <section class="info-section" aria-labelledby="faq-dynamics-title">
+        <h2 class="info-section-title" id="faq-dynamics-title">Muutokset ja dynamiikka</h2>
+        <div class="faq-accordion-section" data-faq-group="dynamics">
+          <details class="faq-item" open><summary>Miksi luottoluokitus voi muuttua nopeasti vuodesta toiseen?</summary><div class="faq-answer"><p>Luottoluokitus voi muuttua, jos yrityksen tunnusluvut muuttuvat tai jos toimintaympäristö muuttuu. Esimerkiksi:</p><ul><li>kannattavuus heikkenee tai paranee</li><li>oma pääoma kasvaa tai pienenee</li><li>kassa vahvistuu tai heikkenee</li><li>toimialan riskitaso muuttuu</li><li>liiketoiminnan volyymi kasvaa nopeammin kuin puskurit</li></ul><p>Joillakin toimialoilla myös suhdanteet vaikuttavat voimakkaasti. Tällöin samanlaisillakin yrityskohtaisilla luvuilla voidaan eri vuosina päätyä erilaiseen riskitasoon.</p></div></details>
+        </div>
+      </section>
+
+      <section class="info-section" aria-labelledby="faq-actions-title">
+        <h2 class="info-section-title" id="faq-actions-title">Mitä voi tehdä</h2>
+        <div class="faq-accordion-section" data-faq-group="actions">
+          <details class="faq-item" open><summary>Voiko yritys parantaa luottoluokitustaan?</summary><div class="faq-answer"><p>Kyllä voi. Luottoluokitusta voi yleensä parantaa vahvistamalla yrityksen riskinkantokykyä. Käytännössä tähän vaikuttavat usein eniten:</p><ul><li>oman pääoman vahvistaminen</li><li>kassapuskurien kasvattaminen</li><li>kannattavuuden parantaminen</li><li>taseen vahvistaminen suhteessa liiketoiminnan volyymiin</li><li>riskienhallinnan ja liiketoiminnan ennustettavuuden parantaminen</li></ul><p>Erityisesti korkeariskisillä toimialoilla vahva oma pääoma ja riittävä puskuritaso korostuvat.</p></div></details>
+          <details class="faq-item"><summary>Voiko hyvä yritys silti kohdata vaikeuksia rahoituksen saannissa?</summary><div class="faq-answer"><p>Kyllä. Rahoituksen saatavuuteen vaikuttaa luottoluokituksen lisäksi moni muukin asia, kuten pankkien oma riskipolitiikka, sääntely, vakuusvaatimukset, markkinatilanne ja toimialan yleinen suhdanne.</p><p>Siksi on mahdollista, että hyvin hoidettu yritys kohtaa rahoitusmarkkinassa tiukemmat ehdot kuin sen operatiivinen laatu yksin antaisi odottaa. Luottoluokitus on tärkeä osa arviointia, mutta ei ainoa päätöstekijä.</p></div></details>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="info-page reveal" data-route-page="luottoriski-info" aria-labelledby="credit-info-title">
+    <div class="info-inner">
+      <section class="info-hero">
+        <div>
+          <span class="info-kicker">Luottoriskiraportti</span>
+          <h1 class="info-title" id="credit-info-title">Mitä Valuatumin luottoriskiraportti sisältää</h1>
+          <p class="info-lead">Valuatumin luottoriskiraportti kokoaa yhteen keskeiset tiedot yrityksen luottokelpoisuudesta, luottoluokituksesta ja taloudellisesta tilanteesta. Raportti auttaa arvioimaan asiakkaan maksukykyä ja yrityksen luottoriskiä nopeasti ennen luottopäätöstä.</p>
+        </div>
+        <aside class="info-report-snapshot" aria-label="Raportin yhteenvetonäkymä">
+          <div class="info-report-head">
+            <span class="info-report-company">Demo Company Oy</span>
+            <span class="info-report-badge">BBB</span>
+          </div>
+          <div class="info-report-metrics">
+            <div class="info-report-metric"><span>Luottopisteet</span><strong>57 <small>/ 100</small></strong></div>
+            <div class="info-report-metric"><span>Luottoluokitus</span><strong class="good">BBB</strong></div>
+            <div class="info-report-metric"><span>Konkurssiriski (2v)</span><strong>0.26 %</strong></div>
+          </div>
+          <div class="info-report-body">
+            <svg class="mini-gauge" viewBox="0 0 180 120" aria-hidden="true">
+              <path d="M 30.0 92.0 A 60 60 0 0 1 41.5 56.7" fill="none" stroke="#D21842" stroke-width="24"/>
+              <path d="M 41.5 56.7 A 60 60 0 0 1 62.8 38.5" fill="none" stroke="#F28D8D" stroke-width="24"/>
+              <path d="M 62.8 38.5 A 60 60 0 0 1 108.5 34.9" fill="none" stroke="#F2D529" stroke-width="24"/>
+              <path d="M 108.5 34.9 A 60 60 0 0 1 132.4 49.6" fill="none" stroke="#F8FF5A" stroke-width="24"/>
+              <path d="M 132.4 49.6 A 60 60 0 0 1 147.1 73.5" fill="none" stroke="#CFF2CA" stroke-width="24"/>
+              <path d="M 147.1 73.5 A 60 60 0 0 1 150.0 92.0" fill="none" stroke="#86D989" stroke-width="24"/>
+              <line x1="90" y1="92" x2="104" y2="38" stroke="#606060" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="90" cy="92" r="7" fill="#5a5a5a"/>
+              <text x="30" y="113" font-size="12" font-weight="800" fill="#171A18">0</text>
+              <text x="139" y="113" font-size="12" font-weight="800" fill="#171A18">100</text>
+              <text x="90" y="18" text-anchor="middle" font-size="20" font-weight="900" fill="#171A18">57</text>
+            </svg>
+            <div class="info-ratio-list">
+              <div class="info-ratio-row"><span>Omavaraisuusaste</span><span class="info-ratio-value">47.3 %</span></div>
+              <div class="info-ratio-row"><span>Quick ratio</span><span class="info-ratio-value">1.6</span></div>
+              <div class="info-ratio-row"><span>ROA-%</span><span class="info-ratio-value">9.1 %</span></div>
+              <div class="info-ratio-row"><span>Current ratio</span><span class="info-ratio-value">1.9</span></div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="info-section" aria-labelledby="report-includes-title">
+        <ul class="info-list">
+          <li>Yrityksen luottoluokitus ja luottopisteet</li>
+          <li>Arvio 2 vuoden konkurssiriskistä</li>
+          <li>Viitteellinen luottolimiitti</li>
+          <li>Perustiedot ja luottohistoria</li>
+          <li>Taloudellinen yleiskatsaus ja keskeiset tunnusluvut</li>
+          <li>Automatisoitu analyysi kannattavuudesta, vakavaraisuudesta ja maksuvalmiudesta</li>
+          <li>Tuloslaskelma, tase ja mahdollinen toimialavertailu</li>
+        </ul>
+
+        <div class="report-grid" aria-label="Demon ladattavat luottoriskiraportit">
+          <a class="report-card" href="https://www.valuatum.com/wp-content/uploads/sites/10/2026/03/HuonoRaportti-2.pdf" target="_blank" rel="noopener">
+            <div class="report-preview" aria-hidden="true">
+              <div class="report-gauge-art">
+                <div class="report-gauge-wrap">
+                  <span class="report-score-label">Luottopisteet</span>
+                  <span class="report-score-num">5</span>
+                  <svg class="report-gauge" viewBox="0 0 150 92">
+                    <path d="M 15.0 76.0 A 60 60 0 0 1 26.5 40.7" fill="none" stroke="#D21842" stroke-width="20"/>
+                    <path d="M 26.5 40.7 A 60 60 0 0 1 47.8 22.5" fill="none" stroke="#F28D8D" stroke-width="20"/>
+                    <path d="M 47.8 22.5 A 60 60 0 0 1 93.5 18.9" fill="none" stroke="#F2D529" stroke-width="20"/>
+                    <path d="M 93.5 18.9 A 60 60 0 0 1 117.4 33.6" fill="none" stroke="#F8FF5A" stroke-width="20"/>
+                    <path d="M 117.4 33.6 A 60 60 0 0 1 132.1 57.5" fill="none" stroke="#CFF2CA" stroke-width="20"/>
+                    <path d="M 132.1 57.5 A 60 60 0 0 1 135.0 76.0" fill="none" stroke="#86D989" stroke-width="20"/>
+                    <line x1="75" y1="76" x2="16" y2="67" stroke="#606060" stroke-width="2.4" stroke-linecap="round"/>
+                    <circle cx="75" cy="76" r="6" fill="#5a5a5a"/>
+                    <text x="12" y="90" font-size="10" font-weight="800">0</text><text x="118" y="90" font-size="10" font-weight="800">100</text>
+                  </svg>
+                </div>
+                <div class="report-legend">
+                  <span class="report-legend-row"><i class="report-legend-color aaa"></i><b>AAA</b><span>Erinomainen</span></span>
+                  <span class="report-legend-row"><i class="report-legend-color aa"></i><b>AA</b><span>Erittäin hyvä</span></span>
+                  <span class="report-legend-row"><i class="report-legend-color a"></i><b>A</b><span>Hyvä</span></span>
+                  <span class="report-legend-row"><i class="report-legend-color bbb"></i><b>BBB</b><span>Tyydyttävä</span></span>
+                  <span class="report-legend-row"><i class="report-legend-color bb"></i><b>BB</b><span>Välttävä</span></span>
+                  <span class="report-legend-row"><i class="report-legend-color b"></i><b>B</b><span>Huono</span></span>
+                  <span class="report-legend-row"><i class="report-legend-color c"></i><b>C</b><span>Erittäin huono</span></span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="report-title">Luottoriskiraportti (verovelkamerkintä)</h3>
+            </div>
+            <span class="report-link">Lataa PDF</span>
+          </a>
+          <a class="report-card" href="https://www.valuatum.com/wp-content/uploads/sites/10/2026/03/Heikohko_Oy.pdf" target="_blank" rel="noopener">
+            <div class="report-preview" aria-hidden="true">
+              <div class="report-gauge-art">
+                <div class="report-gauge-wrap">
+                  <span class="report-score-label">Luottopisteet</span>
+                  <span class="report-score-num">8</span>
+                  <svg class="report-gauge" viewBox="0 0 150 92">
+                    <path d="M 15.0 76.0 A 60 60 0 0 1 26.5 40.7" fill="none" stroke="#D21842" stroke-width="20"/>
+                    <path d="M 26.5 40.7 A 60 60 0 0 1 47.8 22.5" fill="none" stroke="#F28D8D" stroke-width="20"/>
+                    <path d="M 47.8 22.5 A 60 60 0 0 1 93.5 18.9" fill="none" stroke="#F2D529" stroke-width="20"/>
+                    <path d="M 93.5 18.9 A 60 60 0 0 1 117.4 33.6" fill="none" stroke="#F8FF5A" stroke-width="20"/>
+                    <path d="M 117.4 33.6 A 60 60 0 0 1 132.1 57.5" fill="none" stroke="#CFF2CA" stroke-width="20"/>
+                    <path d="M 132.1 57.5 A 60 60 0 0 1 135.0 76.0" fill="none" stroke="#86D989" stroke-width="20"/>
+                    <line x1="75" y1="76" x2="17" y2="61" stroke="#606060" stroke-width="2.4" stroke-linecap="round"/>
+                    <circle cx="75" cy="76" r="6" fill="#5a5a5a"/>
+                    <text x="12" y="90" font-size="10" font-weight="800">0</text><text x="118" y="90" font-size="10" font-weight="800">100</text>
+                  </svg>
+                </div>
+                <div class="report-legend">
+                  <span class="report-legend-row"><i class="report-legend-color aaa"></i><b>AAA</b><span>Erinomainen</span></span>
+                  <span class="report-legend-row"><i class="report-legend-color aa"></i><b>AA</b><span>Erittäin hyvä</span></span>
+                  <span class="report-legend-row"><i class="report-legend-color a"></i><b>A</b><span>Hyvä</span></span>
+                  <span class="report-legend-row"><i class="report-legend-color bbb"></i><b>BBB</b><span>Tyydyttävä</span></span>
+                  <span class="report-legend-row"><i class="report-legend-color bb"></i><b>BB</b><span>Välttävä</span></span>
+                  <span class="report-legend-row"><i class="report-legend-color b"></i><b>B</b><span>Huono</span></span>
+                  <span class="report-legend-row"><i class="report-legend-color c"></i><b>C</b><span>Erittäin huono</span></span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="report-title">Luottoriskiraportti (heikohko luokitus)</h3>
+            </div>
+            <span class="report-link">Lataa PDF</span>
+          </a>
+          <a class="report-card" href="https://www.valuatum.com/wp-content/uploads/sites/10/2026/03/HyvaRaportti.pdf" target="_blank" rel="noopener">
+            <div class="report-preview" aria-hidden="true">
+              <div class="report-gauge-art">
+                <div class="report-gauge-wrap">
+                  <span class="report-score-label">Luottopisteet</span>
+                  <span class="report-score-num">93</span>
+                  <svg class="report-gauge" viewBox="0 0 150 92">
+                    <path d="M 15.0 76.0 A 60 60 0 0 1 26.5 40.7" fill="none" stroke="#D21842" stroke-width="20"/>
+                    <path d="M 26.5 40.7 A 60 60 0 0 1 47.8 22.5" fill="none" stroke="#F28D8D" stroke-width="20"/>
+                    <path d="M 47.8 22.5 A 60 60 0 0 1 93.5 18.9" fill="none" stroke="#F2D529" stroke-width="20"/>
+                    <path d="M 93.5 18.9 A 60 60 0 0 1 117.4 33.6" fill="none" stroke="#F8FF5A" stroke-width="20"/>
+                    <path d="M 117.4 33.6 A 60 60 0 0 1 132.1 57.5" fill="none" stroke="#CFF2CA" stroke-width="20"/>
+                    <path d="M 132.1 57.5 A 60 60 0 0 1 135.0 76.0" fill="none" stroke="#86D989" stroke-width="20"/>
+                    <line x1="75" y1="76" x2="134" y2="63" stroke="#606060" stroke-width="2.4" stroke-linecap="round"/>
+                    <circle cx="75" cy="76" r="6" fill="#5a5a5a"/>
+                    <text x="12" y="90" font-size="10" font-weight="800">0</text><text x="118" y="90" font-size="10" font-weight="800">100</text>
+                  </svg>
+                </div>
+                <div class="report-legend">
+                  <span class="report-legend-row"><i class="report-legend-color aaa"></i><b>AAA</b><span>Erinomainen</span></span>
+                  <span class="report-legend-row"><i class="report-legend-color aa"></i><b>AA</b><span>Erittäin hyvä</span></span>
+                  <span class="report-legend-row"><i class="report-legend-color a"></i><b>A</b><span>Hyvä</span></span>
+                  <span class="report-legend-row"><i class="report-legend-color bbb"></i><b>BBB</b><span>Tyydyttävä</span></span>
+                  <span class="report-legend-row"><i class="report-legend-color bb"></i><b>BB</b><span>Välttävä</span></span>
+                  <span class="report-legend-row"><i class="report-legend-color b"></i><b>B</b><span>Huono</span></span>
+                  <span class="report-legend-row"><i class="report-legend-color c"></i><b>C</b><span>Erittäin huono</span></span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="report-title">Luottoriskiraportti (hyvä luokitus)</h3>
+            </div>
+            <span class="report-link">Lataa PDF</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="info-section dark" aria-labelledby="accuracy-title">
+        <h2 class="info-section-title" id="accuracy-title">Miksi Valuatumin luokitus on tarkempi?</h2>
+        <div class="feature-grid">
+          <article class="info-feature">
+            <div class="info-feature-num">01</div>
+            <h3 class="info-feature-title">Dynaamiset painotukset</h3>
+            <p class="info-feature-copy">Perinteisissä malleissa tunnusluvuille annetaan samat painot kaikille yrityksille. Valuatumin koneoppimismalli säätää painotuksia yrityksen tilanteen mukaan. Esimerkiksi maksuvalmius korostuu heikosti kannattavilla ja vähäpääomisilla yrityksillä, mutta on vähemmän kriittinen vakavaraisille ja kannattaville yrityksille.</p>
+          </article>
+          <article class="info-feature">
+            <div class="info-feature-num">02</div>
+            <h3 class="info-feature-title">Enemmän analysoituja muuttujia</h3>
+            <p class="info-feature-copy">Mallimme hyödyntää kymmeniä taloudellisia muuttujia, kun perinteiset logistisen regression mallit käyttävät vain muutamia keskeisiä tunnuslukuja, sillä muuttujien lisääminen kasvattaa ylisovittamisen riskiä ja heikentää ennusteiden luotettavuutta. Päätöspuupohjaiset mallit pystyvät sen sijaan hyödyntämään laajempaa muuttujajoukkoa ilman vastaavaa ongelmaa ja tunnistamaan monimutkaisempia riippuvuuksia.</p>
+          </article>
+          <article class="info-feature">
+            <div class="info-feature-num">03</div>
+            <h3 class="info-feature-title">Piilevien riskien tunnistaminen</h3>
+            <p class="info-feature-copy">Järjestelmä tunnistaa esimerkiksi tilanteita, joissa taseeseen kertyy epäkurantteja tai epäsuhtaisia eriä, kuten toiminnan volyymiin nähden poikkeuksellisen suuria saamisia, varastoja tai aktivoituja kuluja. Tällaiset ilmiöt voivat jäädä perinteisissä malleissa huomaamatta, koska ne perustuvat rajattuun määrään tunnuslukuja.</p>
+          </article>
+        </div>
+      </section>
+    </div>
   </section>
 
   <section class="companies-page reveal" data-route-page="yritykset" aria-labelledby="companies-title">
@@ -1563,19 +1972,19 @@ function animateHomeCount(){
 function getRouteFromHash(){
   const hash = window.location.hash.replace('#', '');
   if (!hash) return 'etusivu';
-  if (hash === 'etusivu' || hash === 'yritykset' || hash === 'toimialat' || hash === 'yritys') return hash;
+  if (hash === 'etusivu' || hash === 'faq' || hash === 'luottoriski-info' || hash === 'yritykset' || hash === 'toimialat' || hash === 'yritys') return hash;
   if (companySectionIds.has(hash)) return 'yritys';
   return 'etusivu';
 }
 
 function applyRoute(){
   const route = getRouteFromHash();
-  const visiblePage = route === 'etusivu' || route === 'toimialat' || route === 'yritys' ? route : 'yritykset';
+  const visiblePage = ['etusivu','faq','luottoriski-info','toimialat','yritys'].includes(route) ? route : 'yritykset';
   routePages.forEach(page => {
     page.hidden = page.dataset.routePage !== visiblePage;
   });
   routeLinks.forEach(link => {
-    const isActive = route === link.dataset.routeLink || ((visiblePage === 'yritykset' || visiblePage === 'yritys') && link.dataset.routeLink === 'yritykset' && route !== 'toimialat');
+    const isActive = route === link.dataset.routeLink || ((visiblePage === 'yritykset' || visiblePage === 'yritys') && link.dataset.routeLink === 'yritykset' && route !== 'toimialat' && route !== 'faq' && route !== 'luottoriski-info');
     link.classList.toggle('active', isActive);
     if (isActive) link.setAttribute('aria-current', 'page');
     else link.removeAttribute('aria-current');
@@ -1589,6 +1998,18 @@ document.querySelector('.home-search')?.addEventListener('submit', event => {
   event.preventDefault();
   window.location.hash = 'yritykset';
 });
+
+document.querySelectorAll('[data-faq-group]').forEach(group => {
+  group.querySelectorAll('details').forEach(item => {
+    item.addEventListener('toggle', () => {
+      if (!item.open) return;
+      group.querySelectorAll('details').forEach(other => {
+        if (other !== item) other.open = false;
+      });
+    });
+  });
+});
+
 document.querySelectorAll('.filter-chip').forEach(chip => {
   chip.addEventListener('click', () => {
     document.querySelectorAll('.filter-chip').forEach(item => item.classList.remove('active'));
