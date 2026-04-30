@@ -294,6 +294,9 @@ button,input,summary{font-family:inherit}
 .report-title{font-size:16px;font-weight:850;color:var(--text-1);line-height:1.25;}
 .report-copy{font-size:13px;color:var(--text-2);font-weight:600;line-height:1.45;}
 .report-link{margin-top:auto;display:inline-flex;color:var(--green);font-size:13px;font-weight:850;text-decoration:underline;text-underline-offset:3px;}
+.credit-info-combined{background:linear-gradient(180deg,#FFFFFF 0%,#FAF7EF 100%);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow-soft);overflow:hidden;}
+.credit-info-combined .info-hero{background:transparent;border:0;border-radius:0;box-shadow:none;}
+.credit-info-combined .info-section{background:transparent;border:0;border-top:1px solid var(--border);border-radius:0;box-shadow:none;margin:0;}
 .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px;}
 .info-feature{border:1px solid rgba(250,247,239,.12);background:rgba(250,247,239,.05);border-radius:8px;padding:20px;}
 .info-feature-num{font-family:'Fraunces',serif;font-size:30px;line-height:1;color:var(--gold);font-style:italic;margin-bottom:14px;}
@@ -1063,6 +1066,7 @@ button,input,summary{font-family:inherit}
 
   <section class="info-page reveal" data-route-page="luottoriski-info" aria-labelledby="credit-info-title">
     <div class="info-inner">
+      <div class="credit-info-combined">
       <section class="info-hero">
         <div>
           <span class="info-kicker">Luottoriskiraportti</span>
@@ -1219,6 +1223,7 @@ button,input,summary{font-family:inherit}
           </a>
         </div>
       </section>
+      </div>
 
       <section class="info-section dark" aria-labelledby="accuracy-title">
         <h2 class="info-section-title" id="accuracy-title">Miksi Valuatumin luokitus on tarkempi?</h2>
