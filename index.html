@@ -249,6 +249,26 @@ button,input,summary{font-family:inherit}
 .info-list{display:grid;gap:7px;margin:12px 0 0 18px;color:var(--text-2);font-weight:600;}
 .info-list li{padding-left:4px;}
 .info-note{font-size:12.5px;color:var(--text-3);font-weight:650;margin-top:8px;}
+.subscription-page{min-height:calc(100vh - 72px);padding:54px 0 72px;}
+.subscription-inner{width:min(100%,980px);margin:0 auto;display:grid;gap:22px;}
+.subscription-hero{background:linear-gradient(180deg,#FFFFFF 0%,#FAF7EF 100%);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow-soft);padding:36px 38px;display:grid;gap:18px;}
+.subscription-kicker{display:inline-flex;align-items:center;width:max-content;font-size:10px;font-weight:850;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-deep);background:rgba(185,143,66,.12);border:1px solid rgba(185,143,66,.22);padding:4px 9px;border-radius:999px;}
+.subscription-title{font-size:40px;line-height:1.05;color:var(--green);font-weight:850;letter-spacing:-.02em;max-width:12ch;}
+.subscription-lead{font-size:15px;line-height:1.68;color:var(--text-2);font-weight:550;max-width:780px;}
+.subscription-grid{display:grid;grid-template-columns:1fr;}
+.subscription-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow-soft);padding:34px 38px;max-width:100%;}
+.subscription-card-title{font-size:24px;line-height:1.2;font-weight:850;color:var(--text-1);margin-bottom:16px;}
+.subscription-points{display:grid;gap:14px;list-style:none;}
+.subscription-points li{display:grid;grid-template-columns:24px minmax(0,1fr);gap:14px;align-items:flex-start;font-size:15px;line-height:1.65;color:var(--text-2);font-weight:600;}
+.subscription-points strong{color:var(--text-1);font-weight:800;}
+.subscription-point-icon{width:24px;height:24px;border-radius:999px;background:var(--green-soft);color:var(--green);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:850;line-height:1;}
+.subscription-question{padding-top:18px;border-top:1px solid rgba(22,59,45,.12);}
+.subscription-question strong{display:block;font-size:17px;line-height:1.35;color:var(--text-1);font-weight:850;}
+.subscription-commit{margin-top:10px;font-size:13px;line-height:1.55;color:var(--text-2);font-weight:600;}
+.subscription-actions{display:grid;gap:12px;margin-top:22px;}
+.subscription-actions .btn-secondary{text-align:center;justify-content:center;}
+.subscription-status{display:none;margin-top:18px;padding:14px 16px;border-radius:8px;background:var(--green-soft);border:1px solid rgba(22,59,45,.14);font-size:13.5px;line-height:1.55;color:var(--green);font-weight:700;}
+.subscription-status.is-visible{display:block;}
 .chart-panel{border:1px solid var(--border);background:#fff;border-radius:8px;padding:18px;margin-top:16px;overflow:hidden;}
 .chart-title-row{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin-bottom:12px;}
 .chart-title{font-size:15px;font-weight:850;color:var(--text-1);}
@@ -461,6 +481,8 @@ button,input,summary{font-family:inherit}
 
 .credit-reassure{font-size:12.5px;font-weight:500;color:rgba(250,247,239,.48);margin-top:14px;letter-spacing:.01em;text-align:center;}
 .credit-reassure .sep{margin:0 10px;color:rgba(250,247,239,.22);}
+.credit-feedback{display:none;margin-top:14px;padding:13px 14px;border-radius:8px;background:rgba(250,247,239,.09);border:1px solid rgba(250,247,239,.14);font-size:12.5px;line-height:1.55;color:var(--cream-text);font-weight:600;text-align:left;}
+.credit-feedback.is-visible{display:block;}
 
 .credit-preview{position:relative;background:#FAF7EF;border-radius:6px;box-shadow:0 44px 88px rgba(0,0,0,.55),0 18px 36px rgba(0,0,0,.4),0 0 0 1px rgba(0,0,0,.08);aspect-ratio:360/496;overflow:hidden;}
 .credit-preview svg{display:block;}
@@ -747,6 +769,7 @@ button,input,summary{font-family:inherit}
   .home-highlight-grid,.home-action-grid,.mini-card-grid{grid-template-columns:1fr 1fr;}
   .home-split-grid,.company-insight-grid{grid-template-columns:1fr;}
   .info-hero{grid-template-columns:1fr;padding:28px 24px;}
+  .subscription-title{max-width:none;}
   .info-report-body{grid-template-columns:1fr;}
   .rating-grid,.report-grid,.feature-grid{grid-template-columns:1fr;}
   .companies-grid{grid-template-columns:1fr;gap:18px;}
@@ -776,6 +799,9 @@ button,input,summary{font-family:inherit}
   .home-section-copy,.discovery-panel-copy{margin-top:6px;}
   .home-highlight-grid,.home-action-grid,.mini-card-grid{grid-template-columns:1fr;}
   .info-page{padding:24px 0 48px;}
+  .subscription-page{padding:24px 0 48px;}
+  .subscription-hero,.subscription-card{padding:22px 18px;border-radius:6px;}
+  .subscription-title{font-size:32px;}
   .info-hero,.info-section{padding:22px 16px;border-radius:6px;}
   .info-title{font-size:34px;}
   .info-section-title{font-size:24px;}
@@ -1248,6 +1274,44 @@ button,input,summary{font-family:inherit}
     </div>
   </section>
 
+  <section class="subscription-page reveal" data-route-page="kuukausitilaus-vahvistus" aria-labelledby="subscription-confirm-title">
+    <div class="subscription-inner">
+      <section class="subscription-hero">
+        <span class="subscription-kicker">Kuukausitilaus</span>
+        <h1 class="subscription-title" id="subscription-confirm-title">Tärkeää tietoa ennen rekisteröitymistä</h1>
+        <p class="subscription-lead">Automaattinen kuukausilaskutus on kehitteillä. Ominaisuus ei ole vielä käytössä järjestelmässämme, mutta on tulossa lähiaikoina. Saat palvelun heti käyttöösi rekisteröitymisen jälkeen, mutta laskutus hoidetaan toistaiseksi manuaalisesti sähköpostilaskulla.</p>
+      </section>
+
+      <div class="subscription-grid">
+        <section class="subscription-card" aria-labelledby="subscription-meaning-title">
+          <h2 class="subscription-card-title" id="subscription-meaning-title">Mitä rekisteröityminen tarkoittaa käytännössä</h2>
+          <ul class="subscription-points">
+            <li><span class="subscription-point-icon" aria-hidden="true">01</span><span><strong>Hinta on 50 € / kk</strong> (sis. ALV).</span></li>
+            <li><span class="subscription-point-icon" aria-hidden="true">02</span><span>Lasku lähetetään sähköpostitse rekisteröitymisen yhteydessä antamaasi osoitteeseen.</span></li>
+            <li><span class="subscription-point-icon" aria-hidden="true">03</span><span>Rekisteröitymällä sitoudut maksamaan kuukausittaisen 50 euron laskun.</span></li>
+            <li><span class="subscription-point-icon" aria-hidden="true">04</span><span>Tilaus on jatkuva ja jatkuu, kunnes peruutat sen.</span></li>
+            <li><span class="subscription-point-icon" aria-hidden="true">05</span><span>Tilauksen voi perua milloin tahansa lähettämällä sähköpostia osoitteeseen <a href="mailto:xx@valuatum.com">xx@valuatum.com</a>. Peruutus astuu voimaan kuluvan laskutusjakson päätyttyä.</span></li>
+          </ul>
+
+          <div class="subscription-question">
+            <strong>Hyväksytkö 50 euron kuukausilaskutuksen?</strong>
+            <p class="subscription-commit">Painamalla alla olevaa painiketta vahvistat, että olet lukenut yllä olevat ehdot ja annat meille luvan veloittaa sinulta 50 €/kk laskulla.</p>
+          </div>
+
+          <div class="subscription-actions">
+            <button class="cta-gold-full" type="button" data-subscription-accept>
+              <span>HYVÄKSYN 50 € KUUKAUSILASKUN</span>
+              <span class="cta-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+            </button>
+            <button class="btn-secondary" type="button" data-subscription-cancel>Peruuta ja palaa takaisin</button>
+          </div>
+
+          <div class="subscription-status" data-subscription-status role="status" aria-live="polite"></div>
+        </section>
+      </div>
+    </div>
+  </section>
+
   <section class="companies-page reveal" data-route-page="yritykset" aria-labelledby="companies-title">
     <div class="companies-inner">
       <h1 class="sr-only" id="companies-title">Yritykset</h1>
@@ -1661,13 +1725,14 @@ button,input,summary{font-family:inherit}
               </div>
             </div>
 
-            <button class="cta-gold-full" type="button">
+            <button class="cta-gold-full" type="button" data-purchase-cta>
               <span data-btn-label>Tilaa kuukausitilaus</span>
               <span class="cta-price" data-btn-price>— 50 € / kk</span>
               <span class="cta-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
             </button>
 
             <p class="credit-reassure">Toimitus heti PDF:nä sähköpostiisi<span class="sep">·</span>Peruuta kuukausitilaus koska tahansa</p>
+            <div class="credit-feedback" data-credit-feedback role="status" aria-live="polite"></div>
           </div>
         </div>
 
@@ -1946,6 +2011,12 @@ const TEXT_MUTED = '#8E948E';
 const routePages = Array.from(document.querySelectorAll('[data-route-page]'));
 const routeLinks = Array.from(document.querySelectorAll('[data-route-link]'));
 const companySectionIds = new Set(['yleiskuva','perustiedot','luottoriski','talous','tunnusluvut','vertailu']);
+const purchaseCtaButton = document.querySelector('[data-purchase-cta]');
+const subscriptionAcceptButton = document.querySelector('[data-subscription-accept]');
+const subscriptionCancelButton = document.querySelector('[data-subscription-cancel]');
+const subscriptionStatus = document.querySelector('[data-subscription-status]');
+const creditFeedback = document.querySelector('[data-credit-feedback]');
+let selectedPurchaseTier = 'subscription';
 let homeCountPlayed = false;
 
 function formatSpaceNumber(value){
@@ -1977,19 +2048,19 @@ function animateHomeCount(){
 function getRouteFromHash(){
   const hash = window.location.hash.replace('#', '');
   if (!hash) return 'etusivu';
-  if (hash === 'etusivu' || hash === 'faq' || hash === 'luottoriski-info' || hash === 'yritykset' || hash === 'toimialat' || hash === 'yritys') return hash;
+  if (hash === 'etusivu' || hash === 'faq' || hash === 'luottoriski-info' || hash === 'kuukausitilaus-vahvistus' || hash === 'yritykset' || hash === 'toimialat' || hash === 'yritys') return hash;
   if (companySectionIds.has(hash)) return 'yritys';
   return 'etusivu';
 }
 
 function applyRoute(){
   const route = getRouteFromHash();
-  const visiblePage = ['etusivu','faq','luottoriski-info','toimialat','yritys'].includes(route) ? route : 'yritykset';
+  const visiblePage = ['etusivu','faq','luottoriski-info','kuukausitilaus-vahvistus','toimialat','yritys'].includes(route) ? route : 'yritykset';
   routePages.forEach(page => {
     page.hidden = page.dataset.routePage !== visiblePage;
   });
   routeLinks.forEach(link => {
-    const isActive = route === link.dataset.routeLink || ((visiblePage === 'yritykset' || visiblePage === 'yritys') && link.dataset.routeLink === 'yritykset' && route !== 'toimialat' && route !== 'faq' && route !== 'luottoriski-info');
+    const isActive = route === link.dataset.routeLink || ((visiblePage === 'yritykset' || visiblePage === 'yritys' || visiblePage === 'kuukausitilaus-vahvistus') && link.dataset.routeLink === 'yritykset' && route !== 'toimialat' && route !== 'faq' && route !== 'luottoriski-info');
     link.classList.toggle('active', isActive);
     if (isActive) link.setAttribute('aria-current', 'page');
     else link.removeAttribute('aria-current');
@@ -2905,6 +2976,7 @@ function initIndustryScatter(){
       tiers.forEach(function(o){o.classList.remove('active');o.setAttribute('aria-checked','false');});
       t.classList.add('active');
       t.setAttribute('aria-checked','true');
+      selectedPurchaseTier = t.dataset.tier || 'subscription';
       if(btnLabel) btnLabel.textContent = labels[t.dataset.tier] || '';
       if(btnPrice) btnPrice.textContent = prices[t.dataset.tier] || '';
     }
@@ -2914,6 +2986,41 @@ function initIndustryScatter(){
     });
   });
 })();
+
+function showCreditFeedback(message){
+  if (!creditFeedback) return;
+  creditFeedback.textContent = message;
+  creditFeedback.classList.add('is-visible');
+}
+
+purchaseCtaButton?.addEventListener('click', function(){
+  if (selectedPurchaseTier === 'subscription') {
+    if (subscriptionStatus) {
+      subscriptionStatus.textContent = '';
+      subscriptionStatus.classList.remove('is-visible');
+    }
+    window.location.hash = 'kuukausitilaus-vahvistus';
+    return;
+  }
+  if (selectedPurchaseTier === 'single') {
+    showCreditFeedback('Yksittäinen luottoriskiraportti valittu. Tästä vaihtoehdosta voidaan jatkaa suoraan kertamaksuun ilman kuukausilaskutuksen vahvistusta.');
+    return;
+  }
+  showCreditFeedback('Kolmen raportin paketti valittu. Tämä vaihtoehto ohittaa kuukausilaskutuksen vahvistussivun ja etenee kertamaksullisena ostona.');
+});
+
+subscriptionCancelButton?.addEventListener('click', function(){
+  window.location.hash = 'luottoriski';
+});
+
+subscriptionAcceptButton?.addEventListener('click', function(){
+  if (subscriptionStatus) {
+    subscriptionStatus.textContent = 'Kuukausilaskutus hyväksytty. Rekisteröityminen voidaan nyt viimeistellä manuaalista sähköpostilaskutusta varten.';
+    subscriptionStatus.classList.add('is-visible');
+  }
+  showCreditFeedback('Kuukausilaskutus hyväksytty. Palvelu voidaan aktivoida heti rekisteröitymisen jälkeen ja laskutus hoidetaan toistaiseksi sähköpostilaskulla.');
+  window.location.hash = 'luottoriski';
+});
 </script>
 </body>
 </html>
